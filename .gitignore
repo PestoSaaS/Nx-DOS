@@ -51,7 +51,6 @@ tests/coverage/
 .nx/cache
 
 # Next.js - NxDOS documentation site public dev assets
-/apps/nxdos/documentation/documentation-site/public
 /apps/nxdos/documentation/documentation-site/public/*
 /apps/nxdos/documentation/documentation-site/public/**/*
 !/apps/nxdos/documentation/documentation-site/public/.gitkeep
