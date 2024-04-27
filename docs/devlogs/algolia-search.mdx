@@ -1,0 +1,154 @@
+---
+title: 'Simple search integration using Algolia'
+timestamp:
+  created_at: '2024-02-20T11:52:53.804Z'
+  last_updated_at: '2024-02-20T11:52:53.804Z'
+author:
+  name: PestoSaaS
+---
+
+# Introduction
+
+It's been quite educational to [build our documentation site using Next.js](/devlogs/nextjs-docs-site). However, designing and refining our UI was an iterative effort, and reinventing the wheel costs significant time. We could've used an existing tool like [Docusaurus](https://docusaurus.io/) and saved on our effort tackling issues such as;
+
+- Accommodating for rendering differences across browsers (Safari in particular)
+- Optimizing web vitals such as Largest Contentful Paint
+- Preventing cumulative layout shifts
+- Checking for mobile performance
+
+Even though we render our markdoc on the server, as syntax highlighted code is quite abundant in our bundle, we kept browser metrics under monitoring from the start.
+
+Optimizing for search performance on the other hand has significantly more complexity.
+
+## Why use Algolia?
+
+As much as we would learn a lot if we were to implement our own search functionality too, we could likely find ourselves in a similar rabbit hole. Still we'd be absent the guarantee that our solution would scale with the future of our project.
+
+Algolia is a hosted search engine we can integrate to our projects for free up to `10.000 search requests / month`, until faced with significant traction.
+
+- Quick to get up and running
+- Allows us to focus on building other features
+- Scalable and performant consumer grade search if budget permits
+- Shave off time spent on optimizing search / managing servers
+- Good learning for future projects
+
+A quick reminder, if your data is unstructured or it's required to be hosted on-premises, Algolia might not be a suitable solution for your needs.
+
+# Integrating Algolia
+
+Before we can enable searching our content we need to structure and send our data to Algolia servers.
+
+## Install API client
+
+Let's start with installing Algolia's search API client.
+
+```bash
+pnpm add algoliasearch
+```
+
+## Structure your data
+
+Formatting our data is a critical aspect of optimizing for search relevance. We don't need to extract everything, and should be selective about gathering only the information that helps the search experience.
+
+Also there is a size limit for record size. Big records could be chunked down into smaller distinct parts. We can later group them together while displaying results through specifying the `attributeForDistinct` index option.
+
+For our use case we will be using the following attributes to structure our search data.
+
+- `articleTitle`: string used for the article title
+- `articlePath`: /path/to/article
+- `sectionTitle`: string used for section title
+- `anchorLink`: anchor link URL for section
+- `sectionURL`: "/path/to/article#anchorLink
+- `sectionContent`: HTML content for section
+- `sectionOrder`: # numeric occurrence order in article
+
+We added the expressions below to the `getStaticProps` method of our dynamic routes, within the `pages/[...segments].tsx` file. They run conditionally only on the server side during the build phase. The structured data are then outputted to `dist/apps/nxdos/documentation/documentation-site/algolia/sections.json` file as searchable records.
+
+```typescript
+if (process.env.NEXT_PHASE === PHASE_PRODUCTION_BUILD) {
+  const sectionList = await collectSections(document);
+  sectionList.forEach((section) => {
+    algoliaSectionsRepo.create(section);
+  });
+}
+```
+
+## Push your data
+
+Once we have extracted and transformed our data, we need to send it to Algolia servers to make it searchable. There are multiple methods to do so for our convenience.
+
+Methods that don’t require coding to index your data:
+
+- [Dashboard](https://www.algolia.com/doc/guides/sending-and-managing-data/send-and-update-your-data/how-to/importing-from-the-dashboard/)
+- [No-code connectors](https://www.algolia.com/doc/guides/sending-and-managing-data/send-and-update-your-data/how-to/importing-with-no-code-connectors/)
+- [Crawler](https://www.algolia.com/doc/tools/crawler/getting-started/overview/)
+- [Ecommerce integrations](https://www.algolia.com/doc/guides/getting-started/how-algolia-works/in-depth/ecosystem/#ecommerce-integrations)
+- [Algolia CLI](https://www.algolia.com/doc/tools/cli/get-started/overview/)
+
+Methods permitting programmatic indexing for your app:
+
+- [API clients](https://www.algolia.com/doc/api-reference/api-methods/save-objects/)
+- [Web framework integrations](https://www.algolia.com/doc/guides/getting-started/how-algolia-works/in-depth/ecosystem/#framework-integrations)
+- [Search API](https://www.algolia.com/doc/rest-api/search/#objects-endpoints)
+
+### Composing a custom executor
+
+We will first compose a custom NX executor inside our workspace plugin to run when we want to update our Algolia records.
+
+```bash
+pnpm nx generate @nx/plugin:executor update-algolia-data --project=nxdos-workspace-plugin
+```
+
+{% embeddedCode
+filePath="../../tools/workspace-plugin/src/executors/update-algolia-data/executor.ts"
+/%}
+
+### Updating objects via Search API
+
+Our script is using the `saveObjects` method of the search API.
+
+We can customize the attributes affecting the relevancy of our search results using the `searchableAttributes` index option. The ordering of attributes also implies priority. We later use [relevant sorting](https://www.algolia.com/doc/guides/managing-results/refine-results/sorting/in-depth/relevant-sort/) for the results depending on `sectionOrder`. Such mechanics are featured in detail in the Algolia documentation [case study](https://www.algolia.com/doc/guides/going-to-production/case-study/).
+
+{% embeddedCode
+filePath="../../tools/workspace-plugin/src/lib/update-algolia-data.ts"
+/%}
+
+Remember to set the relevant environment variables within the `.env` file in your repo, and include it to your `.gitignore` to not mistakenly expose your API keys.
+
+{% embeddedCode language="bash"
+filePath="../../.env.example"
+/%}
+
+# Building our search UI
+
+Now it's time to work on building our search UI. Let's start by creating a feature library.
+
+```bash
+pnpm nx g @nx/react:lib --name=algolia-search --directory=nxdos/documentation-site/feature --style=css
+```
+
+## Adding InstantSearch to your app
+
+Initiate the search client using the `API key` and `App ID` provided by Algolia, and connect your InstantSearch app to Algolia by wrapping it inside the `<InstantSearch>` provider.
+
+{% embeddedCode
+filePath="../../libs/nxdos/documentation-site/feature/algolia-search/src/lib/instant-search-wrapper.tsx"
+/%}
+
+## Algolia widgets
+
+React InstantSearch provides handy widgets to compose your search UI. They're likely to be suitable defaults for most use cases.
+
+- `<SearchBox>`: a search field connected to Algolia.
+- `<Hits>`: where you listen for new results to be returned.
+- `<Highlight>`: highlights matching attributes of each hit.
+
+Similarly, there are additional widgets to help with search refinement and result pagination.
+
+An ideal search experience and the necessary UI could vary greatly depending on the use case. It's worthwhile to take a moment for reviewing the context and structure of the data, before setting off to build the search experience.
+
+## Custom components
+
+Our site opted for a custom implementation of search components due to its layout structure. If you would like to explore examples on custom query hooks and submit handlers, you can find all related files under our related feature library `libs/nxdos/documentation-site/feature/algolia-search`.
+
+For further implementation details please refer to [Algolia's React InstantSearch docs](https://www.algolia.com/doc/guides/building-search-ui/what-is-instantsearch/react/) with up to date information.

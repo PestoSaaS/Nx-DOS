@@ -1,0 +1,194 @@
+---
+title: 'Quality assurance & systems monitoring'
+timestamp:
+  created_at: '2024-02-20T11:23:24.230Z'
+  last_updated_at: '2024-04-12T10:49:50.530Z'
+author:
+  name: PestoSaaS
+---
+
+# Systems monitoring
+
+In order to help perform quality assurance over the repository, Nx-DOS offers some preliminary solutions that could easily be extended and adapted to your needs. 
+
+We hope they serve as a starting point to develop a management process which ensures the codebase continues to uphold the standards set by your team. 
+
+## Future improvements
+
+This collection will grow in the future to include exception tracking and performance monitoring using [Sentry](https://docs.sentry.io/), as we progress to develop our multi-platform client application.
+
+# Code coverage
+
+Nx is an incredibly useful tool to orchestrate testing over a complex repository. It allows us to colocate the specs as close as possible to the code its related with. 
+
+The generator presets for react applications and libraries provide a simple example of such, and are pleasantly straightforward to get started with. 
+
+> Nx also handles caching the task output and enables us to retest a target only if it is affected by recent changes.
+
+However one issue we've had was: once we ran multiple Nx test targets using the `nx run-many` command, the `--codeCoverage` flag resulted in a separate coverage report for each target. This included coverage only from specs included within the respective subfolders. We breakdown our solution in the steps below.
+
+## Redirect individual reports
+
+First we had to redirect the report output of each test run that collects coverage to the `<ROOT>/tests/coverage` directory, using the `coverageDirectory` option within the `jest.config.ts` file for each target.
+
+```typescript
+import { workspaceRoot } from '@nx/devkit';
+const relativePath = __dirname.replace(workspaceRoot, '');
+const coverageDirectoryPath = workspaceRoot + '/tests/coverage' + relativePath;
+
+...
+```
+
+If you prefer, you could also configure this property in the monorepo level, using the `<ROOT>/jest.preset.js` file, which is also where we set the reporter types, as shown below.
+
+```javascript
+const nxPreset = require('@nx/jest/preset').default;
+
+nxPreset.coverageReporters = ['text', 'lcov', 'json', 'clover'];
+...
+
+module.exports = {
+  ...nxPreset,
+}
+```
+
+## Merge all coverage
+
+This step could be tailored to your needs to report coverage on the project level and achieve multiple summaries, i.e. one per each application in your repo.
+
+For starters, it's configured to use the `istanbul-merge` package and merge all existing coverage reports via the script below from the root level `package.json` file.
+
+```json
+{
+  ...
+  "scripts": {
+    ...
+    "merge-coverage": "pnpm istanbul-merge --out='tests/coverage/summary/monorepo-coverage.json' 'tests/coverage/**/coverage-final.json' &&  pnpm nyc report --reporter=html --reporter=text --reporter=lcov --reporter=clover --report-dir=tests/coverage/summary/reports --temp-dir=tests/coverage/summary",
+    ...
+  }
+  ...
+}
+```
+
+The script above will output coverage information over the whole monorepo inside the `<ROOT>/tests/coverage/summary/monorepo-coverage.json` file, along with reports of the other chosen formats underneath the same directory.
+
+## Upload result to Codecov
+
+After logging into [codecov.io](https://app.codecov.io) using your source code provider, you will need to configure your project and obtain a repository upload token, found underneath the `settings` tab.
+
+You can add this token to the `.env` file where we define the environment variables, or you can add it to a context provided by your CI pipeline. 
+
+Using the Circleci Codecov orb was quite convenient. Here is a reference from our `config.yml`, the configuration below uploads the repo wide coverage results to Codecov every time our test suite runs successfully. 
+
+```yml
+...
+orbs:
+  nx: nrwl/nx@1.6.2
+  codecov: codecov/codecov@4.0.1
+
+...
+"jobs":
+  ...
+    test:
+    description: runs unit tests for all targets
+    docker:
+      - image: cimg/node:lts-browsers
+    steps:
+      - ...
+      - codecov/upload:
+          file: tests/coverage/summary/monorepo-coverage.json
+          token: CODECOV_TOKEN
+...
+```
+
+You can administer an acceptance criteria based on these reports, or simply embed the result in your `README.md` using the Codecov generated shield badge. Please note that the public token referenced in the url below will be different than your upload token.
+
+[![codecov](https://codecov.io/bb/serhano/nx-dos/graph/badge.svg?token=2BAONFDO67)](https://codecov.io/bb/serhano/nx-dos) 
+
+```
+[![codecov](https://codecov.io/bb/<user>/<repo>/graph/badge.svg?token=T0K3NH3R3)](https://codecov.io/bb/<user>/<repo>) 
+```
+
+# Lighthouse audits
+
+[Lighthouse](https://github.com/GoogleChrome/lighthouse) is a developer tool by Google which analyzes web pages for performance metrics. It also provides useful insights on best practices and accessibility.
+
+At times it's been infamous among developers for finding something to complain about even if you deploy a seemingly empty site. This might seem a deterrent at first but there is good reason behind most warnings to at least bring them to your attention.
+
+## Custom workspace tools
+
+Our first solution to this task was to compose a custom workspace executor, which is one of the most pleasant perks of managing your repo using Nx. 
+
+{% embeddedCode
+filePath="../../tools/workspace-plugin/src/executors/lighthouse-audit/executor.ts"
+/%}
+
+You can run this executor via the `nxdos-documentation-site:lighthouse-audit` target, using the command below;
+
+```bash
+pnpm nx run nxdos-documentation-site:lighthouse-audit
+```
+
+However, as you can see from the dynamic import statements in our script, during the transitioning era of many 3rd party libraries from CommonJs to ES modules, there isn't yet an officially supported way of handling such libraries in Nx's node executor.
+
+```typescript
+  ...
+  const { default: lighthouse } = await (Function(
+    'return import("lighthouse")'
+  )() as Promise<typeof import('lighthouse')>);
+  const chromeLauncher = await (Function(
+    'return import("chrome-launcher")'
+  )() as Promise<typeof import('chrome-launcher')>);
+  ...
+```
+
+Rather than to transpile 3rd party libs into cjs modules, we've opted to workaround the issue using async imports as suggested by @dmastag in [this issue \[#11335\]](https://github.com/nrwl/nx/issues/11335). 
+
+> Since jest doesn't fare well with ESM imports either, similar issues also exist in the testing environment. Thus we had to take portions of this script outside test coverage using the `istanbul ignore next` directive, as we have done in other parts of the repo for code unreachable by jest, such as due to its inability of simulating a route change. 
+
+{% embeddedCode
+filePath="../../tools/workspace-plugin/src/lib/audit-lighthouse-scores.ts" language="typescript{49:54}"
+/%}
+
+Running such analysis on our site retroactively we've managed to obtain perfect scores for accessibility and best practices. However, we have differing performance scores in development, ci and production environments that are relatively unimpressive.
+
+We also use this script to generate the lighthouse badges embedded in the repo `README.md`, once the audit has completed.
+
+## @push-based/user-flow
+
+While we've been at work developing Nx-DOS, push-based released a wonderful Nx plugin for this specific task called [user-flow](https://github.com/push-based/user-flow), which goes pleasantly beyond your ordinary lighthouse audit.
+
+{% youtube
+title="Nx Live | Automated Runtime Performance Logging with Lighthouse User Flows"
+video_id="K_TyIJFx_p8"
+/%}
+
+[The live collaboration above](https://www.youtube.com/watch?v=K_TyIJFx_p8) by Nx veteran @Zackderose and push-based founder Michael Hladky is one of the best resources out there to learn about and appreciate their hard work.
+
+### Budget assertions
+
+User-flow allows you to assert performance budgets on your audits using a `.user-flowrc.json` configuration file, such as the one you see below.
+
+{% embeddedCode
+filePath="../../apps/nxdos/documentation/documentation-site/.user-flowrc.json"
+/%}
+
+The real silver lining with this library is, not only it allows us to express these constraints in a programmatic way, but also makes it possible to a certain degree to extend these assertions beyond the landing page.
+
+### User flows
+
+Such assertions are defined with the help of `user-flows`, like the basic example below, and [explained in their documentation](https://github.com/push-based/user-flow?tab=readme-ov-file#basic-user-flows) with further detail.
+
+{% embeddedCode
+filePath="../../apps/nxdos/documentation/documentation-site/user-flows/basic-navigation.uf.ts"
+/%}
+
+Although this is a simple use case which merely navigates to a url, it can easily be extended. Once you map out your expected user flow, you can programmatically run assertions on multiple points of your user's journey, even within more complex architectures via leveraging [user flow objects](https://github.com/push-based/user-flow/blob/main/packages/cli/docs/ufo-architecture.md), a.k.a. `UFOs` as push-based calls them.
+
+# Reflections 
+
+In hindsight a better workflow would've been to keep watch over such performance issues from the start, since the point it once was indeed an empty site. As changes compound, their implications on metrics aren't as visible in a granular level.
+
+Luckily our documentation viewer doesn't need to scale into a performance power house. For this instance we can choose to move on rather than invest into the thorough changes needed to obtain spotless performance scores.
+
+However for our client side code that's intended for the end users, we will have rigid budget assertions from the beginning, in order to make sure the expected level of quality is never compromised in production.

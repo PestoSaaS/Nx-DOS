@@ -1,0 +1,47 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "lib": ["es2017", "dom", "ES2021.String"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@nxdos/documentation-site/data-access/documents-api": [
+        "libs/nxdos/documentation-site/data-access/documents-api/src/index.ts"
+      ],
+      "@nxdos/documentation-site/data-access/menu-api": [
+        "libs/nxdos/documentation-site/data-access/menu-api/src/index.ts"
+      ],
+      "@nxdos/documentation-site/feature/algolia-search": [
+        "libs/nxdos/documentation-site/feature/algolia-search/src/index.ts"
+      ],
+      "@nxdos/documentation-site/feature/doc-viewer": [
+        "libs/nxdos/documentation-site/feature/doc-viewer/src/index.ts"
+      ],
+      "@nxdos/documentation-site/models/document": [
+        "libs/nxdos/documentation-site/models/document/src/index.ts"
+      ],
+      "@nxdos/documentation-site/models/menu": [
+        "libs/nxdos/documentation-site/models/menu/src/index.ts"
+      ],
+      "@nxdos/documentation-site/ui/common": [
+        "libs/nxdos/documentation-site/ui/common/src/index.ts"
+      ],
+      "@nxdos/documentation-site/ui/markdoc": [
+        "libs/nxdos/documentation-site/ui/markdoc/src/index.ts"
+      ],
+      "@nxdos/workspace-plugin": ["tools/workspace-plugin/src/index.ts"],
+      "@shared/util/testing": ["libs/shared/util/testing/src/index.ts"]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}

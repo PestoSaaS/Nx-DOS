@@ -1,0 +1,572 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Nxdos - Documentation Site - UI - Markdoc - nodes, Fence should match snapshot correctly 1`] = `
+<DocumentFragment>
+  <div
+    aria-hidden="false"
+    class="code-block code-block group relative will-change-transform transform-gpu  code-block--withLineNumbers"
+  >
+    <pre
+      style="tab-size: 2; hyphens: none; white-space: pre-wrap; word-wrap: normal; font-family: Noto Sans Mono, Menlo, Monaco, "Courier New", monospace; font-size: 14px; text-shadow: none; padding: 15px; border-radius: 4px; border: 1px solid #e1e1e8; overflow: auto; position: relative;"
+    >
+      <code
+        class="language-json"
+        style="tab-size: 2; hyphens: none; white-space: pre; word-wrap: normal; font-family: Noto Sans Mono, Menlo, Monaco, "Courier New", monospace; font-size: 14px; text-shadow: none;"
+      >
+        <span>
+          <span
+            class="linenumber react-syntax-highlighter-line-number"
+            style="display: inline-block; min-width: 2.25em; padding-right: 1em; text-align: right; user-select: none;"
+          >
+            1
+          </span>
+          <span
+            class="token"
+          >
+            [
+          </span>
+          <span>
+            
+
+          </span>
+        </span>
+        <span
+          classid="highlightedLine"
+        >
+          <span
+            class="linenumber react-syntax-highlighter-line-number"
+            style="display: inline-block; min-width: 2.25em; padding-right: 1em; text-align: right; user-select: none;"
+          >
+            2
+          </span>
+          <span>
+                
+          </span>
+          <span
+            class="token"
+          >
+            {
+          </span>
+          <span>
+            
+
+          </span>
+        </span>
+        <span
+          classid="highlightedLine"
+        >
+          <span
+            class="linenumber react-syntax-highlighter-line-number"
+            style="display: inline-block; min-width: 2.25em; padding-right: 1em; text-align: right; user-select: none;"
+          >
+            3
+          </span>
+          <span>
+                  
+          </span>
+          <span
+            class="token property"
+          >
+            "name"
+          </span>
+          <span
+            class="token"
+          >
+            :
+          </span>
+          <span>
+             
+          </span>
+          <span
+            class="token"
+          >
+            "Nx-DOS"
+          </span>
+          <span
+            class="token"
+          >
+            ,
+          </span>
+          <span>
+            
+
+          </span>
+        </span>
+        <span>
+          <span
+            class="linenumber react-syntax-highlighter-line-number"
+            style="display: inline-block; min-width: 2.25em; padding-right: 1em; text-align: right; user-select: none;"
+          >
+            4
+          </span>
+          <span>
+                  
+          </span>
+          <span
+            class="token property"
+          >
+            "path"
+          </span>
+          <span
+            class="token"
+          >
+            :
+          </span>
+          <span>
+             
+          </span>
+          <span
+            class="token"
+          >
+            "nxdos"
+          </span>
+          <span
+            class="token"
+          >
+            ,
+          </span>
+          <span>
+            
+
+          </span>
+        </span>
+        <span>
+          <span
+            class="linenumber react-syntax-highlighter-line-number"
+            style="display: inline-block; min-width: 2.25em; padding-right: 1em; text-align: right; user-select: none;"
+          >
+            5
+          </span>
+          <span>
+                  
+          </span>
+          <span
+            class="token property"
+          >
+            "isFolder"
+          </span>
+          <span
+            class="token"
+          >
+            :
+          </span>
+          <span>
+             
+          </span>
+          <span
+            class="token"
+          >
+            true
+          </span>
+          <span
+            class="token"
+          >
+            ,
+          </span>
+          <span>
+            
+
+          </span>
+        </span>
+        <span>
+          <span
+            class="linenumber react-syntax-highlighter-line-number"
+            style="display: inline-block; min-width: 2.25em; padding-right: 1em; text-align: right; user-select: none;"
+          >
+            6
+          </span>
+          <span>
+                  
+          </span>
+          <span
+            class="token property"
+          >
+            "itemList"
+          </span>
+          <span
+            class="token"
+          >
+            :
+          </span>
+          <span>
+             
+          </span>
+          <span
+            class="token"
+          >
+            [
+          </span>
+          <span>
+            
+
+          </span>
+        </span>
+        <span>
+          <span
+            class="linenumber react-syntax-highlighter-line-number"
+            style="display: inline-block; min-width: 2.25em; padding-right: 1em; text-align: right; user-select: none;"
+          >
+            7
+          </span>
+          <span>
+                    
+          </span>
+          <span
+            class="token"
+          >
+            {
+          </span>
+          <span>
+            
+
+          </span>
+        </span>
+        <span>
+          <span
+            class="linenumber react-syntax-highlighter-line-number"
+            style="display: inline-block; min-width: 2.25em; padding-right: 1em; text-align: right; user-select: none;"
+          >
+            8
+          </span>
+          <span>
+                      
+          </span>
+          <span
+            class="token property"
+          >
+            "name"
+          </span>
+          <span
+            class="token"
+          >
+            :
+          </span>
+          <span>
+             
+          </span>
+          <span
+            class="token"
+          >
+            "introduction"
+          </span>
+          <span
+            class="token"
+          >
+            ,
+          </span>
+          <span>
+            
+
+          </span>
+        </span>
+        <span>
+          <span
+            class="linenumber react-syntax-highlighter-line-number"
+            style="display: inline-block; min-width: 2.25em; padding-right: 1em; text-align: right; user-select: none;"
+          >
+            9
+          </span>
+          <span>
+                      
+          </span>
+          <span
+            class="token property"
+          >
+            "path"
+          </span>
+          <span
+            class="token"
+          >
+            :
+          </span>
+          <span>
+             
+          </span>
+          <span
+            class="token"
+          >
+            "nxdos/introduction"
+          </span>
+          <span
+            class="token"
+          >
+            ,
+          </span>
+          <span>
+            
+
+          </span>
+        </span>
+        <span>
+          <span
+            class="linenumber react-syntax-highlighter-line-number"
+            style="display: inline-block; min-width: 2.25em; padding-right: 1em; text-align: right; user-select: none;"
+          >
+            10
+          </span>
+          <span>
+                      
+          </span>
+          <span
+            class="token property"
+          >
+            "overrideURL"
+          </span>
+          <span
+            class="token"
+          >
+            :
+          </span>
+          <span>
+             
+          </span>
+          <span
+            class="token"
+          >
+            "introduction"
+          </span>
+          <span>
+            
+
+          </span>
+        </span>
+        <span>
+          <span
+            class="linenumber react-syntax-highlighter-line-number"
+            style="display: inline-block; min-width: 2.25em; padding-right: 1em; text-align: right; user-select: none;"
+          >
+            11
+          </span>
+          <span>
+                    
+          </span>
+          <span
+            class="token"
+          >
+            }
+          </span>
+          <span
+            class="token"
+          >
+            ,
+          </span>
+          <span>
+            
+
+          </span>
+        </span>
+        <span>
+          <span
+            class="linenumber react-syntax-highlighter-line-number"
+            style="display: inline-block; min-width: 2.25em; padding-right: 1em; text-align: right; user-select: none;"
+          >
+            12
+          </span>
+          <span>
+                    
+          </span>
+          <span
+            class="token"
+          >
+            {
+          </span>
+          <span>
+            
+
+          </span>
+        </span>
+        <span>
+          <span
+            class="linenumber react-syntax-highlighter-line-number"
+            style="display: inline-block; min-width: 2.25em; padding-right: 1em; text-align: right; user-select: none;"
+          >
+            13
+          </span>
+          <span>
+                      
+          </span>
+          <span
+            class="token property"
+          >
+            "name"
+          </span>
+          <span
+            class="token"
+          >
+            :
+          </span>
+          <span>
+             
+          </span>
+          <span
+            class="token"
+          >
+            "getting-started"
+          </span>
+          <span
+            class="token"
+          >
+            ,
+          </span>
+          <span>
+            
+
+          </span>
+        </span>
+        <span>
+          <span
+            class="linenumber react-syntax-highlighter-line-number"
+            style="display: inline-block; min-width: 2.25em; padding-right: 1em; text-align: right; user-select: none;"
+          >
+            14
+          </span>
+          <span>
+                      
+          </span>
+          <span
+            class="token property"
+          >
+            "path"
+          </span>
+          <span
+            class="token"
+          >
+            :
+          </span>
+          <span>
+             
+          </span>
+          <span
+            class="token"
+          >
+            "nxdos/getting-started"
+          </span>
+          <span
+            class="token"
+          >
+            ,
+          </span>
+          <span>
+            
+
+          </span>
+        </span>
+        <span>
+          <span
+            class="linenumber react-syntax-highlighter-line-number"
+            style="display: inline-block; min-width: 2.25em; padding-right: 1em; text-align: right; user-select: none;"
+          >
+            15
+          </span>
+          <span>
+                      
+          </span>
+          <span
+            class="token property"
+          >
+            "overrideURL"
+          </span>
+          <span
+            class="token"
+          >
+            :
+          </span>
+          <span>
+             
+          </span>
+          <span
+            class="token"
+          >
+            "getting-started"
+          </span>
+          <span>
+            
+
+          </span>
+        </span>
+        <span>
+          <span
+            class="linenumber react-syntax-highlighter-line-number"
+            style="display: inline-block; min-width: 2.25em; padding-right: 1em; text-align: right; user-select: none;"
+          >
+            16
+          </span>
+          <span>
+                    
+          </span>
+          <span
+            class="token"
+          >
+            }
+          </span>
+          <span>
+            
+
+          </span>
+        </span>
+        <span>
+          <span
+            class="linenumber react-syntax-highlighter-line-number"
+            style="display: inline-block; min-width: 2.25em; padding-right: 1em; text-align: right; user-select: none;"
+          >
+            17
+          </span>
+          <span>
+                  
+          </span>
+          <span
+            class="token"
+          >
+            ]
+          </span>
+          <span>
+            
+
+          </span>
+        </span>
+        <span>
+          <span
+            class="linenumber react-syntax-highlighter-line-number"
+            style="display: inline-block; min-width: 2.25em; padding-right: 1em; text-align: right; user-select: none;"
+          >
+            18
+          </span>
+          <span>
+                
+          </span>
+          <span
+            class="token"
+          >
+            }
+          </span>
+          <span>
+            
+
+          </span>
+        </span>
+        <span>
+          <span
+            class="linenumber react-syntax-highlighter-line-number"
+            style="display: inline-block; min-width: 2.25em; padding-right: 1em; text-align: right; user-select: none;"
+          >
+            19
+          </span>
+          <span>
+              
+          </span>
+          <span
+            class="token"
+          >
+            ]
+          </span>
+        </span>
+      </code>
+    </pre>
+    <div
+      aria-hidden="true"
+      class="copyIcon"
+      data-testid="copyToClipboardButton"
+    />
+  </div>
+</DocumentFragment>
+`;

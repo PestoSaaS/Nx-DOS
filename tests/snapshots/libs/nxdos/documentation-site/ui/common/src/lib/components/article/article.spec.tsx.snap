@@ -1,0 +1,1462 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Nxdos - Documentation Site - UI - Common - components, Article should match snapshot correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="slidingOverviewPanelWrapper  lg:hidden"
+  >
+    <div
+      class="overviewPanelOverlayBg lg:hidden"
+      data-testid="overviewPanelOverlayBg"
+    />
+    <div
+      class="slidingOverviewPanel slidingOverviewPanel"
+    >
+      <div
+        class="overviewPanelContainer overviewPanelContainer"
+        id="overviewPanelContainer"
+      >
+        <div
+          class="tocWrapper"
+        >
+          <object
+            aria-hidden="true"
+            class="lineBorderFrame lineBorderFrame"
+          >
+            <div
+              class="lineBorder-corner lineBorder-corner--top-left"
+            />
+            <div
+              class="lineBorder-corner lineBorder-corner--top-right"
+            />
+            <div
+              class="lineBorder-corner lineBorder-corner--bottom-left"
+            />
+            <div
+              class="lineBorder-corner lineBorder-corner--bottom-right"
+            />
+            <div
+              class="lineBorder--top lineBorder"
+            >
+              ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+            </div>
+            <div
+              class="lineBorder--bottom lineBorder"
+            >
+              ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+            </div>
+            <object
+              class="lineBorder--left lineBorder w-[1ch] [word-break:break-word] overflow-hidden "
+            >
+              ││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││
+            </object>
+            <object
+              class="lineBorder--right lineBorder w-[1ch] [word-break:break-word] overflow-hidden "
+            >
+              ││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││
+            </object>
+          </object>
+          <div
+            class="opTitleFrame"
+          >
+            <div
+              class="opTitleLabel"
+            >
+              Table of Contents
+            </div>
+          </div>
+          <ul
+            class="tocFrame tocFrame"
+            id="tocFrame"
+          >
+            <li
+              class="tocListItem"
+            >
+              <a
+                data-testid="tocItem-lets-jam"
+                href="#lets-jam"
+              >
+                <span
+                  class="sectionLabelInset"
+                />
+                <span
+                  class="sectionLabel "
+                >
+                  <span
+                    class="sectionLabel-hoverMarker sectionLabel-hoverMarker-left"
+                  >
+                    [
+                  </span>
+                  <span
+                    class="sectionTitle "
+                  >
+                    Let's JAM
+                  </span>
+                  <span
+                    class="sectionLabel-hoverMarker"
+                  >
+                    ]
+                  </span>
+                </span>
+              </a>
+            </li>
+            <li
+              class="tocListItem"
+            >
+              <a
+                data-testid="tocItem-whats-jamstack"
+                href="#whats-jamstack"
+              >
+                <span
+                  class="sectionLabelInset"
+                >
+                    
+                </span>
+                <span
+                  class="sectionLabel "
+                >
+                  <span
+                    class="sectionLabel-hoverMarker sectionLabel-hoverMarker-left"
+                  >
+                    [
+                  </span>
+                  <span
+                    class="sectionTitle "
+                  >
+                    What's Jamstack?
+                  </span>
+                  <span
+                    class="sectionLabel-hoverMarker"
+                  >
+                    ]
+                  </span>
+                </span>
+              </a>
+            </li>
+            <li
+              class="tocListItem"
+            >
+              <a
+                data-testid="tocItem-why-is-this-important"
+                href="#why-is-this-important"
+              >
+                <span
+                  class="sectionLabelInset"
+                >
+                    
+                </span>
+                <span
+                  class="sectionLabel "
+                >
+                  <span
+                    class="sectionLabel-hoverMarker sectionLabel-hoverMarker-left"
+                  >
+                    [
+                  </span>
+                  <span
+                    class="sectionTitle "
+                  >
+                    Why is this important?
+                  </span>
+                  <span
+                    class="sectionLabel-hoverMarker"
+                  >
+                    ]
+                  </span>
+                </span>
+              </a>
+            </li>
+            <li
+              class="tocListItem"
+            >
+              <a
+                data-testid="tocItem-how-to-use-nx-dos"
+                href="#how-to-use-nx-dos"
+              >
+                <span
+                  class="sectionLabelInset"
+                >
+                    
+                </span>
+                <span
+                  class="sectionLabel "
+                >
+                  <span
+                    class="sectionLabel-hoverMarker sectionLabel-hoverMarker-left"
+                  >
+                    [
+                  </span>
+                  <span
+                    class="sectionTitle "
+                  >
+                    How to use Nx-DOS?
+                  </span>
+                  <span
+                    class="sectionLabel-hoverMarker"
+                  >
+                    ]
+                  </span>
+                </span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="overviewPanelToggleButton   lg:hidden"
+  >
+    <div
+      class="overviewPanelToggleButtonWrapper"
+    >
+      <div
+        class="progressIndicator"
+      >
+        <span
+          class="progressIndicatorAmount"
+        >
+          NaN
+          <span
+            class="progressPercentageSymbol"
+          >
+            %
+          </span>
+        </span>
+        <span
+          class="TocIcon"
+        >
+          <div />
+        </span>
+        <div
+          class="overviewPanelToggleButton--clickHandler [pointer-events:none] "
+          data-testid="toggleOverviewPanelButton_alternate"
+        />
+        <div
+          class="overviewPanelToggleButton--clickHandler [pointer-events:none]   max-sm:[pointer-events:none] "
+          data-testid="toggleOverviewPanelButton"
+        />
+      </div>
+      <div
+        class="panelCloseIconWrapper "
+      >
+        <div />
+      </div>
+    </div>
+  </div>
+  <div
+    class="lg:flex-shrink-[2] relative [--overlay-pointer-events:none]"
+  >
+    <h1
+      class="article_title readerModeWorkaround--articleTitle"
+    >
+      Getting Started
+    </h1>
+    <p
+      class="readerModeWorkaround--articleDate"
+    >
+      last updated at 
+      <time>
+        February 20, 2024
+      </time>
+    </p>
+    <article
+      class="break-words text-white flex-row flex"
+    >
+      <div
+        class="prose  min-w-[100%] max-w-[100%] lg:min-w-[var(--max-width-after-bp-large)] lg:max-w-[var(--max-width-after-bp-large)] prose-invert lg:[--overview-panel--nested--display-type:none] articleWrapper articleWrapper"
+      >
+        <div
+          class="articleHeader"
+        >
+          <div
+            class="articleHeaderBg"
+          />
+          <div
+            class="articleTitleFrame"
+          >
+            <div
+              aria-hidden="true"
+              class="articleTitleLabelFrame"
+            >
+              <h1
+                class="articleTitleLabel articleTitleLabel"
+              >
+                Getting Started
+              </h1>
+            </div>
+          </div>
+          <div
+            class="articleMetaInformation"
+          >
+            <div
+              class="articleUpdatedAtFrame"
+            >
+              <span
+                class="dateline "
+              >
+                last updated on 
+                <span
+                  class="articleUpdatedAtLabel"
+                >
+                  February 20, 2024
+                </span>
+              </span>
+            </div>
+          </div>
+        </div>
+        <span
+          class="overviewPanelAnchor"
+          id="overviewPanelAnchor"
+        />
+        <div
+          class="overviewPanelContainer overviewPanelContainer"
+          id="overviewPanelContainer"
+        >
+          <div
+            class="tocWrapper"
+          >
+            <object
+              aria-hidden="true"
+              class="lineBorderFrame lineBorderFrame"
+            >
+              <div
+                class="lineBorder-corner lineBorder-corner--top-left"
+              />
+              <div
+                class="lineBorder-corner lineBorder-corner--top-right"
+              />
+              <div
+                class="lineBorder-corner lineBorder-corner--bottom-left"
+              />
+              <div
+                class="lineBorder-corner lineBorder-corner--bottom-right"
+              />
+              <div
+                class="lineBorder--top lineBorder"
+              >
+                ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+              </div>
+              <div
+                class="lineBorder--bottom lineBorder"
+              >
+                ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+              </div>
+              <object
+                class="lineBorder--left lineBorder w-[1ch] [word-break:break-word] overflow-hidden "
+              >
+                ││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││
+              </object>
+              <object
+                class="lineBorder--right lineBorder w-[1ch] [word-break:break-word] overflow-hidden "
+              >
+                ││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││
+              </object>
+            </object>
+            <div
+              class="opTitleFrame"
+            >
+              <div
+                class="opTitleLabel"
+              >
+                Table of Contents
+              </div>
+            </div>
+            <ul
+              class="tocFrame tocFrame"
+              id="tocFrame"
+            >
+              <li
+                class="tocListItem"
+              >
+                <a
+                  data-testid="tocItem-lets-jam"
+                  href="#lets-jam"
+                >
+                  <span
+                    class="sectionLabelInset"
+                  />
+                  <span
+                    class="sectionLabel "
+                  >
+                    <span
+                      class="sectionLabel-hoverMarker sectionLabel-hoverMarker-left"
+                    >
+                      [
+                    </span>
+                    <span
+                      class="sectionTitle "
+                    >
+                      Let's JAM
+                    </span>
+                    <span
+                      class="sectionLabel-hoverMarker"
+                    >
+                      ]
+                    </span>
+                  </span>
+                </a>
+              </li>
+              <li
+                class="tocListItem"
+              >
+                <a
+                  data-testid="tocItem-whats-jamstack"
+                  href="#whats-jamstack"
+                >
+                  <span
+                    class="sectionLabelInset"
+                  >
+                      
+                  </span>
+                  <span
+                    class="sectionLabel "
+                  >
+                    <span
+                      class="sectionLabel-hoverMarker sectionLabel-hoverMarker-left"
+                    >
+                      [
+                    </span>
+                    <span
+                      class="sectionTitle "
+                    >
+                      What's Jamstack?
+                    </span>
+                    <span
+                      class="sectionLabel-hoverMarker"
+                    >
+                      ]
+                    </span>
+                  </span>
+                </a>
+              </li>
+              <li
+                class="tocListItem"
+              >
+                <a
+                  data-testid="tocItem-why-is-this-important"
+                  href="#why-is-this-important"
+                >
+                  <span
+                    class="sectionLabelInset"
+                  >
+                      
+                  </span>
+                  <span
+                    class="sectionLabel "
+                  >
+                    <span
+                      class="sectionLabel-hoverMarker sectionLabel-hoverMarker-left"
+                    >
+                      [
+                    </span>
+                    <span
+                      class="sectionTitle "
+                    >
+                      Why is this important?
+                    </span>
+                    <span
+                      class="sectionLabel-hoverMarker"
+                    >
+                      ]
+                    </span>
+                  </span>
+                </a>
+              </li>
+              <li
+                class="tocListItem"
+              >
+                <a
+                  data-testid="tocItem-how-to-use-nx-dos"
+                  href="#how-to-use-nx-dos"
+                >
+                  <span
+                    class="sectionLabelInset"
+                  >
+                      
+                  </span>
+                  <span
+                    class="sectionLabel "
+                  >
+                    <span
+                      class="sectionLabel-hoverMarker sectionLabel-hoverMarker-left"
+                    >
+                      [
+                    </span>
+                    <span
+                      class="sectionTitle "
+                    >
+                      How to use Nx-DOS?
+                    </span>
+                    <span
+                      class="sectionLabel-hoverMarker"
+                    >
+                      ]
+                    </span>
+                  </span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <h1
+          aria-hidden="true"
+          class="readerModeWorkaround--articleTitle"
+          id="getting-started"
+          role="heading"
+        >
+          Getting Started
+        </h1>
+        <div
+          class="article--glitchMask"
+        >
+          <style>
+            
+      @media print {
+      #contentHeader__readerMode{
+        height: unset !important;
+        width: unset !important;
+        position: relative !important;
+        overflow: unset !important;
+        left: 1ch
+      }
+      #readerMode__navigation_links{
+        display: none !important;
+      }
+    }
+          </style>
+          
+     
+          <span
+            id="contentHeader__readerMode"
+            style="
+      height: 0;
+      width: 0;
+      position: absolute;
+      overflow: hidden;
+      outline: none;
+      -webkit-touch-callout: none; /* iOS Safari */
+      -webkit-user-select: none; /* Safari */
+      -khtml-user-select: none; /* Konqueror HTML */
+      -moz-user-select: none; /* Old versions of Firefox */
+      -ms-user-select: none; /* Internet Explorer/Edge */
+      user-select: none;
+      pointer-events: none;
+    "
+          >
+            <span>
+              
+      
+              <i>
+                / * *
+              </i>
+              
+      
+              <br />
+              
+      
+              <span
+                classname="copyright"
+              >
+                <i>
+                  *
+                </i>
+                  Nx-DOS, 
+      
+                <span
+                  classname="copyrightIcon"
+                >
+                  ©
+                </span>
+                <span>
+                  2024
+                </span>
+                
+      
+                <br />
+                
+      
+                <span
+                  classname="version"
+                >
+                  <i>
+                    *
+                  </i>
+                    version 0.0.1
+                </span>
+                 
+      
+              </span>
+              
+      
+              <br />
+              
+      
+              <span
+                classname="currentPath"
+              >
+                <i>
+                  *
+                </i>
+                  
+                <a
+                  href="http://localhost/introduction"
+                >
+                  localhost/introduction
+                </a>
+              </span>
+              
+      
+              <span
+                id="readerMode__navigation_links"
+              >
+                
+      
+                <br />
+                
+      
+                <i>
+                  *
+                </i>
+              </span>
+              <br />
+              <i>
+                * * /
+              </i>
+            </span>
+          </span>
+          <section
+            class="article_sectionWrapper__o0ALq"
+          >
+            <span>
+              <a
+                aria-hidden="true"
+                class="article_searchAnchor__HE2jV"
+                id="lets-jam?s=1"
+                onclick="{(function(event){if(event.target.target!=="_blank"){event.preventDefault();window.next.router.replace(event.target.href);}})(event)}"
+              />
+              <div
+                class="article_headingObserverWrapper__9HLuE"
+              >
+                <h2
+                  aria-hidden="false"
+                  class="reader-mode-workarounds_readerModeWorkaround--headingLabel__KhKjP"
+                  role="heading"
+                >
+                  L​‌e​‌t​‌'​‌s​‌ ​‌J​‌A​‌M​‌
+                </h2>
+                <h2
+                  class="not-prose group heading_headingFrame__ZcVGE"
+                >
+                  <object
+                    aria-hidden="true"
+                    class="heading_headingLabelFrame__2_nrW"
+                  >
+                    <span
+                      aria-hidden="true"
+                      class="heading_headingLabelHueLayer__amL9q"
+                    >
+                      <span
+                        aria-hidden="true"
+                        class="heading_headingLabel__I9D_T"
+                      >
+                        Let's JAM
+                      </span>
+                    </span>
+                    <span
+                      aria-hidden="true"
+                      class="heading_headingLabelClone__7w_qI"
+                    >
+                      Let's JAM
+                    </span>
+                  </object>
+                </h2>
+              </div>
+            </span>
+            <span>
+              <a
+                aria-hidden="true"
+                class="article_searchAnchor__HE2jV"
+                id="lets-jam?s=2"
+                onclick="{(function(event){if(event.target.target!=="_blank"){event.preventDefault();window.next.router.replace(event.target.href);}})(event)}"
+              />
+              <p>
+                Jamstack community elevates three pillars as the basis of modern web development architecture;
+              </p>
+            </span>
+            <span>
+              <a
+                aria-hidden="true"
+                class="article_searchAnchor__HE2jV"
+                id="lets-jam?s=3"
+                onclick="{(function(event){if(event.target.target!=="_blank"){event.preventDefault();window.next.router.replace(event.target.href);}})(event)}"
+              />
+              <ul>
+                <li>
+                  Javascript
+                </li>
+                <li>
+                  APIs
+                </li>
+                <li>
+                  Markdown
+                </li>
+              </ul>
+            </span>
+            <div
+              class="article_anchorLink__y_5ES"
+              id="lets-jam"
+            />
+          </section>
+          <section
+            class="article_sectionWrapper__o0ALq"
+          >
+            <span>
+              <a
+                aria-hidden="true"
+                class="article_searchAnchor__HE2jV"
+                id="whats-jamstack?s=1"
+                onclick="{(function(event){if(event.target.target!=="_blank"){event.preventDefault();window.next.router.replace(event.target.href);}})(event)}"
+              />
+              <div
+                class="article_headingObserverWrapper__9HLuE"
+              >
+                <h3
+                  aria-hidden="false"
+                  class="reader-mode-workarounds_readerModeWorkaround--headingLabel__KhKjP"
+                  role="heading"
+                >
+                  W​‌h​‌a​‌t​‌'​‌s​‌ ​‌J​‌a​‌m​‌s​‌t​‌a​‌c​‌k​‌?​‌
+                </h3>
+                <h3
+                  class="not-prose group heading_headingFrame__ZcVGE"
+                >
+                  <object
+                    aria-hidden="true"
+                    class="heading_headingLabelFrame__2_nrW"
+                  >
+                    <span
+                      aria-hidden="true"
+                      class="heading_headingLabelHueLayer__amL9q"
+                    >
+                      <span
+                        aria-hidden="true"
+                        class="heading_headingLabel__I9D_T"
+                      >
+                        What's Jamstack?
+                      </span>
+                    </span>
+                    <span
+                      aria-hidden="true"
+                      class="heading_headingLabelClone__7w_qI"
+                    >
+                      What's Jamstack?
+                    </span>
+                  </object>
+                </h3>
+              </div>
+            </span>
+            <span>
+              <a
+                aria-hidden="true"
+                class="article_searchAnchor__HE2jV"
+                id="whats-jamstack?s=2"
+                onclick="{(function(event){if(event.target.target!=="_blank"){event.preventDefault();window.next.router.replace(event.target.href);}})(event)}"
+              />
+              <p>
+                Nx-DOS is heavily inspired by the 
+                <a
+                  href="https://jamstack.org/"
+                  onclick="{(function(event){if(event.target.target!=="_blank"){event.preventDefault();window.next.router.replace(event.target.href);}})(event)}"
+                  rel="noreferrer"
+                  target="_blank"
+                >
+                  Jamstack
+                </a>
+                 community. For those who might not be familiar, below is an excerpt from their description as to "What is Jamstack?"
+              </p>
+            </span>
+            <span>
+              <a
+                aria-hidden="true"
+                class="article_searchAnchor__HE2jV"
+                id="whats-jamstack?s=3"
+                onclick="{(function(event){if(event.target.target!=="_blank"){event.preventDefault();window.next.router.replace(event.target.href);}})(event)}"
+              />
+              <blockquote>
+                <p>
+                  Jamstack is an architectural approach that decouples the web experience layer from data and business logic, improving flexibility, scalability, performance, and maintainability.
+                </p>
+              </blockquote>
+            </span>
+            <span>
+              <a
+                aria-hidden="true"
+                class="article_searchAnchor__HE2jV"
+                id="whats-jamstack?s=4"
+                onclick="{(function(event){if(event.target.target!=="_blank"){event.preventDefault();window.next.router.replace(event.target.href);}})(event)}"
+              />
+              <p>
+                As 
+                <a
+                  href="https://umbraco.com/knowledge-base/jamstack/"
+                  onclick="{(function(event){if(event.target.target!=="_blank"){event.preventDefault();window.next.router.replace(event.target.href);}})(event)}"
+                  rel="noreferrer"
+                  target="_blank"
+                >
+                  another website
+                </a>
+                 describes it;
+              </p>
+            </span>
+            <span>
+              <a
+                aria-hidden="true"
+                class="article_searchAnchor__HE2jV"
+                id="whats-jamstack?s=5"
+                onclick="{(function(event){if(event.target.target!=="_blank"){event.preventDefault();window.next.router.replace(event.target.href);}})(event)}"
+              />
+              <blockquote>
+                <p>
+                  Jamstack is a term that describes a modern web development architecture based on JavaScript, APIs, and Markdown (JAM). Jamstack isn't a specific technology or framework but a different architecture for building apps and websites.
+                </p>
+              </blockquote>
+            </span>
+            <div
+              class="article_anchorLink__y_5ES"
+              id="whats-jamstack"
+            />
+          </section>
+          <section
+            class="article_sectionWrapper__o0ALq"
+          >
+            <span>
+              <a
+                aria-hidden="true"
+                class="article_searchAnchor__HE2jV"
+                id="why-is-this-important?s=1"
+                onclick="{(function(event){if(event.target.target!=="_blank"){event.preventDefault();window.next.router.replace(event.target.href);}})(event)}"
+              />
+              <div
+                class="article_headingObserverWrapper__9HLuE"
+              >
+                <h3
+                  aria-hidden="false"
+                  class="reader-mode-workarounds_readerModeWorkaround--headingLabel__KhKjP"
+                  role="heading"
+                >
+                  W​‌h​‌y​‌ ​‌i​‌s​‌ ​‌t​‌h​‌i​‌s​‌ ​‌i​‌m​‌p​‌o​‌r​‌t​‌a​‌n​‌t​‌?​‌
+                </h3>
+                <h3
+                  class="not-prose group heading_headingFrame__ZcVGE"
+                >
+                  <object
+                    aria-hidden="true"
+                    class="heading_headingLabelFrame__2_nrW"
+                  >
+                    <span
+                      aria-hidden="true"
+                      class="heading_headingLabelHueLayer__amL9q"
+                    >
+                      <span
+                        aria-hidden="true"
+                        class="heading_headingLabel__I9D_T"
+                      >
+                        Why is this important?
+                      </span>
+                    </span>
+                    <span
+                      aria-hidden="true"
+                      class="heading_headingLabelClone__7w_qI"
+                    >
+                      Why is this important?
+                    </span>
+                  </object>
+                </h3>
+              </div>
+            </span>
+            <span>
+              <a
+                aria-hidden="true"
+                class="article_searchAnchor__HE2jV"
+                id="why-is-this-important?s=2"
+                onclick="{(function(event){if(event.target.target!=="_blank"){event.preventDefault();window.next.router.replace(event.target.href);}})(event)}"
+              />
+              <p>
+                Nx-DOS supports an unopiniated approach and encourages developers to plug-in their preferred solutions, especially regarding the frontend frameworks and 3rd party APIs. There are many viable alternatives to each part of the stack highlighted throughout this documentation.
+              </p>
+            </span>
+            <span>
+              <a
+                aria-hidden="true"
+                class="article_searchAnchor__HE2jV"
+                id="why-is-this-important?s=3"
+                onclick="{(function(event){if(event.target.target!=="_blank"){event.preventDefault();window.next.router.replace(event.target.href);}})(event)}"
+              />
+              <p>
+                Following the Jamstack principles, Nx-DOS is a self documenting project. The segments you are currently reading are maintained using markdown documents, rendered by libraries like 
+                <a
+                  href="https://markdoc.dev/"
+                  onclick="{(function(event){if(event.target.target!=="_blank"){event.preventDefault();window.next.router.replace(event.target.href);}})(event)}"
+                  rel="noreferrer"
+                  target="_blank"
+                >
+                  Markdoc
+                </a>
+                /
+                <a
+                  href="https://prismjs.com/"
+                  onclick="{(function(event){if(event.target.target!=="_blank"){event.preventDefault();window.next.router.replace(event.target.href);}})(event)}"
+                  rel="noreferrer"
+                  target="_blank"
+                >
+                  Prism
+                </a>
+                 and hosted via 
+                <a
+                  href="https://nextjs.org/docs/getting-started"
+                  onclick="{(function(event){if(event.target.target!=="_blank"){event.preventDefault();window.next.router.replace(event.target.href);}})(event)}"
+                  rel="noreferrer"
+                  target="_blank"
+                >
+                  Next.js
+                </a>
+                 to benefit from the framework's SSR and SEO capabilities.
+              </p>
+            </span>
+            <div
+              class="article_anchorLink__y_5ES"
+              id="why-is-this-important"
+            />
+          </section>
+          <section
+            class="article_sectionWrapper__o0ALq"
+          >
+            <span>
+              <a
+                aria-hidden="true"
+                class="article_searchAnchor__HE2jV"
+                id="how-to-use-nx-dos?s=1"
+                onclick="{(function(event){if(event.target.target!=="_blank"){event.preventDefault();window.next.router.replace(event.target.href);}})(event)}"
+              />
+              <div
+                class="article_headingObserverWrapper__9HLuE"
+              >
+                <h3
+                  aria-hidden="false"
+                  class="reader-mode-workarounds_readerModeWorkaround--headingLabel__KhKjP"
+                  role="heading"
+                >
+                  H​‌o​‌w​‌ ​‌t​‌o​‌ ​‌u​‌s​‌e​‌ ​‌N​‌x​‌-​‌D​‌O​‌S​‌?​‌
+                </h3>
+                <h3
+                  class="not-prose group heading_headingFrame__ZcVGE"
+                >
+                  <object
+                    aria-hidden="true"
+                    class="heading_headingLabelFrame__2_nrW"
+                  >
+                    <span
+                      aria-hidden="true"
+                      class="heading_headingLabelHueLayer__amL9q"
+                    >
+                      <span
+                        aria-hidden="true"
+                        class="heading_headingLabel__I9D_T"
+                      >
+                        How to use Nx-DOS?
+                      </span>
+                    </span>
+                    <span
+                      aria-hidden="true"
+                      class="heading_headingLabelClone__7w_qI"
+                    >
+                      How to use Nx-DOS?
+                    </span>
+                  </object>
+                </h3>
+              </div>
+            </span>
+            <span>
+              <a
+                aria-hidden="true"
+                class="article_searchAnchor__HE2jV"
+                id="how-to-use-nx-dos?s=2"
+                onclick="{(function(event){if(event.target.target!=="_blank"){event.preventDefault();window.next.router.replace(event.target.href);}})(event)}"
+              />
+              <p>
+                Our aim is to provide preset configurations for all three of these pillars for reference, which developers can duplicate or modify to suit their needs.
+              </p>
+            </span>
+            <span>
+              <a
+                aria-hidden="true"
+                class="article_searchAnchor__HE2jV"
+                id="how-to-use-nx-dos?s=3"
+                onclick="{(function(event){if(event.target.target!=="_blank"){event.preventDefault();window.next.router.replace(event.target.href);}})(event)}"
+              />
+              <ul>
+                <li>
+                  Regarding Javacsript frameworks, we will establish shared UI foundations using; React + React Native for targeting multiple platforms.
+                </li>
+                <li>
+                  In terms of API usage, we will showcase examples for common usecases and rely on community support for further 3rd party integrations.
+                </li>
+                <li>
+                  Maintaining documentation will rely on our manual content review.
+                </li>
+              </ul>
+            </span>
+            <span>
+              <a
+                aria-hidden="true"
+                class="article_searchAnchor__HE2jV"
+                id="how-to-use-nx-dos?s=4"
+                onclick="{(function(event){if(event.target.target!=="_blank"){event.preventDefault();window.next.router.replace(event.target.href);}})(event)}"
+              />
+              <p>
+                In order to benefit from Nx-DOS, after cloning or forking our repo, modify the 
+                <code>
+                  /docs
+                </code>
+                 directory to include references to your development. The contents within will be parsed automatically each time you start the server. Further details are available on 
+                <a
+                  href="/nxdos/configuration/documentation"
+                  onclick="{(function(event){if(event.target.target!=="_blank"){event.preventDefault();window.next.router.replace(event.target.href);}})(event)}"
+                >
+                  how to configure documentation segments
+                </a>
+                .
+              </p>
+            </span>
+            <span>
+              <a
+                aria-hidden="true"
+                class="article_searchAnchor__HE2jV"
+                id="how-to-use-nx-dos?s=5"
+                onclick="{(function(event){if(event.target.target!=="_blank"){event.preventDefault();window.next.router.replace(event.target.href);}})(event)}"
+              />
+              <p
+                class="reader-mode-workarounds_readerModeWorkaround--Safari-MinContent__S9I3C"
+              >
+                ​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌​‌
+              </p>
+            </span>
+            <div
+              class="article_anchorLink__y_5ES"
+              id="how-to-use-nx-dos"
+            />
+          </section>
+          <span
+            style="
+      height: 0;
+      width: 0;
+      position: absolute;
+      overflow: hidden;
+      outline: none;
+      -webkit-touch-callout: none; /* iOS Safari */
+      -webkit-user-select: none; /* Safari */
+      -khtml-user-select: none; /* Konqueror HTML */
+      -moz-user-select: none; /* Old versions of Firefox */
+      -ms-user-select: none; /* Internet Explorer/Edge */
+      user-select: none;
+      pointer-events: none;
+    "
+          >
+            <span>
+              
+      
+              <i>
+                / * *
+              </i>
+              
+      
+              <br />
+              
+      
+              <span
+                classname="copyright"
+              >
+                <i>
+                  *
+                </i>
+                  Nx-DOS, 
+      
+                <span
+                  classname="copyrightIcon"
+                >
+                  ©
+                </span>
+                <span>
+                  2024
+                </span>
+                
+      
+                <br />
+                
+      
+                <span
+                  classname="version"
+                >
+                  <i>
+                    *
+                  </i>
+                    version 0.0.1
+                </span>
+                 
+      
+              </span>
+              
+      
+              <br />
+              
+      
+              <span
+                classname="currentPath"
+              >
+                <i>
+                  *
+                </i>
+                  
+                <a
+                  href="http://localhost/introduction"
+                >
+                  localhost/introduction
+                </a>
+              </span>
+              
+      
+              <span
+                id="readerMode__navigation_links"
+              >
+                
+      
+                <br />
+                
+      
+                <i>
+                  *
+                </i>
+              </span>
+              <br />
+              <i>
+                * * /
+              </i>
+            </span>
+            <p>
+              <i>
+                (END)
+              </i>
+               _
+            </p>
+            <br />
+          </span>
+        </div>
+        <div
+          class="contentFooter commentBlock"
+        >
+          <div
+            class="commentLine"
+          />
+          <div
+            class="commentLine"
+          >
+            <span
+              class="copyrightIcon"
+            >
+               ©
+            </span>
+            2024
+            <span
+              class="commentLine--punctuation"
+            >
+              , 
+            </span>
+            <a
+              href="/"
+            >
+              Nx-DOS
+            </a>
+          </div>
+          <div
+            class="commentLine"
+          >
+            version 0
+            <span
+              class="commentLine--punctuation"
+            >
+              .
+            </span>
+            0
+            <span
+              class="commentLine--punctuation"
+            >
+              .
+            </span>
+            1
+          </div>
+          <div
+            class="commentLine"
+          />
+          <div
+            class="commentLine"
+          >
+            You've reached the end of our docs
+            <span
+              class="commentLine--separator"
+            >
+              .
+            </span>
+          </div>
+          <div
+            class="commentLine"
+          >
+            Please don't forget to 
+            <a
+              href="/acknowledgements#contributing"
+            >
+              <span
+                style="text-decoration: underline; text-decoration-style: dotted;"
+              >
+                share feedback
+              </span>
+            </a>
+            <span
+              class="commentLine--separator"
+            >
+              ,
+            </span>
+          </div>
+          <div
+            class="commentLine"
+          >
+            and keep an eye out for 
+            <a
+              href="/acknowledgements#special-thanks"
+            >
+              <span
+                style="text-decoration: underline; text-decoration-style: dotted;"
+              >
+                our heroes
+              </span>
+            </a>
+            <span
+              class="commentLine--separator"
+            >
+              .
+            </span>
+          </div>
+          <div
+            class="commentLine"
+          />
+          <div
+            class="commentLine"
+          />
+          <span
+            class="endOfDocumentMarker"
+          >
+            (Thank you!)
+          </span>
+        </div>
+      </div>
+      <div
+        class="overviewPanelWrapper hidden lg:block mx-[5ch] lg:mx-[0ch] max-w-[74.5ch] lg:flex-shrink-[100]  lg:min-w-[var(--overview-panel-min-width)] lg:max-w-[64ch] lg:sticky lg:z-[7]"
+      >
+        <div
+          class="overviewPanelContainer overviewPanelContainer"
+          id="overviewPanelContainer"
+        >
+          <div
+            class="tocWrapper"
+          >
+            <object
+              aria-hidden="true"
+              class="lineBorderFrame lineBorderFrame"
+            >
+              <div
+                class="lineBorder-corner lineBorder-corner--top-left"
+              />
+              <div
+                class="lineBorder-corner lineBorder-corner--top-right"
+              />
+              <div
+                class="lineBorder-corner lineBorder-corner--bottom-left"
+              />
+              <div
+                class="lineBorder-corner lineBorder-corner--bottom-right"
+              />
+              <div
+                class="lineBorder--top lineBorder"
+              >
+                ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+              </div>
+              <div
+                class="lineBorder--bottom lineBorder"
+              >
+                ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+              </div>
+              <object
+                class="lineBorder--left lineBorder w-[1ch] [word-break:break-word] overflow-hidden "
+              >
+                ││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││
+              </object>
+              <object
+                class="lineBorder--right lineBorder w-[1ch] [word-break:break-word] overflow-hidden "
+              >
+                ││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││
+              </object>
+            </object>
+            <div
+              class="opTitleFrame"
+            >
+              <div
+                class="opTitleLabel"
+              >
+                Table of Contents
+              </div>
+            </div>
+            <ul
+              class="tocFrame tocFrame"
+              id="tocFrame"
+            >
+              <li
+                class="tocListItem"
+              >
+                <a
+                  data-testid="tocItem-lets-jam"
+                  href="#lets-jam"
+                >
+                  <span
+                    class="sectionLabelInset"
+                  />
+                  <span
+                    class="sectionLabel "
+                  >
+                    <span
+                      class="sectionLabel-hoverMarker sectionLabel-hoverMarker-left"
+                    >
+                      [
+                    </span>
+                    <span
+                      class="sectionTitle "
+                    >
+                      Let's JAM
+                    </span>
+                    <span
+                      class="sectionLabel-hoverMarker"
+                    >
+                      ]
+                    </span>
+                  </span>
+                </a>
+              </li>
+              <li
+                class="tocListItem"
+              >
+                <a
+                  data-testid="tocItem-whats-jamstack"
+                  href="#whats-jamstack"
+                >
+                  <span
+                    class="sectionLabelInset"
+                  >
+                      
+                  </span>
+                  <span
+                    class="sectionLabel "
+                  >
+                    <span
+                      class="sectionLabel-hoverMarker sectionLabel-hoverMarker-left"
+                    >
+                      [
+                    </span>
+                    <span
+                      class="sectionTitle "
+                    >
+                      What's Jamstack?
+                    </span>
+                    <span
+                      class="sectionLabel-hoverMarker"
+                    >
+                      ]
+                    </span>
+                  </span>
+                </a>
+              </li>
+              <li
+                class="tocListItem"
+              >
+                <a
+                  data-testid="tocItem-why-is-this-important"
+                  href="#why-is-this-important"
+                >
+                  <span
+                    class="sectionLabelInset"
+                  >
+                      
+                  </span>
+                  <span
+                    class="sectionLabel "
+                  >
+                    <span
+                      class="sectionLabel-hoverMarker sectionLabel-hoverMarker-left"
+                    >
+                      [
+                    </span>
+                    <span
+                      class="sectionTitle "
+                    >
+                      Why is this important?
+                    </span>
+                    <span
+                      class="sectionLabel-hoverMarker"
+                    >
+                      ]
+                    </span>
+                  </span>
+                </a>
+              </li>
+              <li
+                class="tocListItem"
+              >
+                <a
+                  data-testid="tocItem-how-to-use-nx-dos"
+                  href="#how-to-use-nx-dos"
+                >
+                  <span
+                    class="sectionLabelInset"
+                  >
+                      
+                  </span>
+                  <span
+                    class="sectionLabel "
+                  >
+                    <span
+                      class="sectionLabel-hoverMarker sectionLabel-hoverMarker-left"
+                    >
+                      [
+                    </span>
+                    <span
+                      class="sectionTitle "
+                    >
+                      How to use Nx-DOS?
+                    </span>
+                    <span
+                      class="sectionLabel-hoverMarker"
+                    >
+                      ]
+                    </span>
+                  </span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+  <div
+    class="hidden code-block headingFrame embedded-code-directory-wrapper"
+  />
+</DocumentFragment>
+`;

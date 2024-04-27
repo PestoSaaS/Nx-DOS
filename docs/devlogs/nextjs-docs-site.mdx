@@ -1,0 +1,252 @@
+---
+title: 'Documentation site setup using Next.js'
+timestamp:
+  created_at: '2024-02-19T02:35:07.252Z'
+  last_updated_at: '2024-04-12T05:35:07.322Z'
+author:
+  name: PestoSaaS
+---
+
+# Introduction
+
+In this section we will prepare the infrastructure for our documentation website and use Next.js to build our viewer.
+
+## Mentions
+
+Other popular solutions such as [Docusaurus](https://docusaurus.io/) could also be suitable for your documentation needs out of the box.
+
+Nx-DOS aims to be an open-source tool for small teams and solo founders. As Next.js is a powerful framework that will be relevant for other parts of our web stack, we will build our documentation site using it as well.
+
+## Main reference
+
+We will be following along a modified version of the amazing tutorial ["Create a Next.js web app with Nx"](https://juristr.com/blog/2021/06/create-nextjs-webapp-nx/) by Juri Strumpflohner.
+
+### ⚠️ CAUTION: design decision
+
+This segment, much like Juri's tutorial above, had been prepared initially  using the `Pages router`, on an earlier version of Next.js. 
+
+Since v13, Vercel also introduced the `App router`, which takes on a new approach on defining the client / server boundary, bringing some changes to the rendering phase. This naturally requires a bit of code restructuring to adapt your project.
+
+If you are unsure due which would better suit your needs, please take a moment now to review our [next devlog](/devlogs/app-router-model) reflecting on the changes introduced. 
+
+The steps below could still easily be adapted to your project if you use the `App router`, the actual limitations are around what you can and cannot achieve within server components. 
+
+> You will have to add the `'use client'` directive to any component that utilizes client side hooks. [This segment](https://nextjs.org/docs/app/building-your-application/rendering/client-components#using-client-components-in-nextjs) from the Next.js documentation has an in depth explanation on how this can also help you split your application into multiple client bundles if necessary. 
+
+## Pnpm
+
+As far as package managers go, `npm` and `yarn` are often popular choices among developers. Although Nx-DOS values an unopinionated stance, for this project we will be adopting [pnpm](https://pnpm.io/installation) to reduce package install times.
+
+If you intend to have a mobile-app for your project, despite losing some of the performance benefits it's necessary to hoist the dependencies using the `hoisted` flag. This prevents clashes with the React Native metro bundler while resolving dependencies.
+
+# Creating the documentation site
+
+Step by step we will set the building blocks for our documentation site.
+
+## Install Next
+
+Let's install Nrwl's next plugin for Nx.
+
+```bash
+pnpm add -D @nx/next
+```
+
+## Create a Nextjs app
+
+Run the following command to create a new Next.js app, which will scaffold us a web app named `documentation-site`.
+
+```bash
+pnpm nx g @nx/next:application --directory=nxdos/documentation documentation-site
+```
+
+### Create a new page
+
+Let's use Nx's generators to create a custom 404 page. We cannot use numbers only for the generator's name attribute, so let's name our component `FourOhFour` and rename the generated file later to `404.tsx`. Using the `--flat` flag tells the generator to not create a folder for the component.
+
+```bash
+pnpm nx g @nx/next:page --name=FourOhFour --style=none --flat=true
+```
+
+### Create a catch all route for our documentation segments
+
+Let's also add another page to catch all routes. This is achieved by the `...` notation inside the brackets, and the `[]` brackets signify a dynamic route with params. Later we will use this page to dynamically to display the relevant documentation segments.
+
+```bash
+pnpm nx g @nx/next:page --name="[...segments].tsx" --style=none --project=nxdos-documentation-site
+```
+
+In the previous command we had omitted the --project flag, since there is only one Next app in our repo right now, that works fine. If you had multiple projects, possibly another one could be the default target for commands. In that case you could set the `--project` flag explicitly. It's also very useful to run the nx generator commands with the `--dryRun` option to check for desired output.
+
+Update the contents of `[...segments].tsx` as below.
+
+{% embeddedCode
+filePath="../../apps/nxdos/documentation/documentation-site/pages/[...segments].tsx"
+/%}
+
+We can review our application by running the following command
+
+```bash
+pnpm nx run nxdos-documentation-site:serve
+```
+
+## Setting up Tailwind
+
+Lets install the required libraries.
+
+```bash
+pnpm add tailwindcss@latest postcss@latest autoprefixer@latest
+```
+
+Create tailwind.config.js and postcss.config.js via init command
+
+```bash
+cd apps/nxdos/documentation/documentation-site
+pnpm tailwindcss init -p
+```
+
+If tailwind init encounters permission denied errors for the hoisted `node_modules/.bin/tailwindcss`, you can manually create `tailwind.config.js` and `postcss.config.js` files in the `<root>/apps/nxdos/documentation/documentation-site` directory, as well as the `tailwind-workspace-preset.js` preset file at the monorepo root.
+
+Another option would be to do a fresh installation of the `node_modules` after temporarily removing the `node-linker=hoisted` option from the `.npmrc` file in monorepo root. After successfully running `pnpm tailwindcss init -p` command, reinstate the `node-linker=hoisted` option.
+
+Fill the contents of the files with the excerpts below
+
+{% embeddedCode
+filePath="../../apps/nxdos/documentation/documentation-site/postcss.config.js"
+/%}
+
+{% embeddedCode
+filePath="../../apps/nxdos/documentation/documentation-site/tailwind.config.js"
+/%}
+
+{% embeddedCode
+filePath="../../tailwind-workspace-preset.js"
+/%}
+
+### Include Tailwind styles
+
+We clean `pages/styles.css` contents from pre-generated CSS and instead include TailwindCSS styles here. Change the content of the file with the imports below.
+
+```
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+```
+
+## Parse and render Markdown files using Next.js
+
+As Juri breaks down the steps for us, now we need to;
+
+    Read the content of the markdown file from the file system
+    Parse the Markdown and according frontmatter
+    Convert the Markdown content into HTML
+    Pass the rendered HTML and frontmatter data to the React component
+
+Let's install the dependencies
+
+```bash
+pnpm add -D gray-matter next-mdx-remote next-remote-watch
+```
+
+We retrieve a list of paths through `getStaticPaths` method. We should continue by creating a library for managing our data-access to the documentation segments.
+
+```bash
+pnpm nx g @nx/workspace:lib --name=documents-api --directory=nxdos/documentation-site/data-access
+```
+
+{% embeddedCode
+filePath="../../libs/nxdos/documentation-site/data-access/documents-api/src/lib/documents.api.ts"
+/%}
+
+And another library for our collection of embeddable MDX components.
+
+```bash
+pnpm nx g @nx/react:lib --name=markdoc --directory=nxdos/documentation-site/ui --style=css
+```
+
+Following with Juri's example we can for example create a Youtube element to embed in our markdown.
+
+{% embeddedCode
+filePath="../../libs/nxdos/documentation-site/ui/markdoc/src/lib/tags/youtube/youtube.component.tsx"
+/%}
+
+Now that we can render fancy videos, let's fill in the missing fundamentals using markdoc's rendering capabilities.
+
+```bash
+pnpm add -D @markdoc/markdoc
+```
+
+It's a good time to abstract what we've done so far into a feature-library for our doc viewer. Let's generate what we'll need.
+
+```bash
+pnpm nx g @nx/react:lib --name=doc-viewer --directory=nxdos/documentation-site/feature --style=css
+```
+
+```bash
+pnpm nx g @nx/workspace:lib --name=document --directory=nxdos/documentation-site/models
+```
+
+Also create a `article.tsx` file within our doc-viewer library
+
+{% embeddedCode
+filePath="../../libs/nxdos/documentation-site/ui/common/src/lib/components/article/article.tsx"
+/%}
+
+Now that we managed to render our markdown with dynamic routes, it's time to start working on general ui elements that will be necessary for our app such as header, footer, sidebar etc. For navigational purposes the sidebar will be our main need, listing available documentation segments. We should continue to create a common ui library for this.
+
+```bash
+pnpm nx g @nx/react:lib --name=common --directory=nxdos/documentation-site/ui --style=css
+```
+
+{% embeddedCode
+filePath="../../libs/nxdos/documentation-site/feature/doc-viewer/src/lib/sidebar/sidebar.tsx"
+/%}
+
+Now we need to populate our sidebar with our navigation menu which will be a list of articles split to sections depending on their folder.
+
+```bash
+pnpm nx g @nx/workspace:lib --name=menu --directory=nxdos/documentation-site/models
+```
+
+{% embeddedCode
+filePath="../../libs/nxdos/documentation-site/models/menu/src/lib/menu.model.ts"
+/%}
+
+```bash
+pnpm nx g @nx/workspace:lib --name=menu-api --directory=nxdos/documentation-site/data-access
+```
+
+{% embeddedCode
+filePath="../../libs/nxdos/documentation-site/data-access/menu-api/src/lib/menu.api.ts"
+/%}
+
+## Set Docs as implicit dependencies
+
+Before we wrap our work on the documentation application, let's tag and scope the libraries we've created to prevent future human errors effecting the organization of our monorepo. We'll use the `nx-enforce-module-boundaries` rule to achieve this.
+
+Since the documentation-site relies on the `/docs` directory for the articles + table of contents, we should also set this directory as a library project and state an implicit dependency on the `documentation-site` app's `project.json` linking it to `docs` manually.
+
+{% embeddedCode
+filePath="../../apps/nxdos/documentation/documentation-site/project.json"
+/%}
+
+## Create a generator to scaffold new articles
+
+Now that our menu/navigation is working, and articles are rendering from the filesystem, lets create a generator to scaffold our future devlogs. Our generator will produce an mdx file such as this post under the designated folder, and fill the metadata with relevant information, timestamp it with the current date etc.
+
+```bash
+pnpm nx g @nx/workspace:workspace-generator create-new-devlog
+```
+
+{% embeddedCode
+filePath="../../tools/workspace-plugin/src/generators/create-new-devlog/index.ts"
+/%}
+
+{% embeddedCode
+filePath="../../tools/workspace-plugin/src/generators/create-new-devlog/schema.json"
+/%}
+
+Let's try out our generator to scaffold the article for our next post, which will be about versioning our development and producing a changelog.
+
+```bash
+pnpm nx workspace-generator create-new-devlog --dry-run
+```

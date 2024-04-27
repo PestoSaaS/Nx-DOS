@@ -1,0 +1,55 @@
+---
+title: 'Introduction to Nx-DOS'
+timestamp:
+  created_at: '2024-02-18T05:35:07.322Z'
+  last_updated_at: '2024-02-18T05:35:07.322Z'
+author:
+  name: PestoSaaS
+---
+
+# Who is this for?
+
+Nx-DOS is a project inspired by the amazing [monorepo management tool Nx](https://nx.dev/getting-started/intro).
+
+It's a starter template for small teams and solo founders to help build their online businesses. Our main objective is to save time, effort and costs for developers in the seed stage.
+
+## Why use Nx-DOS?
+
+- maximize code sharing between deployment targets (web/mobile/desktop)
+- adopt best practices early on for practical future benefits
+- prevent reimplementing common boilerplate functionality
+- minimize deployment costs / leverage free tier cloud services
+- retain flexibility via tools which could be self hosted if needed
+
+## Stack overview
+
+This template tries to follow a modular, unopinionated approach where you could swap in your preferred tools for relevant parts. However for simplicity of maintenance and documentation, usage instructions will evolve around the stack highlighted below. We'll review our suggestions and alternatives as we go along.
+
+- [commitizen](https://github.com/commitizen/cz-cli) for conventional commits
+- [next.js](https://nextjs.org/docs/getting-started) web app with [markdoc](https://markdoc.dev/docs/overview) for our documentation
+- [expo](https://expo.dev/) / [react native](https://reactnative.dev/docs/getting-started) / [react native web](https://github.com/necolas/react-native-web) to unify client code
+- [tamagui](https://tamagui.dev/) for developing a universal component library
+- [cypress](https://www.cypress.io/), [detox](https://github.com/wix/Detox) and [playwright](https://playwright.dev/) for e2e tests
+- [react-18next](https://react.i18next.com/) for internationalization
+- [amplify](https://aws.amazon.com/amplify/) for authentication
+- [algolia](https://www.algolia.com/doc/) as our hosted search engine
+- [posthog](https://github.com/posthog/posthog) for self hosted analytics, feature flags and a/b tests
+- [circleci](https://docs.docker.com/get-started/) or [github actions](https://docs.github.com/en/actions) for CI/CD lint/build/test/deploy pipeline
+- [nx release](https://nx.dev/nx-api/nx/documents/release) for versioning and automated changelog generation.
+
+## Releases
+
+In favor of simplifying our stack going forward, we had opted for Nx 17's experimental release API. Since this feature is stable as of Nx 18, we'll be relying on it for our versioning needs and automated changelog generation. Make sure to check the updated documentation, if it somehow falls short of your needs or the config may not be to your liking, you could also consider using [@jscutlery/semver](https://github.com/jscutlery/semver) as an alternative.
+
+# Next steps
+
+[Get started](/getting-started) using Nx-DOS
+
+- setting up [documentation](/configuration/documentation)
+- [integrating posthog](/configuration/usage-metrics) analytics
+
+Checkout our devlogs on
+
+- [setting up commitizen](/devlogs/commitizen-setup)
+- [building our documentation website](/devlogs/nextjs-docs-site) using next.js
+- review the usage of [markdoc samples](/devlogs/markdoc-samples)

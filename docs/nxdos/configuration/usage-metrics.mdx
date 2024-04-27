@@ -1,0 +1,50 @@
+---
+title: 'Usage metrics'
+timestamp:
+  created_at: '2024-02-18T05:35:07.322Z'
+  last_updated_at: '2024-02-18T05:35:07.322Z'
+author:
+  name: PestoSaaS
+---
+
+# Posthog Self-hosted Analytics
+
+For our project we will be using PostHog Cloud's free tier offering. Later on, you could switch to the self hosted version if it suits your needs better. Please see our related [product analytics devlog](/devlogs/product-analytics) for a more in depth review of the differences.
+
+# Configuring Posthog
+
+First thing we need is to signup for a Posthog account if you don't have one already. Choose one of the regions for our `API host`;
+
+- [PostHog Cloud EU](https://eu.posthog.com/signup) (GDPR-ready deployment)
+- [PostHog Cloud US](https://app.posthog.com/signup)
+
+> GDPR: General Data Protection Regulation is a Regulation in EU law on data protection and privacy
+
+Later proceed to get a public project `API key` for ingesting our analytics service.
+
+## Exposing environment variables
+
+We need to add our PostHog project API key and host reference to our provided environment variables. Again here's a reminder of how our example `.env.example` looks like;
+
+{% embeddedCode language="bash"
+filePath="../../../.env.example"
+/%}
+
+> Frameworks typically use a prefix in order to expose environment variables. Make sure to prefix your variable with `NEXT_PUBLIC_` as explained in the [guide by Next.js](https://nextjs.org/docs/basic-features/environment-variables#exposing-environment-variables-to-the-browser).
+
+The first line in the snippet below loads `process.env.NEXT_PUBLIC_POSTHOG_PROJECT_API_KEY` into the Node environment automatically. Also let's add `NEXT_PUBLIC_POSTHOG_API_HOST`.
+
+```bash
+NEXT_PUBLIC_POSTHOG_PROJECT_API_KEY='<your-project-api-key>'
+NEXT_PUBLIC_POSTHOG_API_HOST='https://eu.posthog.com'
+```
+
+## Adding Posthog to your application
+
+Let's follow the [instructions on PostHog docs](https://posthog.com/docs/integrate/third-party/next-js) to integrate it with Next.js.
+
+{% embeddedCode
+filePath="../../../apps/nxdos/documentation/documentation-site/pages/_app.tsx"
+/%}
+
+After logging in to PostHog and continuing with the ingestion wizard, we should now be able to successfully receive events for the project.

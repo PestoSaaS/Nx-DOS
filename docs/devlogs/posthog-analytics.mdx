@@ -1,0 +1,148 @@
+---
+title: 'Integrating product analytics via PostHog'
+timestamp:
+  created_at: '2024-02-20T10:49:50.530Z'
+  last_updated_at: '2024-02-20T10:49:50.530Z'
+author:
+  name: PestoSaaS
+---
+
+# Overview
+
+Now that our project is self documenting, next we will move forward to implement product analytics.
+
+Before developing any client side code for our target platforms, now is the best time to think about integrating the necessary tools to enable data driven decisions. This will help reveal patterns about how users interact with our product.
+
+Our warmup is to setup monitoring for the documentation site we've built. The scope of our product analytics will extend as we build our apps and each feature. Having these data funnels in place will later help us implement practices such as `a/b testing` and `feature flags`.
+
+## References
+
+As common through our series, we encourage you to proceed with your preferred tool for the task. Regarding product analytics, few main factors to consider are;
+
+- Any data compliance requirements in the chosen industry (GDPR, HIPAA)
+- How you want your data to be handled
+- Costs
+
+There are many alternatives to choose from. Which would serve us better varies by context, based on each team's needs. Let's briefly review some.
+
+- [Hotjar](https://www.hotjar.com/), [Google Analytics](https://analytics.google.com/analytics/web/): popular choices among industry, quick to plug and play for simple analytics, some concerns over having usage data processed by 3rd parties, i.e. google targeting ads with your users' data.
+- [Mixpanel](https://mixpanel.com/), [Amplitude](https://amplitude.com/): again very popular, more complete suites of analytics tools.
+- [Posthog](https://posthog.com), [Matomo](https://matomo.org/), [Plausible](https://plausible.io/): open source analytics tools.
+
+Our choice will be Posthog for this series, and here's why.
+
+## Why Posthog?
+
+The goal was to find an alternative that would be a decent replacement to Google Analytics, which also allows self-hosting. Several aspects make Posthog a good fit for Nx-DOS and its potential users;
+
+1. a complete suite of data tools avoids the need to integrate others
+2. it's a popular open source platform from YC's W20 batch
+3. potential to self host data accommodates for compliance issues
+
+> if you don't have compliance requirements, they offer a cloud hosted option with a limited usage free tier.
+
+Such flexible scope increases the applicability of Nx-DOS as a template.
+
+Since the rest of our deployment will be containerized as well, initially the idea was to use the self-hosted version of Posthog. However, there are some points to consider before deciding for yourself.
+
+- The free open source version of Posthog will still cost us to deploy the necessary clusters for the service. We go over the estimated fees in the next section.
+- There could be a time/learning cost involved if you would like to orchestrate these clusters yourself.
+- Some features such as multivariate feature flags, a/b testing, etc are not available in the free open source version.
+- Some material related to open source self hosting are removed from their docs. There is limited support for this option as also described in [their related article](https://posthog.com/docs/self-host/open-source/support).
+- Posthog cloud has a [free tier](https://posthog.com/pricing) offering up to 1,000,000 events and 15,000 session recordings. On the other hand if you were to surpass this usage to 2,000,000 events, as of this writing it would cost you ~450$ per month.
+- The free tier has **ONLY 1 year data retention**.
+
+## Self hosting costs
+
+The numbers below belong to the previous version of Posthog's documentation. The respective page called `hosting costs` has later been removed.
+
+> Charges on various platforms can be confusing to understand as load balancers (which we have 1 in the default configuration) and storage (default configuration has 64Gi) are often charged separately from compute. Plus potential network utilization or other miscellaneous costs.
+
+### DigitalOcean
+
+At the time of writing the suggested default setup is as follows:
+
+- 40$ for compute (2x smallest prod nodes)
+- 6.4$ for storage (64Gi block storage)
+- 10$ for load balancer (1x small LB)
+
+Making the total **56.4$/month**. See DigitalOcean Kubernetes pricing.
+
+### AWS
+
+At the time of writing the suggested default setup is as follows:
+
+- 70$ for compute (2x m5.large). Note that reserved instances are about 40% cheaper if you can commit to a year.
+- 6.4$ for storage (64Gi block storage). Note that potentially you will get charged for snapshots extra.
+- 20$ for load balancer (18.25 + 0.008 / GB of data was processed)
+
+Making the total around **100$/month**.
+
+## Summary
+
+Let's try to distill all the information above, and highlight their advantages by context.
+
+**Posthog Cloud**  
+Costs 0$/month below 1M events, ramping up to 450$/month for ~2M events.
+
+- you are confident your analytics usage will be below 1 million events / month.
+- you're overwhelmed to setup the data infrastructure
+- you intend to benefit from premium features such as `a/b testing` etc.
+
+**Self hosted**  
+Costs minimum ~56-100$/month and upward based on your usage/provider.
+
+- you have data compliance requirements
+- you're confident to orchestrate the clusters for your analytics service
+- you expect 1,000,000+ events in your pipeline
+- need your data persisted 1+ years on a budget
+
+Also considering the time savings of using a managed service, Nx-DOS will adopt the free tier of Posthog Cloud for this series.
+
+## Other considerations
+
+While starting up, spending less effort configuring/maintaining the analytics service allows developers to focus elsewhere. It also provides a chance to try out the complete feature set of Posthog before reaching the 1M events/month limit.
+
+> A friendly reminder: PostHog Cloud free tier offers **only 1 year of data retention**. If you need your analytics data persisted longer, come the first birthday of your startup, you will either need an alternative solution or a paid PostHog plan.
+
+As of now their Experimental suite is in beta and free. I expect some of these features to be included in the paid plan after beta, hopefully with a fair usage limit in the free tier. Later developers can get a sense of their volume and judge for themselves whether they would like to continue with cloud hosting, or surrender those features for self hosting.
+
+> Another issue to note is uptime, it is a significant factor to consider before self-hosting. Although interruptions could be rare and momentary, over due time they tend to happen. Such [as these kafka issues](https://status.posthog.com/incidents/skqs87psf3nw) PostHog encountered, partial data loss or problems with event ingestion can occur on occasion.
+
+> Even when faced with such challenges though, their component with least uptime over 90 days usually don't fall under 99.7% availability.
+
+# Setting up Posthog
+
+We will be demonstrating how to integrate PostHog Cloud's free tier offering to our project. If there are requests for instructions on how to setup the self-hosted alternative we will be preparing a separate post about that.
+
+First thing we want to install `posthog-js` to our project.
+
+```bash
+pnpm add posthog-js
+```
+
+Next thing we need is to signup for a Posthog account if you don't have one already. Choose one of the regions for our `API host`;
+
+- [PostHog Cloud EU](https://eu.posthog.com/signup) (GDPR-ready deployment)
+- [PostHog Cloud US](https://app.posthog.com/signup)
+
+> GDPR: General Data Protection Regulation is a standard in EU legislation regarding data protection and privacy
+
+Later proceed to get a public project `API key` for ingesting our analytics service.
+
+Create a `.env` file in the root of our repo for our local [environment variables](https://nx.dev/recipes/environment-variables/define-environment-variables), and add it to our `.gitignore`. We will later use Vercel to deploy, so you can also review their [guide to set environment variables](https://vercel.com/docs/concepts/projects/environment-variables#development-environment-variables?utm_source=next-site&utm_medium=docs&utm_campaign=next-website) for your preview/staging environments.
+
+Frameworks typically use a prefix in order to expose environment variables. Make sure to prefix your variable with `NEXT_PUBLIC_` as explained in the [guide by Next.js](https://nextjs.org/docs/basic-features/environment-variables#exposing-environment-variables-to-the-browser). This will load `process.env.NEXT_PUBLIC_POSTHOG_PROJECT_API_KEY` into the Node environment automatically. Also let's add `NEXT_PUBLIC_POSTHOG_API_HOST`.
+
+```bash
+NEXT_PUBLIC_POSTHOG_PROJECT_API_KEY=your-project-api-key
+NEXT_PUBLIC_POSTHOG_API_HOST='https://eu.posthog.com'
+```
+
+Depending on the choice of router, we follow along the [instructions on PostHog docs](https://posthog.com/docs/integrate/third-party/next-js) to integrate it with our Next.js application. The example below implements the `Pages router`.
+
+{% embeddedCode
+filePath="../../apps/nxdos/documentation/documentation-site/pages/_app.tsx"
+/%}
+
+We should successfully receive events for the project after logging into PostHog and completing the ingestion wizard.

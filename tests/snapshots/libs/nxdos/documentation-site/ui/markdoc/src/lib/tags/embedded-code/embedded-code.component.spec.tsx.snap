@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Nxdos - Documentation Site - UI - Markdoc - tags, EmbeddedCode should match snapshot correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="embedded-code-directory-wrapper"
+  >
+    <div
+      class="embedded-code-directory--shadow-top"
+    />
+    <div
+      class="embedded-code-directory"
+    >
+      <div
+        class="embedded-code-directory-label"
+      >
+        /
+        <wbr />
+        .env.example
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

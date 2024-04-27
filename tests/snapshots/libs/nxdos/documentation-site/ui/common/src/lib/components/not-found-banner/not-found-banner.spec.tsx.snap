@@ -1,0 +1,85 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Nxdos - Documentation Site - UI - Common - components, NotFoundBanner should match snapshot correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="bannerWrapper"
+  >
+    <div
+      class="bannerSpacer"
+    />
+    <div
+      class="banner"
+    >
+      <div
+        class="banner--section"
+      >
+        <div
+          class="banner--shadow"
+        />
+        <div
+          class="banner--innerFrame"
+        >
+          <div
+            class="banner--header"
+            style="--flicker-duration-ms: 250; --flicker-play-state: running;"
+          >
+            <div
+              class="banner--header--bg-pattern"
+            />
+            <div
+              class="banner--header-logo"
+            />
+            <div
+              class="banner--header-caption"
+            >
+              404 - NOT FOUND
+              <br />
+            </div>
+            <a
+              href="/nxdos/introduction"
+            >
+              <div
+                class="banner--header-button"
+              >
+                <div
+                  class="banner--header-button-label"
+                >
+                  documentation
+                </div>
+              </div>
+            </a>
+            <a
+              href="https://github.com/PestoSaaS/Nx-DOS"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              <div
+                class="banner--header-button iconButton"
+              >
+                <div />
+              </div>
+            </a>
+            <div
+              class="banner--header--animationLayer"
+              style="animation-duration: 0.75s;"
+            />
+            <div
+              class="banner--header--brightnessFilter"
+            />
+          </div>
+          <div
+            class="banner--caption"
+          >
+            Ooops, the URL requested doesn't exist..
+            <br />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="bannerSpacer"
+    />
+  </div>
+</DocumentFragment>
+`;

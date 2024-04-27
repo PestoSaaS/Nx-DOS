@@ -1,0 +1,82 @@
+---
+title: 'Battle of the routers: App vs Pages'
+timestamp:
+  created_at: '2024-02-19T03:15:03.131Z'
+  last_updated_at: '2024-04-12T05:35:07.244Z'
+author:
+  name: PestoSaaS
+---
+
+# New challenger
+
+Simply put, [as described](https://nextjs.org/docs/app) by the Vercel team;
+
+> The Next.js `App router` introduces a new model for building applications
+
+While leveraging React's latest features, `App router` also introduces new concepts such as `parallel routes`, so let's quickly go over some of them to have a better understanding of their implications. 
+
+## Hail, App router!
+
+This new routing pattern introduced with Next.js v13 suggests a set of changes on how we organize our filesystem. Folders are once again used to define routes.
+
+A path of nested directories progress to render layouts optionally present at each layer using a `layout.js` file. This process repeats until a final leaf folder that includes a `page.js` is mounted on screen.
+
+## Key differences
+
+- Changes to the [file conventions](https://nextjs.org/docs/app/building-your-application/routing#file-conventions) and [component hierarchy](https://nextjs.org/docs/app/building-your-application/routing#component-hierarchy)
+- Layouts are cached and do not rerender
+- Layouts cannot access the raw request object / params
+- Layouts can only access the request headers or cookies
+- `use client` directive defines the server / client boundary
+- `use server` directive restricts a component or action to the server
+- Simultaneously rendering multiple views: [parallel routes](https://nextjs.org/docs/app/building-your-application/routing#component-hierarchy)
+- Rendering paths it in the context of another: [intercepting routes](https://nextjs.org/docs/app/building-your-application/routing/intercepting-routes)
+- Advanced patterns such as support for multi-tenancy and custom domains
+
+## Modular SSR
+
+Like much of the earlier work by the Vercel team, there are strong ideas backing these changes. Most are justified in favor of adopting a modular take on server side rendering, in order to fully leverage the power of server actions and components. 
+
+Such design patterns are definitely an improvement, and powerful tools to have as a developer. Yet this documentation site you are reading this very article on, had turned out to be quite the experiment through our month long effort to migrate it to the more recent `App router`.
+
+# Limitations in migration
+
+If you are coming from using the `Pages router`, some of the ideas introduced with its successor might take a while to wrap your head around. A big portion of them are significantly easier to implement during the genesis of a project. 
+
+`App router` is powerful, but especially so for the issues it's meant to tackle. As of now, it's also far from the same level of maturity as the `Pages router`. Before you decide on which one better suits your needs, we also sample below a brief list of long existent issues from their GitHub repo regarding the new router. 
+
+## Known issues
+
+Certain things you're used to from the `Pages router` might not be possible to achieve within the `App router`, most due to logical consequences of the redesign, and few others quite unexpectedly. So if you intend to migrate an existing Next app to the new router, it's very worth examining the issues below. 
+
+- [#59373](https://github.com/vercel/next.js/discussions/59373): An honest opinion about the App vs Pages router 
+- [42016](https://github.com/vercel/next.js/discussions/42016): [Next 13] router.events removed?
+- [#41934](https://github.com/vercel/next.js/discussions/41934): \[next/navigation] Next 13: useRouter events?
+- [#12348](https://github.com/vercel/next.js/discussions/12348): 
+How to intercept route changes?
+- [#49279](https://github.com/vercel/next.js/issues/49279): App router issue with Framer Motion shared layout animations 
+- [#54393](https://github.com/vercel/next.js/issues/54393): App Router with output: export does not support useParams() on client
+- [#56253](https://github.com/vercel/next.js/issues/56253): Unexpected behavior when using output: 'export', generateStaticParams(), and export const dynamic
+- [#58016](https://github.com/vercel/next.js/discussions/58016): How to pass props to slots in parallel routes? - you can't
+- [#49507](https://github.com/vercel/next.js/discussions/49507): params for layouts should include ALL dynamic route parameters, regardless of depth in the tree
+- [#43810](https://github.com/vercel/next.js/issues/43810): Unable to import react-dom/server in a server component
+- [#48082 ](https://github.com/vercel/next.js/issues/48082): Layout resets between pages when defined inside a optional catch-all 
+- [#44793](https://github.com/vercel/next.js/issues/44793): Nested layouts on a dynamic segment are re-mounted when navigating between them
+- [#60395](https://github.com/vercel/next.js/issues/60395): Navigating from page to page (same dynamic segment) remounts
+
+
+One striking example is the absence of `router.events`, which means we can no long rely on `routerChangeStart` event to fire before the current path is navigated out from. 
+
+Instead, [the new pattern suggested](https://nextjs.org/docs/app/api-reference/functions/use-router#router-events) in the `App router` documentation relies on the `usePathname` and `useEffect` hooks while watching the `pathname` as a dependency to update the state once a change is detected. This approach is retroactive and doesn't allow you to save / process the state before the navigation occurs or simply hinders your chance to queue exit animations. 
+
+# Reflections
+
+We had wished to provide you a reference repo with the most recent tooling and up-to-date patterns available, including the `App router`. 
+
+Unfortunately issues such as described above, and many other edge cases regarding catch all dynamic routes has convinced us to abort our migration. We defer such efforts until the following major release of Next.js, hoping a portion of the referenced issues would be addressed by then, some of which are several years old already.
+
+## Kudos
+
+Despite all the issues introduced with the recent changes, the Vercel team's hard at work to improve this vastly popular framework for us developers, and we deeply appreciate their efforts.
+
+Two hours prior to the writing of this update on April 12th 2024, [Next,js v14.2.0](https://github.com/vercel/next.js/releases/tag/v14.2.0) has just been released. After a quick review of the changelog, we've tried to filter out any issues which might have received improvements since the canary releases. 

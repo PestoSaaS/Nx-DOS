@@ -1,0 +1,1127 @@
+:root {
+  --theme-red-hue--abs: max(
+    var(--theme-red-hue--input),
+    calc(-1 * var(--theme-red-hue--input))
+  );
+  --theme-green-hue--abs: max(
+    var(--theme-green-hue--input),
+    calc(-1 * var(--theme-green-hue--input))
+  );
+  --theme-blue-hue--abs: max(
+    var(--theme-blue-hue--input),
+    calc(-1 * var(--theme-blue-hue--input))
+  );
+
+  --theme-hue-delta-total: calc(
+    var(--theme-red-hue--abs) + var(--theme-green-hue--abs) +
+      var(--theme-blue-hue--abs) + 0.5
+  );
+  --theme-hue-delta-total--normalized: clamp(
+    1,
+    var(--theme-hue-delta-total),
+    150
+  );
+  --theme-hue--normalization-ratio: calc(
+    var(--theme-hue-delta-total--normalized) / var(--theme-hue-delta-total)
+  );
+
+  --theme-red-hue: calc(
+    var(--theme-red-hue--input) * var(--theme-hue--normalization-ratio)
+  );
+  --theme-green-hue: calc(
+    var(--theme-green-hue--input) * var(--theme-hue--normalization-ratio)
+  );
+  --theme-blue-hue: calc(
+    var(--theme-blue-hue--input) * var(--theme-hue--normalization-ratio)
+  );
+
+  --theme-brightness-delta-total: calc(
+    var(--theme-red-hue--input) + var(--theme-green-hue--input) +
+      var(--theme-blue-hue--input) + 0.5
+  );
+
+  --theme-hue-average: calc(
+    (
+        var(--theme-red-hue--input) + var(--theme-green-hue--input) +
+          var(--theme-blue-hue--input) + 0.5
+      ) / 3
+  );
+
+  --theme-hue-rotation-total: calc(
+    180deg *
+      (
+        (
+            (
+                var(--theme-red-hue--input) - var(--theme-green-hue--input) -
+                  var(--theme-blue-hue--input)
+              ) *
+              (
+                var(--theme-red-hue--input) - var(--theme-green-hue--input) -
+                  var(--theme-blue-hue--input)
+              )
+          ) +
+          (
+            (
+                var(--theme-green-hue--input) - var(--theme-blue-hue--input) -
+                  var(--theme-red-hue--input)
+              ) *
+              (
+                var(--theme-green-hue--input) - var(--theme-blue-hue--input) -
+                  var(--theme-red-hue--input)
+              )
+          ) +
+          (
+            (
+                var(--theme-blue-hue--input) - var(--theme-red-hue--input) -
+                  var(--theme-green-hue--input)
+              ) *
+              (
+                var(--theme-blue-hue--input) - var(--theme-red-hue--input) -
+                  var(--theme-green-hue--input)
+              )
+          )
+      ) / ((var(--theme-brightness-delta-total)))
+  );
+
+  /* --theme-bg */
+  --theme-bg-rgb: max(
+      min(calc(var(--theme-bg-brightness) + var(--theme-red-hue)), 255),
+      0
+    ),
+    max(min(calc(var(--theme-bg-brightness) + var(--theme-green-hue)), 255), 0),
+    max(min(calc(var(--theme-bg-brightness) + var(--theme-blue-hue)), 255), 0);
+  --theme-bg: rgb(var(--theme-bg-rgb));
+
+  /* --theme-sidebar-border-color */
+  --theme-sidebar-border-rgb: max(
+      min(
+        calc(var(--theme-bg-brightness) + var(--theme-red-hue)) +
+          var(--theme-sidebar-border-contrast),
+        255
+      ),
+      0
+    ),
+    max(
+      min(
+        calc(var(--theme-bg-brightness) + var(--theme-green-hue)) +
+          var(--theme-sidebar-border-contrast),
+        255
+      ),
+      0
+    ),
+    max(
+      min(
+        calc(var(--theme-bg-brightness) + var(--theme-blue-hue)) +
+          var(--theme-sidebar-border-contrast),
+        255
+      ),
+      0
+    );
+  --theme-sidebar-border-color: rgb(var(--theme-sidebar-border-rgb));
+
+  /* --theme-header-bg */
+  --theme-header-contrast-ratio: 1;
+  --theme-header-bg-rgb: max(
+      min(
+        calc(var(--theme-bg-brightness) + var(--theme-red-hue)) +
+          (
+            var(--theme-sidebar-border-contrast) /
+              var(--theme-header-contrast-ratio)
+          ),
+        255
+      ),
+      50
+    ),
+    max(
+      min(
+        calc(var(--theme-bg-brightness) + var(--theme-green-hue)) +
+          (
+            var(--theme-sidebar-border-contrast) /
+              var(--theme-header-contrast-ratio)
+          ),
+        255
+      ),
+      50
+    ),
+    max(
+      min(
+        calc(var(--theme-bg-brightness) + var(--theme-blue-hue)) +
+          (
+            var(--theme-sidebar-border-contrast) /
+              var(--theme-header-contrast-ratio)
+          ),
+        255
+      ),
+      50
+    );
+  --theme-header-bg: rgb(var(--theme-header-bg-rgb));
+
+  /* --content-section-bg */
+  --theme-content-section-bg-brightness: max(
+    min(
+      calc(
+        var(--theme-bg-brightness) + var(--theme-content-section-bg-contrast)
+      ),
+      255
+    ),
+    0
+  );
+
+  --content-section-bg-rgb-r: max(
+    min(
+      calc(var(--theme-content-section-bg-brightness) + var(--theme-red-hue)),
+      255
+    ),
+    0
+  );
+  --content-section-bg-rgb-g: max(
+    min(
+      calc(var(--theme-content-section-bg-brightness) + var(--theme-green-hue)),
+      255
+    ),
+    0
+  );
+  --content-section-bg-rgb-b: max(
+    min(
+      calc(var(--theme-content-section-bg-brightness) + var(--theme-blue-hue)),
+      255
+    ),
+    0
+  );
+
+  --content-section-bg-rgb: var(--content-section-bg-rgb-r),
+    var(--content-section-bg-rgb-g), var(--content-section-bg-rgb-b);
+  --content-section-bg: rgba(var(--content-section-bg-rgb), 1);
+
+  /* --content-section-bg-sh1 */
+  --theme-content-section-bg-sh1-brightness-ratio: 1.2;
+
+  --content-section-bg-sh1-rgb-r: max(
+    min(
+      calc(
+        var(--theme-content-section-bg-brightness) *
+          var(--theme-content-section-bg-sh1-brightness-ratio) +
+          var(--theme-red-hue) *
+          var(--theme-content-section-bg-sh1-brightness-ratio)
+      ),
+      255
+    ),
+    0
+  );
+  --content-section-bg-sh1-rgb-g: max(
+    min(
+      calc(
+        var(--theme-content-section-bg-brightness) *
+          var(--theme-content-section-bg-sh1-brightness-ratio) +
+          var(--theme-green-hue) *
+          var(--theme-content-section-bg-sh1-brightness-ratio)
+      ),
+      255
+    ),
+    0
+  );
+  --content-section-bg-sh1-rgb-b: max(
+    min(
+      calc(
+        var(--theme-content-section-bg-brightness) *
+          var(--theme-content-section-bg-sh1-brightness-ratio) +
+          var(--theme-blue-hue) *
+          var(--theme-content-section-bg-sh1-brightness-ratio)
+      ),
+      255
+    ),
+    0
+  );
+
+  --content-section-bg-sh1-rgb: var(--content-section-bg-sh1-rgb-r),
+    var(--content-section-bg-sh1-rgb-g), var(--content-section-bg-sh1-rgb-b);
+  --content-section-bg-sh1: rgba(var(--content-section-bg-sh1-rgb), 1);
+
+  --nuance-level: 1;
+  --content-section-nuance-bg-rgb: max(
+      min(
+        calc(
+          var(--theme-content-section-bg-brightness) + var(--theme-red-hue) +
+            var(--nuance-level)
+        ),
+        255
+      ),
+      0
+    ),
+    max(
+      min(
+        calc(
+          var(--theme-content-section-bg-brightness) + var(--theme-green-hue) +
+            var(--nuance-level)
+        ),
+        255
+      ),
+      0
+    ),
+    max(
+      min(
+        calc(
+          var(--theme-content-section-bg-brightness) + var(--theme-blue-hue) +
+            var(--nuance-level)
+        ),
+        255
+      ),
+      0
+    );
+  --content-section-nuance-bg: rgba(var(--content-section-nuance-bg-rgb), 1);
+
+  --theme-codefence-bg-brightness: max(
+    min(
+      calc(var(--theme-bg-brightness) + var(--theme-codefence-bg-contrast)),
+      255
+    ),
+    0
+  );
+  --theme-codefence-bg-rgb: max(
+      min(
+        calc(var(--theme-codefence-bg-brightness) + var(--theme-red-hue)),
+        255
+      ),
+      0
+    ),
+    max(
+      min(
+        calc(var(--theme-codefence-bg-brightness) + var(--theme-green-hue)),
+        255
+      ),
+      0
+    ),
+    max(
+      min(
+        calc(var(--theme-codefence-bg-brightness) + var(--theme-blue-hue)),
+        255
+      ),
+      0
+    );
+  --theme-codefence-bg: rgb(var(--theme-codefence-bg-rgb));
+
+  /* --content-header-bg */
+  --content-header-bg-g1-rgb: max(
+      min(
+        calc(
+          var(--content-section-header-bg-brightness) +
+            var(--theme-alt-lower-hue-multiplier) * var(--theme-red-hue)
+        ),
+        255
+      ),
+      0
+    ),
+    max(
+      min(
+        calc(
+          var(--content-section-header-bg-brightness) +
+            var(--theme-alt-lower-hue-multiplier) * var(--theme-green-hue)
+        ),
+        255
+      ),
+      0
+    ),
+    max(
+      min(
+        calc(
+          var(--content-section-header-bg-brightness) +
+            var(--theme-alt-lower-hue-multiplier) * var(--theme-blue-hue)
+        ),
+        255
+      ),
+      0
+    );
+  --content-header-bg-g2-rgb: max(
+      min(
+        calc(
+          var(--content-section-header-bg-brightness) +
+            var(--theme-alternate-hue-multiplier) * var(--theme-red-hue) +
+            var(--content-section-header-bg-gradient-delta)
+        ),
+        255
+      ),
+      0
+    ),
+    max(
+      min(
+        calc(
+          var(--content-section-header-bg-brightness) +
+            var(--theme-alternate-hue-multiplier) * var(--theme-green-hue) +
+            var(--content-section-header-bg-gradient-delta)
+        ),
+        255
+      ),
+      0
+    ),
+    max(
+      min(
+        calc(
+          var(--content-section-header-bg-brightness) +
+            var(--theme-alternate-hue-multiplier) * var(--theme-blue-hue) +
+            var(--content-section-header-bg-gradient-delta)
+        ),
+        255
+      ),
+      0
+    );
+  --content-header-bg-g3-rgb: max(
+      min(
+        calc(
+          var(--content-section-header-bg-brightness) +
+            var(--theme-base-hue-multiplier) * var(--theme-red-hue) +
+            calc(2 * var(--content-section-header-bg-gradient-delta))
+        ),
+        255
+      ),
+      0
+    ),
+    max(
+      min(
+        calc(
+          var(--content-section-header-bg-brightness) +
+            var(--theme-base-hue-multiplier) * var(--theme-green-hue) +
+            calc(2 * var(--content-section-header-bg-gradient-delta))
+        ),
+        255
+      ),
+      0
+    ),
+    max(
+      min(
+        calc(
+          var(--content-section-header-bg-brightness) +
+            var(--theme-base-hue-multiplier) * var(--theme-blue-hue) +
+            calc(2 * var(--content-section-header-bg-gradient-delta))
+        ),
+        255
+      ),
+      0
+    );
+
+  --content-header-bg-g1: rgba(var(--content-header-bg-g1-rgb), 1);
+  --content-header-bg-g2: rgba(var(--content-header-bg-g2-rgb), 1);
+  --content-header-bg-g3: rgba(var(--content-header-bg-g3-rgb), 1);
+
+  /* --theme-prose-text-color */
+  --theme-prose-text-color-rgb-r: max(
+    min(
+      calc(
+        var(--theme-base-text-brightness) +
+          (var(--theme-red-hue) * var(--theme-base-hue-multiplier))
+      ),
+      255
+    ),
+    50
+  );
+  --theme-prose-text-color-rgb-g: max(
+    min(
+      calc(
+        var(--theme-base-text-brightness) +
+          (var(--theme-green-hue) * var(--theme-base-hue-multiplier))
+      ),
+      255
+    ),
+    50
+  );
+  --theme-prose-text-color-rgb-b: max(
+    min(
+      calc(
+        var(--theme-base-text-brightness) +
+          (var(--theme-blue-hue) * var(--theme-base-hue-multiplier))
+      ),
+      255
+    ),
+    50
+  );
+
+  --theme-prose-text-color-rgb: var(--theme-prose-text-color-rgb-r),
+    var(--theme-prose-text-color-rgb-g), var(--theme-prose-text-color-rgb-b);
+
+  --theme-prose-text-color: rgb(var(--theme-prose-text-color-rgb));
+
+  --theme-logo-monochrome-color-rgb: max(
+      min(
+        calc(
+          var(--theme-title-text-brightness) +
+            (
+              var(--theme-red-hue) *
+                (
+                  var(--theme-base-hue-multiplier) +
+                    var(--theme-title-text-hue-modifier)
+                )
+            )
+        ),
+        251
+      ),
+      50
+    ),
+    max(
+      min(
+        calc(
+          var(--theme-title-text-brightness) +
+            (
+              var(--theme-green-hue) *
+                (
+                  var(--theme-base-hue-multiplier) +
+                    var(--theme-title-text-hue-modifier)
+                )
+            )
+        ),
+        251
+      ),
+      50
+    ),
+    max(
+      min(
+        calc(
+          var(--theme-title-text-brightness) +
+            (
+              var(--theme-blue-hue) *
+                (
+                  var(--theme-base-hue-multiplier) +
+                    var(--theme-title-text-hue-modifier)
+                )
+            )
+        ),
+        251
+      ),
+      50
+    );
+  --theme-logo-monochrome-color: rgb(var(--theme-logo-monochrome-color-rgb));
+
+  --theme-logo-monochrome-alt-color-rgb-r: max(
+    min(
+      calc(
+        var(--theme-base-text-brightness) +
+          (var(--theme-red-hue) * var(--theme-base-hue-multiplier))
+      ),
+      236
+    ),
+    50
+  );
+  --theme-logo-monochrome-alt-color-rgb-g: max(
+    min(
+      calc(
+        var(--theme-base-text-brightness) +
+          (var(--theme-green-hue) * var(--theme-base-hue-multiplier))
+      ),
+      236
+    ),
+    50
+  );
+  --theme-logo-monochrome-alt-color-rgb-b: max(
+    min(
+      calc(
+        var(--theme-base-text-brightness) +
+          (var(--theme-blue-hue) * var(--theme-base-hue-multiplier))
+      ),
+      236
+    ),
+    50
+  );
+
+  --theme-logo-monochrome-alt-color-rgb: var(
+      --theme-logo-monochrome-alt-color-rgb-r
+    ),
+    var(--theme-logo-monochrome-alt-color-rgb-g),
+    var(--theme-logo-monochrome-alt-color-rgb-b);
+
+  --theme-logo-monochrome-alt-color: rgb(
+    var(--theme-logo-monochrome-alt-color-rgb)
+  );
+
+  --theme-content-title-color-rgb: max(
+      min(
+        calc(
+          var(--theme-title-text-brightness) +
+            (
+              var(--theme-red-hue) *
+                (
+                  var(--theme-base-hue-multiplier) +
+                    var(--theme-title-text-hue-modifier)
+                )
+            )
+        ),
+        255
+      ),
+      50
+    ),
+    max(
+      min(
+        calc(
+          var(--theme-title-text-brightness) +
+            (
+              var(--theme-green-hue) *
+                (
+                  var(--theme-base-hue-multiplier) +
+                    var(--theme-title-text-hue-modifier)
+                )
+            )
+        ),
+        255
+      ),
+      50
+    ),
+    max(
+      min(
+        calc(
+          var(--theme-title-text-brightness) +
+            (
+              var(--theme-blue-hue) *
+                (
+                  var(--theme-base-hue-multiplier) +
+                    var(--theme-title-text-hue-modifier)
+                )
+            )
+        ),
+        255
+      ),
+      50
+    );
+  --theme-content-title-color: rgb(var(--theme-content-title-color-rgb));
+
+  /* --overview-panel-bg */
+  --overview-panel-bg-contrast-ratio: var(
+      --overview-panel-bg-base-contrast-ratio
+    ) /
+    (
+      1 +
+        (
+          min(
+              max(
+                (
+                  var(--theme-red-hue) + var(--theme-green-hue) +
+                    var(--theme-blue-hue) + 0.01
+                ),
+                0
+              ),
+              255
+            ) / 255
+        ) * 3
+    );
+
+  --overview-panel-bg-rgb: max(
+      min(
+        calc(
+          calc(
+              (
+                  var(--theme-bg-brightness) *
+                    var(--overview-panel-bg-contrast-ratio)
+                ) + var(--overview-panel-bg-contrast-buffer) +
+                (var(--theme-red-hue) * var(--theme-base-hue-multiplier))
+            ) * var(--overview-panel-bg-contrast-ratio)
+        ),
+        245
+      ),
+      0
+    ),
+    max(
+      min(
+        calc(
+          calc(
+              (
+                  var(--theme-bg-brightness) *
+                    var(--overview-panel-bg-contrast-ratio)
+                ) + var(--overview-panel-bg-contrast-buffer) +
+                (var(--theme-green-hue) * var(--theme-base-hue-multiplier))
+            ) * var(--overview-panel-bg-contrast-ratio)
+        ),
+        245
+      ),
+      0
+    ),
+    max(
+      min(
+        calc(
+          calc(
+              (
+                  var(--theme-bg-brightness) *
+                    var(--overview-panel-bg-contrast-ratio)
+                ) + var(--overview-panel-bg-contrast-buffer) +
+                (var(--theme-blue-hue) * var(--theme-base-hue-multiplier))
+            ) * var(--overview-panel-bg-contrast-ratio)
+        ),
+        245
+      ),
+      0
+    );
+
+  --overview-panel-bg: rgb(var(--overview-panel-bg-rgb));
+
+  /* --theme-accent-color */
+  --theme-accent-color-rgb: max(
+      min(
+        calc(
+          calc(
+              (var(--theme-bg-brightness) * var(--theme-accent-brigtness-ratio)) +
+                var(--theme-accent-contrast) +
+                (var(--theme-red-hue) * var(--theme-accent-hue-multiplier))
+            ) * 1
+        ),
+        245
+      ),
+      calc(
+        var(--theme-accent-min-brightness) +
+          (var(--theme-red-hue) * var(--theme-accent-hue-multiplier))
+      )
+    ),
+    max(
+      min(
+        calc(
+          calc(
+              (var(--theme-bg-brightness) * var(--theme-accent-brigtness-ratio)) +
+                var(--theme-accent-contrast) +
+                (var(--theme-green-hue) * var(--theme-accent-hue-multiplier))
+            ) * 1
+        ),
+        245
+      ),
+      calc(
+        var(--theme-accent-min-brightness) +
+          (var(--theme-green-hue) * var(--theme-accent-hue-multiplier))
+      )
+    ),
+    max(
+      min(
+        calc(
+          calc(
+              (var(--theme-bg-brightness) * var(--theme-accent-brigtness-ratio)) +
+                var(--theme-accent-contrast) +
+                (var(--theme-blue-hue) * var(--theme-accent-hue-multiplier))
+            ) * 1
+        ),
+        245
+      ),
+      calc(
+        var(--theme-accent-min-brightness) +
+          (var(--theme-blue-hue) * var(--theme-accent-hue-multiplier))
+      )
+    );
+
+  --theme-accent-color: rgb(var(--theme-accent-color-rgb));
+
+  /* --theme-accent-sh1-color */
+  --theme-accent-sh1-color-rgb: max(
+      min(
+        calc(
+          calc(
+              (
+                  var(--theme-bg-brightness) *
+                    (var(--theme-accent-brigtness-ratio) * 0.5)
+                ) + (var(--theme-accent-contrast) / 2) +
+                (
+                  var(--theme-red-hue) *
+                    (var(--theme-accent-hue-multiplier) / 2)
+                )
+            ) * 1
+        ),
+        245
+      ),
+      calc(
+        (var(--theme-accent-min-brightness) * 0.675) +
+          (var(--theme-red-hue) * (var(--theme-accent-hue-multiplier) / 1.5))
+      )
+    ),
+    max(
+      min(
+        calc(
+          calc(
+              (
+                  var(--theme-bg-brightness) *
+                    (var(--theme-accent-brigtness-ratio) * 0.5)
+                ) + (var(--theme-accent-contrast) / 2) +
+                (
+                  var(--theme-green-hue) *
+                    (var(--theme-accent-hue-multiplier) / 2)
+                )
+            ) * 1
+        ),
+        245
+      ),
+      calc(
+        (var(--theme-accent-min-brightness) * 0.675) +
+          (var(--theme-green-hue) * (var(--theme-accent-hue-multiplier) / 1.5))
+      )
+    ),
+    max(
+      min(
+        calc(
+          calc(
+              (
+                  var(--theme-bg-brightness) *
+                    (var(--theme-accent-brigtness-ratio) * 0.5)
+                ) + (var(--theme-accent-contrast) / 2) +
+                (
+                  var(--theme-blue-hue) *
+                    (var(--theme-accent-hue-multiplier) / 2)
+                )
+            ) * 1
+        ),
+        245
+      ),
+      calc(
+        (var(--theme-accent-min-brightness) * 0.675) +
+          (var(--theme-blue-hue) * (var(--theme-accent-hue-multiplier) / 1.5))
+      )
+    );
+
+  --theme-accent-sh1-color: rgb(var(--theme-accent-sh1-color-rgb));
+
+  /* --theme-accent-sh2-color */
+  --theme-accent-sh2-color-rgb: max(
+      min(
+        calc(
+          calc(
+              (
+                  var(--theme-bg-brightness) *
+                    (var(--theme-accent-brigtness-ratio) * 0.25)
+                ) + (var(--theme-accent-contrast) / 3) +
+                (
+                  var(--theme-red-hue) *
+                    (var(--theme-accent-hue-multiplier) / 3)
+                )
+            ) * 1
+        ),
+        245
+      ),
+      calc(
+        (var(--theme-accent-min-brightness) * 0.625) +
+          (var(--theme-red-hue) * (var(--theme-accent-hue-multiplier) / 2))
+      )
+    ),
+    max(
+      min(
+        calc(
+          calc(
+              (
+                  var(--theme-bg-brightness) *
+                    (var(--theme-accent-brigtness-ratio) * 0.25)
+                ) + (var(--theme-accent-contrast) / 3) +
+                (
+                  var(--theme-green-hue) *
+                    (var(--theme-accent-hue-multiplier) / 3)
+                )
+            ) * 1
+        ),
+        245
+      ),
+      calc(
+        (var(--theme-accent-min-brightness) * 0.625) +
+          (var(--theme-green-hue) * (var(--theme-accent-hue-multiplier) / 2))
+      )
+    ),
+    max(
+      min(
+        calc(
+          calc(
+              (
+                  var(--theme-bg-brightness) *
+                    (var(--theme-accent-brigtness-ratio) * 0.25)
+                ) + (var(--theme-accent-contrast) / 3) +
+                (
+                  var(--theme-blue-hue) *
+                    (var(--theme-accent-hue-multiplier) / 3)
+                )
+            ) * 1
+        ),
+        245
+      ),
+      calc(
+        (var(--theme-accent-min-brightness) * 0.625) +
+          (var(--theme-blue-hue) * (var(--theme-accent-hue-multiplier) / 2))
+      )
+    );
+
+  --theme-accent-sh2-color: rgb(var(--theme-accent-sh2-color-rgb));
+
+  /* --theme-accent-sh3-color */
+  --theme-accent-sh3-color-rgb: max(
+      min(
+        calc(
+          calc(
+              (
+                  var(--theme-bg-brightness) *
+                    (var(--theme-accent-brigtness-ratio) * 0.125)
+                ) + (var(--theme-accent-contrast) / 3.25) +
+                (
+                  var(--theme-red-hue) *
+                    (var(--theme-accent-hue-multiplier) / 3.25)
+                )
+            ) * 1
+        ),
+        245
+      ),
+      calc(
+        (var(--theme-accent-min-brightness) * 0.6) +
+          (var(--theme-red-hue) * (var(--theme-accent-hue-multiplier) / 2.5))
+      )
+    ),
+    max(
+      min(
+        calc(
+          calc(
+              (
+                  var(--theme-bg-brightness) *
+                    (var(--theme-accent-brigtness-ratio) * 0.125)
+                ) + (var(--theme-accent-contrast) / 3.25) +
+                (
+                  var(--theme-green-hue) *
+                    (var(--theme-accent-hue-multiplier) / 3.25)
+                )
+            ) * 1
+        ),
+        245
+      ),
+      calc(
+        (var(--theme-accent-min-brightness) * 0.6) +
+          (var(--theme-green-hue) * (var(--theme-accent-hue-multiplier) / 2.5))
+      )
+    ),
+    max(
+      min(
+        calc(
+          calc(
+              (
+                  var(--theme-bg-brightness) *
+                    (var(--theme-accent-brigtness-ratio) * 0.125)
+                ) + (var(--theme-accent-contrast) / 3.25) +
+                (
+                  var(--theme-blue-hue) *
+                    (var(--theme-accent-hue-multiplier) / 3.25)
+                )
+            ) * 1
+        ),
+        245
+      ),
+      calc(
+        (var(--theme-accent-min-brightness) * 0.6) +
+          (var(--theme-blue-hue) * (var(--theme-accent-hue-multiplier) / 2.5))
+      )
+    );
+
+  --theme-accent-sh3-color: rgb(var(--theme-accent-sh3-color-rgb));
+
+  /* --theme-accent-color */
+  --theme-accent-brighter-color-rgb: max(
+      min(
+        calc(
+          calc(
+              (
+                  var(--theme-bg-brightness) *
+                    var(--theme-accent-brigtness-ratio) *
+                    var(--theme-accent-brighter-contrast-ratio)
+                ) + var(--theme-accent-contrast) +
+                (var(--theme-red-hue) * var(--theme-accent-hue-multiplier))
+            ) * 1
+        ),
+        245
+      ),
+      calc(
+        var(--theme-accent-min-brightness) *
+          var(--theme-accent-brighter-contrast-ratio) +
+          (var(--theme-red-hue) * var(--theme-accent-hue-multiplier))
+      )
+    ),
+    max(
+      min(
+        calc(
+          calc(
+              (
+                  var(--theme-bg-brightness) *
+                    var(--theme-accent-brigtness-ratio) *
+                    var(--theme-accent-brighter-contrast-ratio)
+                ) + var(--theme-accent-contrast) +
+                (var(--theme-green-hue) * var(--theme-accent-hue-multiplier))
+            ) * 1
+        ),
+        245
+      ),
+      calc(
+        var(--theme-accent-min-brightness) *
+          var(--theme-accent-brighter-contrast-ratio) +
+          (var(--theme-green-hue) * var(--theme-accent-hue-multiplier))
+      )
+    ),
+    max(
+      min(
+        calc(
+          calc(
+              (
+                  var(--theme-bg-brightness) *
+                    var(--theme-accent-brigtness-ratio) *
+                    var(--theme-accent-brighter-contrast-ratio)
+                ) + var(--theme-accent-contrast) +
+                (var(--theme-blue-hue) * var(--theme-accent-hue-multiplier))
+            ) * 1
+        ),
+        245
+      ),
+      calc(
+        var(--theme-accent-min-brightness) *
+          var(--theme-accent-brighter-contrast-ratio) +
+          (var(--theme-blue-hue) * var(--theme-accent-hue-multiplier))
+      )
+    );
+
+  --theme-accent-brighter-color: rgb(var(--theme-accent-brighter-color-rgb));
+
+  /* --theme-logo-accent-color */
+  --theme-logo-accent-min-brightness: 60;
+  --theme-logo-accent-max-brightness: 180;
+  --theme-logo-accent-color-rgb: max(
+      min(
+        calc(
+          var(--theme-base-text-brightness) +
+            (var(--theme-red-hue) * var(--theme-base-hue-multiplier))
+        ),
+        var(--theme-logo-accent-max-brightness)
+      ),
+      var(--theme-logo-accent-min-brightness)
+    ),
+    max(
+      min(
+        calc(
+          var(--theme-base-text-brightness) +
+            (var(--theme-green-hue) * var(--theme-base-hue-multiplier))
+        ),
+        var(--theme-logo-accent-max-brightness)
+      ),
+      var(--theme-logo-accent-min-brightness)
+    ),
+    max(
+      min(
+        calc(
+          var(--theme-base-text-brightness) +
+            (var(--theme-blue-hue) * var(--theme-base-hue-multiplier))
+        ),
+        var(--theme-logo-accent-max-brightness)
+      ),
+      var(--theme-logo-accent-min-brightness)
+    );
+  --theme-logo-accent-color: rgb(var(--theme-logo-accent-color-rgb));
+
+  /* --theme-accent-color */
+  --theme-logo-accent-sh1-min-brightness: 70;
+  --theme-logo-accent-sh1-max-brightness: 235;
+  --theme-logo-accent-sh1-color-rgb: max(
+      min(
+        calc(
+          var(--theme-title-text-brightness) +
+            (
+              var(--theme-red-hue) *
+                (
+                  var(--theme-base-hue-multiplier) +
+                    var(--theme-title-text-hue-modifier)
+                )
+            )
+        ),
+        var(--theme-logo-accent-sh1-max-brightness)
+      ),
+      var(--theme-logo-accent-sh1-min-brightness)
+    ),
+    max(
+      min(
+        calc(
+          var(--theme-title-text-brightness) +
+            (
+              var(--theme-green-hue) *
+                (
+                  var(--theme-base-hue-multiplier) +
+                    var(--theme-title-text-hue-modifier)
+                )
+            )
+        ),
+        var(--theme-logo-accent-sh1-max-brightness)
+      ),
+      var(--theme-logo-accent-sh1-min-brightness)
+    ),
+    max(
+      min(
+        calc(
+          var(--theme-title-text-brightness) +
+            (
+              var(--theme-blue-hue) *
+                (
+                  var(--theme-base-hue-multiplier) +
+                    var(--theme-title-text-hue-modifier)
+                )
+            )
+        ),
+        var(--theme-logo-accent-sh1-max-brightness)
+      ),
+      var(--theme-logo-accent-sh1-min-brightness)
+    );
+
+  --theme-logo-accent-sh1-color: rgb(var(--theme-logo-accent-sh1-color-rgb));
+
+  /* --theme-shadow-color */
+  --theme-shadow-color-rgb: max(
+      min(
+        calc(
+          var(--theme-bg-brightness) + var(--theme-shadow-contrast) +
+            var(--theme-red-hue)
+        ),
+        255
+      ),
+      0
+    ),
+    max(
+      min(
+        calc(
+          var(--theme-bg-brightness) + var(--theme-shadow-contrast) +
+            var(--theme-green-hue)
+        ),
+        255
+      ),
+      0
+    ),
+    max(
+      min(
+        calc(
+          var(--theme-bg-brightness) + var(--theme-shadow-contrast) +
+            var(--theme-blue-hue)
+        ),
+        255
+      ),
+      0
+    );
+  --theme-shadow-color: rgb(var(--theme-shadow-color-rgb));
+
+  /* --theme-shadow-color */
+  --theme-shadow-sh1-color-darkness-ratio: 0.5;
+
+  --theme-shadow-sh1-color-rgb: max(
+      min(
+        calc(
+          var(--theme-bg-brightness) *
+            var(--theme-shadow-sh1-color-darkness-ratio) +
+            var(--theme-shadow-contrast) + var(--theme-red-hue)
+        ),
+        255
+      ),
+      0
+    ),
+    max(
+      min(
+        calc(
+          var(--theme-bg-brightness) *
+            var(--theme-shadow-sh1-color-darkness-ratio) +
+            var(--theme-shadow-contrast) + var(--theme-green-hue)
+        ),
+        255
+      ),
+      0
+    ),
+    max(
+      min(
+        calc(
+          var(--theme-bg-brightness) *
+            var(--theme-shadow-sh1-color-darkness-ratio) +
+            var(--theme-shadow-contrast) + var(--theme-blue-hue)
+        ),
+        255
+      ),
+      0
+    );
+  --theme-shadow-sh1-color: rgb(var(--theme-shadow-sh1-color-rgb));
+}

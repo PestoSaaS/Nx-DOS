@@ -1,0 +1,141 @@
+{
+  "$schema": "./node_modules/nx/schemas/nx-schema.json",
+  "release": {
+    "releaseTagPattern": "release/v{version}",
+    "changelog": {
+      "workspaceChangelog": {
+        "createRelease": false
+      },
+      "git": {
+        "commit": false
+      }
+    },
+    "groups": {
+      "nxdos-dev": {
+        "projects": ["nxdos-documentation-site"],
+        "version": {
+          "conventionalCommits": true,
+          "generatorOptions": {
+            "packageRoot": "{workspaceRoot}/{projectRoot}"
+          }
+        }
+      }
+    },
+    "conventionalCommits": {
+      "types": {
+        "fix": false,
+        "docs": {
+          "semverBump": "patch",
+          "changelog": {
+            "hidden": false,
+            "title": "Documentation changes"
+          }
+        },
+        "test": {
+          "semverBump": "none",
+          "changelog": {
+            "title": "QA improvements"
+          }
+        },
+        "perf": {
+          "semverBump": "none",
+          "changelog": {
+            "title": "Performance improvements"
+          }
+        },
+        "deps": {
+          "semverBump": "minor",
+          "changelog": {
+            "title": "Dependency updates"
+          }
+        },
+        "chore": {
+          "changelog": false
+        }
+      }
+    }
+  },
+  "targetDefaults": {
+    "build": {
+      "dependsOn": ["^build"],
+      "inputs": ["production", "^production"],
+      "cache": true
+    },
+    "e2e": {
+      "inputs": ["default", "^production"],
+      "cache": true
+    },
+    "@nx/jest:jest": {
+      "inputs": ["default", "^production", "{workspaceRoot}/jest.preset.js"],
+      "cache": true,
+      "options": {
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    },
+    "@nx/eslint:lint": {
+      "inputs": ["default", "{workspaceRoot}/.eslintrc.json"],
+      "cache": true
+    },
+    "build-custom-server": {
+      "cache": true
+    }
+  },
+  "workspaceLayout": {
+    "appsDir": "apps",
+    "libsDir": "libs"
+  },
+  "generators": {
+    "@nx/react": {
+      "library": {
+        "linter": "eslint",
+        "unitTestRunner": "vitest"
+      }
+    },
+    "@nx/next": {
+      "application": {
+        "style": "none",
+        "linter": "eslint"
+      }
+    },
+    "@push-based/user-flow-nx-plugin:target": {
+      "targetName": "user-flow"
+    }
+  },
+  "plugins": [
+    {
+      "plugin": "@nx/eslint/plugin",
+      "options": {
+        "targetName": "lint"
+      }
+    },
+    {
+      "plugin": "@nx/next/plugin",
+      "options": {
+        "buildTargetName": "build",
+        "devTargetName": "dev",
+        "serveStaticTargetName": "serve-static"
+      }
+    }
+  ],
+  "namedInputs": {
+    "default": ["{projectRoot}/**/*", "sharedGlobals"],
+    "sharedGlobals": ["{workspaceRoot}/babel.config.json"],
+    "production": [
+      "default",
+      "!{projectRoot}/.eslintrc.json",
+      "!{projectRoot}/**/?(*.)+(spec|test).[jt]s?(x)?(.snap)",
+      "!{projectRoot}/tsconfig.spec.json",
+      "!{projectRoot}/jest.config.[jt]s",
+      "!{projectRoot}/src/test-setup.[jt]s"
+    ]
+  },
+  "nxCloudAccessToken": "YTU2ZWNlMmMtYmU2OC00Yjc1LTg3MWUtNDM5NzkzM2M2ZTRmfHJlYWQ=",
+  "defaultProject": "nxdos-documentation-site",
+  "defaultBase": "origin/main"
+}

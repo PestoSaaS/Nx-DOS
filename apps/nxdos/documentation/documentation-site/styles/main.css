@@ -1,0 +1,95 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  position: fixed;
+  tap-highlight-color: transparent;
+  -webkit-tap-highlight-color: transparent;
+  outline-color: transparent;
+}
+
+* {
+  outline: none !important;
+}
+
+body {
+  scroll-behavior: smooth;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+#scrollFrame {
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  background-color: var(--content-section-bg);
+  transition: background-color
+    calc(var(--theme-color-transition-duration) / 2.5)
+    var(--theme-color-transition-ease-function)
+    var(--theme-color-transition-delay);
+}
+
+body,
+#__next,
+.app,
+.appWrapper {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  min-width: 300px;
+}
+
+.appWrapper {
+  --view-breakpoint-switch-sm: 0;
+}
+
+.prose :where(h1):not(:where([class~='not-prose'] *)) {
+  font-size: 2.25em;
+}
+.prose :where(h2):not(:where([class~='not-prose'] *)) {
+  font-size: 1.5em;
+}
+.prose :where(h3):not(:where([class~='not-prose'] *)) {
+  font-size: 1.25em;
+}
+
+@page {
+  margin: 0;
+}
+
+@media print {
+  html,
+  body,
+  #__next,
+  .app,
+  .appWrapper {
+    position: relative;
+    width: 100vw;
+    height: unset !important;
+  }
+
+  .appWrapper {
+    margin-left: 0.75ch;
+  }
+
+  .appWrapper > div:nth-child(2) > div,
+  .appWrapper > div:nth-child(2) > div > div,
+  .appWrapper > div:nth-child(2) > div > div > div {
+    position: relative !important;
+    height: unset !important;
+    display: block !important;
+  }
+
+  * {
+    clip-path: unset !important;
+  }
+}
+
+@media print and (orientation: landscape) {
+  .appWrapper {
+    margin-left: 4ch;
+  }
+}

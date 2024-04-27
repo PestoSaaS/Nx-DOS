@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Nxdos - Documentation Site - UI - Common - components, EmbeddedCodeBlock should match snapshot correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="embeddedCodeBlockWrapper will-change-transform transform-gpu"
+  >
+    mock-file-path[
+          {
+            "name": "Nx-DOS",
+            "path": "nxdos",
+            "isFolder": true,
+            "itemList": [
+              {
+                "name": "introduction",
+                "path": "nxdos/introduction",
+                "overrideURL": "introduction"
+              },
+              {
+                "name": "getting-started",
+                "path": "nxdos/getting-started",
+                "overrideURL": "getting-started"
+              }
+            ]
+          }
+        ]
+    <div
+      class="embeddedCodeBlockEndPiece"
+    />
+    <div
+      class="embeddedCodeBlockAnchor"
+      id="test-codeblock-id"
+    />
+  </div>
+</DocumentFragment>
+`;

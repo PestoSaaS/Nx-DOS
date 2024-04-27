@@ -1,0 +1,116 @@
+---
+title: 'Markdoc samples'
+timestamp:
+  created_at: '2024-02-19T04:09:33.057Z'
+  last_updated_at: '2024-02-19T03:09:33.057Z'
+author:
+  name: PestoSaaS
+---
+
+# Sample elements
+
+This post showcases sample nodes from our Markdoc renderer for the documentation viewer. For common markdown nodes a good reference is the [core Markdoc syntax](https://markdoc.dev/docs/syntax).
+
+## Code blocks
+
+Below is the template fence syntax for a code block.
+
+````
+```language
+  // sample code
+```
+````
+
+Following code block features a typescript example, along with it's output.
+
+````
+```typescript
+import { GetStaticPaths, GetStaticProps } from 'next';
+```
+````
+
+```typescript
+import { GetStaticPaths, GetStaticProps } from 'next';
+```
+
+Here is another example with JSON while showcasing highlighted lines.
+
+````
+```json{2:3}
+{
+  "firstName": "John",
+  "lastName": "Smith",
+  "age": 25
+}
+```
+````
+
+```json{2:3}
+{
+  "firstName": "John",
+  "lastName": "Smith",
+  "age": 25
+}
+```
+
+### Embedded code files
+
+Below is an example of an embedded code file.
+
+```
+{% embeddedCode
+filePath= "docs/documents.json"
+/% }
+```
+
+> Please note the spaces in the closing tag between "%" and "}", as well as after the "filePath=" attribute. Their misleading presence was due for demonstration purposes. They prevent the example from being replaced by the actual content during build time. Both SHOULD BE REMOVED during usage.
+
+{% embeddedCode
+filePath="../../docs/documents.json"
+/%}
+
+## Sample video element
+
+Here is an embedded youtube video of Nx Conf 2022.
+
+```
+{% youtube
+title="Next.js Conf 2023"
+video_id="gfU1iZnjRZM"
+/% }
+```
+
+> Please note the space between "%" and "}" in the closing tag. It SHOULD BE REMOVED during usage. It is there for demonstration purposes, to prevent the example from being replaced by the actual content.
+
+{% youtube
+title="Next.js Conf 2023"
+video_id="gfU1iZnjRZM"
+/%}
+
+## Using local images
+
+Similarly images could be uploaded and referenced directly from the folder they are located.
+
+```
+![sample image description](/documentation/images/sample-screenshot.png)
+```
+
+![sample image description](/documentation/images/sample-screenshot.png)
+
+The remaining sections are samples to showcase different levels of heading tags.
+
+# h1 - extra large
+
+## h2 - large
+
+### h3 - medium
+
+#### h4 - small
+
+##### h5 - extra small
+
+###### h6 - text size
+
+# General notes
+
+Please review existing documents in the `/docs` directory for reference. You can easily start leveraging the power of markdown and organize your resources into subfolders as necessary. The navigation panel will automatically parse, sort and display them within a nested tree structure the next time you start the server for the documentation site. You can also use `docs/documents.json` to manually override the default order and configure the mapping of resources to the navigation panel.

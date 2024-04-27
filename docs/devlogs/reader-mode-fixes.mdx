@@ -1,0 +1,172 @@
+---
+title: 'Optimizing for reader mode across browsers'
+timestamp:
+  created_at: '2024-02-20T18:02:53.346Z'
+  last_updated_at: '2024-02-20T18:02:53.346Z'
+author:
+  name: PestoSaaS
+---
+
+# Summary
+
+As anywhere else, accessibility is an important requirement while building for the web. Sadly it often lags behind technical progress as we rush to develop and ship new features.
+
+Considering how to make a site reader-mode friendly is an easier task at the genesis of the project. Adapting an existing HTML structure later on can get a bit more complex.
+
+A site published without a through review of the reader mode can look different to your users based on the browser they're using. It'll also likely to have some missing content.
+
+In this devlog we will go over few of the issues we faced regarding reader mode, our key takeaways on how to overcome them, and share some useful hacks to achieve a consistent output across browsers.
+
+## References
+
+A very useful resource summarizing this subject is the article below by Daniel Aleksandersen.
+
+["Web Reading Mode: Title, author, and date metadata extraction"](https://www.ctrl.blog/entry/browser-reading-mode-metadata.html)
+
+Here are some other articles / source code to help dig deeper into reader mode mechanics.
+
+- [Beautified source code for safari-reader-js](https://github.com/amumu/safari-reader-js/blob/master/safari-reader.src.beautified.js)
+- [Mozilla readability.js repo](https://github.com/mozilla/readability)
+- [Chromium DOM Distiller repo](https://github.com/chromium/dom-distiller)
+- ["Building websites for Safari Reader Mode and other reading apps."](https://medium.com/@mandy.michael/building-websites-for-safari-reader-mode-and-other-reading-apps-1562913c86c9)
+- ["How does Firefox's Reader View work?"](https://videoinu.com/blog/firefox-reader-view-heuristics/)
+- ["Hide text in CSS pseudo elements from screen readers"](https://whitep4nth3r.com/blog/hide-text-in-css-pseudo-elements-from-screen-readers/)
+
+# Common issues
+
+As you would no doubt find out very quickly after dabbling around a bit, the deepest felt problem here is that **there are no standards around reader modes** accross browsers.
+
+## Differing parsers
+
+There is almost an equal number of different readability parsers, to that of browser vendors and their products. In a very brief summary of the articles above;
+
+- Safari uses `safari-reader`
+- Mozilla uses `mozilla-readability`
+- Chrome uses `chromium/dom-distiller`
+
+All have their own logic on how to extract metadata, text content, and relevant media from your pages. Albeit the occasional similarities, there are many more unexpected differences.
+
+## Unpredictable output
+
+Beyond extraction, what they choose to include in the final output varies even more. Readability parsers strive to trim all the noise from your HTML with the hopes of yielding a plain, readable document.
+
+Issues effecting all browsers
+
+- Different parsers yield different page titles
+- Misretrieval of author and date metadata / failure to capture
+- Decorative characters confused as content (false-positive)
+- Line numbers inside code fences stuck to content with no gap
+
+Safari specific
+
+- Unexpectedly trimmed or missing content (false-negative)
+- Articles below minimum char count (400) wont activate reader mode
+- aria-hidden doesn't work
+
+Firefox
+
+- Distorted spacing
+
+In practice, overtrimming can lead to disappearing headings/content, and a broken look on your document.
+
+# Our learnings
+
+Our key suggestions on the subject are;
+
+- continuously monitoring reader mode outputs across browsers.
+- not deviating from simple and semantic HTML structure.
+
+As you can guess from the experimental UI of our documentation site, its implementation occasionally compromised the semantic structure of the HTML hierarchy for visual goals.
+
+## Structural factors
+
+Parsing algorithms look for tags such as `body`, `article`, `content`, `entry`, `text`, etc, in relative positions to each other. Satisfying matches are then granted positive scores, also factoring other attributes such as classnames.
+
+On the other hand, tags such as `comment`, `breadcrumb`, `footer`, `meta` etc, gets penalized in scoring, with the hope of trimming them from resulting reader mode output. Nested `div` blocks and elaborate wrapper structures used for CSS finesse don't play well with parsers.
+
+## Suggested workarounds
+
+Since it's already a struggle to yield the desired reader mode output, even with simpler HTML structures, ours needed quite a few adjustments.
+
+Below are some of the workaround's we've used to bring consistency across reader modes from different browsers.
+
+1. hiding unwanted elements from reader mode using `aria-hidden` attribute or the `object` HTML tag instead of divs (because `aria-hidden` doesn't work on Safari).
+2. appending duplicate invisible elements to provide metadata at ideal spots of the HTML structure for each browser, using their target `author`,`date` or `role` attributes.
+3. appending invisible zero width chars to artificially increase article length, because articles below 400 character count Safari do not active reader mode.
+4. adding a gap after line numbers within code fences during the server side render
+
+The file below features the code for some of our solutions.
+
+{% embeddedCode
+filePath="../../libs/nxdos/documentation-site/ui/markdoc/src/lib/utils/reader-mode-workarounds.tsx"
+/%}
+
+### Safari title extration logic
+
+Safari has a slightly different approach to extracting page title, using the visual properties of the HTML elements. Once it has done so, in order to avoid including duplicate nodes in the reader mode, it removes the first heading tag similar to the title.
+
+**Vauge calculation of text similarity**  
+As you can see from safari-reader source code, text similarity is calculated based on common words, and doesn't necessarily require two strings to be exactly the same.
+
+**False positives on removal**  
+This leads to false positives when there are even few words similar and the rest of the title is different. For example in our article for `Documentation setup`, the first subsection heading `Documentation structure` would be removed from reader mode, mistaken as a duplicate title.
+
+**Replica invisible nodes to rescue**  
+Our solution was to use replica heading nodes which modifies the text content of the heading with zero-width joiners in between each character to fool Safari's analysis and force the exact text to be included in the reader mode.
+
+```typescript
+(props.children as string).replace(/(.{1})/g, '$1\u200B\u200C');
+```
+
+### Adding gaps after line numbers
+
+We tackle this challenge using regex to find start of each line and inject a space after the line number during server side rendering within the `[...segments].tsx` file, `getStaticProps` method.
+
+```typescript
+// workaround for linenumber on code fences for reader mode
+const linenumberRegex = /(?<=linenumber)(.*?)(?=<)\+?(<)/g;
+const renderedContent = await renderContent(document);
+const renderedContentHTML = ReactDOMServer.renderToString(
+  renderedContent as unknown as JSX.Element
+).replaceAll(linenumberRegex, '$1&nbsp;<');
+```
+
+### Trial and error on positioning
+
+For invisible elements providing meta information, what matters is where they are rendered within the article. If they are nested within multiple divs or preceded by certain tags the reader mode might fail to pick them up. This could require some trial and error to gain consistency across browsers.
+
+## Imperfections
+
+At this point our reader mode views achieved a consistent look across Chrome based browsers, Firefox and Safari. Whilst we improved significantly regarding the output, we're far from perfect.
+
+### Chrome
+
+Chrome reader mode will not display code fences / embedded code content, at best single line snippets depending on how you embed them. If your usage wouldn't require to highlight source code this might not be an important issue. For our self documenting website however, this has been an unfortunate block on the reader mode.
+
+**edit**: Up until recently Chrome's reader mode had been tucked behind a feature flag as an experiment, to be activated at `chrome://flags`. After its short lived removal, it now available in Chrome via right clicking on any site you're visiting and choosing `open in reading mode`. 
+
+As the previous version chopped some content like code fences from the output, against our hopes of improvement, the new one even regresses by also removing list items from markdown rendered content. Yet another addition to the symphony of arbitrary behaviors across reader modes of different vendors. You can also reference this issue by traveling to [a sample segment from the Nx documentation](https://nx.dev/features/enforce-module-boundaries) and activating Chrome's reader mode.
+
+### Safari
+
+Safari is by far the most problematic browser on reader mode. Firefox and Chrome's alternatives at least have some predictable similarities on acquiring or rejecting content from the screen. Yet Safari's reader mode has eccentric behaviors, despite our best efforts to build workarounds.
+
+#### Visiblity and scroll position factor
+
+Quite counterintuitively, whether you scrolled down and how far you're down the page when you activate the reader mode can yield different outputs on reader mode, mind blowing. Safari's filtering takes into consideration the visibility of elements in a more weighted fashion than Chrome and Firefox.
+
+#### Linguistic filtering
+
+Another unfortunate result of the exaggerated word specific filtering built into the content retrieval algorithms of [safari-reader-js](https://github.com/amumu/safari-reader-js/blob/master/safari-reader.src.beautified.js) is flakey output based on type of content.
+
+Although the text content of our website is rendered safely, the embedded content and comments from the source code files can still trigger rejection scoring. As an example, in multiple documentation segments we provide the `.env.example` file below as an example configuration file for environment variables.
+
+If the surrounding empty lines, one in the beginning and two at the end of the file are removed, it breaks the reader mode view on Safari after the contents are embedded to our respective documentation segments.
+
+{% embeddedCode language="bash"
+filePath="../../.env.example"
+/%}
+
+Such a culprit was only possible to be revealed with manual review. Although the workaround was as easy to simply preserve the empty lines, adopting the source files to reader mode's whims isn't always a viable solution as automated formatters could easily undo such a change.
+
+Improvements on accessibility will have to continue as more fixes become available, or browsers adopt new approaches for their reader mode implementations.

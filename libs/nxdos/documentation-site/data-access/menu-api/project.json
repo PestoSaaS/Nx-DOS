@@ -1,0 +1,29 @@
+{
+  "name": "nxdos-documentation-site-data-access-menu-api",
+  "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/nxdos/documentation-site/data-access/menu-api/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "dependsOn": [
+        {
+          "projects": "nxdos-documentation-site",
+          "target": "build-documentation",
+          "params": "forward"
+        }
+      ],
+      "outputs": [
+        "{workspaceRoot}/tests/coverage/libs/nxdos/documentation-site/data-access/menu-api"
+      ],
+      "options": {
+        "jestConfig": "libs/nxdos/documentation-site/data-access/menu-api/jest.config.ts"
+      }
+    }
+  },
+  "tags": ["scope:nxdos", "type:data-access"]
+}

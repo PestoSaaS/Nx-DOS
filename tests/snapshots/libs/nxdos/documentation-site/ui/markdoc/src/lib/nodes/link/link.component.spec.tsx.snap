@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Nxdos - Documentation Site - UI - Markdoc - nodes, Link should match snapshot correctly 1`] = `
+<DocumentFragment>
+  <a
+    href="https://www.algolia.com"
+    rel="noreferrer"
+    target="_blank"
+  >
+    test link label
+  </a>
+</DocumentFragment>
+`;

@@ -1,0 +1,54 @@
+{
+  "name": "nxdos-documentation-site-e2e",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/nxdos/documentation/documentation-site-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nx/cypress:cypress",
+      "dependsOn": [
+        {
+          "target": "build-sitemap",
+          "params": "forward"
+        }
+      ],
+      "options": {
+        "cypressConfig": "apps/nxdos/documentation/documentation-site-e2e/cypress.config.ts",
+        "devServerTarget": "nxdos-documentation-site:serve:development",
+        "testingType": "e2e",
+        "port": 4201
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "nxdos-documentation-site:serve:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
+    },
+    "build-sitemap": {
+      "executor": "@nxdos/documentation-site/data-access/menu-api:build-documentation-sitemap",
+      "dependsOn": [
+        {
+          "projects": "nxdos-documentation-site",
+          "target": "build",
+          "params": "forward"
+        }
+      ],
+      "options": {},
+      "defaultConfiguration": "development",
+      "configurations": {
+        "development": {
+          "dev": true
+        },
+        "production": {
+          "dev": false
+        }
+      }
+    }
+  },
+  "tags": ["scope:nxdos", "type:e2e"],
+  "implicitDependencies": ["nxdos-documentation-site"]
+}

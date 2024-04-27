@@ -1,0 +1,200 @@
+description: Installs required packages, lints, builds, runs unit and e2e tests for all available targets within the multiplatform application monorepo.
+
+# Use the latest 2.1 version of CircleCI pipeline process engine.
+# See: https://circleci.com/docs/2.0/configuration-reference
+# Orb support is from version >= 2.1
+version: 2.1
+
+# Make sure you use the latest version of the Orb!
+orbs:
+  nx: nrwl/nx@1.6.2
+  codecov: codecov/codecov@4.0.1
+
+# Invoke jobs via workflows
+# See: https://circleci.com/docs/2.0/configuration-reference/#workflows
+workflows:
+  monorepo-commit:
+    jobs:
+      - checkout
+      - select_all_targets:
+          filters: # using regex filters requires the entire branch to match
+            branches:
+              only: # only branches matching the below regex filters will run
+                - main
+                - master
+                - develop
+                - /release\/.*/
+                - /hotfix\/.*/
+                - /bugfix\/.*/
+          requires:
+            - checkout
+      - lint:
+          requires:
+            - select_all_targets
+      - test:
+          context: NXDOS_monorepo
+          requires:
+            - select_all_targets
+      - e2e:
+          context: NXDOS_monorepo
+          requires:
+            - select_all_targets
+      - sync-algolia:
+          context: NXDOS_monorepo
+          filters: # using regex filters requires the entire branch to match
+            branches:
+              only: # only branches matching the below regex filters will run
+                - main
+                - master
+          requires:
+            - lint
+            - test
+            - e2e
+      #
+      # below is the same workflow filtered for affected targets within feature branches
+      #
+      - select_affected_targets:
+          filters: # using regex filters requires the entire branch to match
+            branches:
+              only: # only branches matching the below regex filters will run
+                - /feature\/.*/
+          requires:
+            - checkout
+      - lint_affected:
+          requires:
+            - select_affected_targets
+      - test_affected:
+          context: NXDOS_monorepo
+          requires:
+            - select_affected_targets
+      - e2e_affected:
+          context: NXDOS_monorepo
+          requires:
+            - select_affected_targets
+
+# Define jobs to be invoked in the workflow.
+# See: https://circleci.com/docs/2.0/configuration-reference/#jobs
+jobs:
+  checkout:
+    description: checking out source code from repository
+    # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
+    # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
+    docker:
+      - image: cimg/node:lts-browsers
+    # Add steps to the job
+    # See: https://circleci.com/docs/2.0/configuration-reference/#steps
+    steps:
+      - checkout
+      # Uncomment the run command below to enable Nx agent distribution
+      # The "--stop-agents-after" is optional, but allows idle agents to shut down once the "e2e-ci" targets have been requested
+      # - run: 'npx nx-cloud start-ci-run --distribute-on="5 linux-small-js"'
+      - run:
+          name: Install dependencies
+          command: CYPRESS_CACHE_FOLDER=./tmp/Cypress pnpm i
+      - run:
+          name: Setup develop branch as base for 'affected' command
+          command: |
+            current_branch=$(git symbolic-ref --short -q HEAD)
+            if [[ "$current_branch" != "develop" ]];
+            then
+              git fetch origin develop:develop
+            fi
+      # Uncomment two lines below to enable Nx agent distribution
+      # - nx/set-shas
+      # - run: npx nx-cloud record -- nx format:check
+      - persist_to_workspace:
+          paths: .
+          root: .
+  select_all_targets:
+    description: filter step to run workflow on ALL targets
+    docker:
+      - image: cimg/node:lts-browsers
+    steps:
+      - run: echo "running CI workflow for ALL targets"
+  lint:
+    description: runs linter checks for all targets
+    docker:
+      - image: cimg/node:lts-browsers
+    steps:
+      - attach_workspace:
+          at: .
+      - run:
+          command: pnpm lint
+          name: Run linter
+  test:
+    description: runs unit tests for all targets
+    docker:
+      - image: cimg/node:lts-browsers
+    steps:
+      - attach_workspace:
+          at: .
+      - run:
+          name: Run jest tests
+          command: pnpm test
+      - run:
+          name: Merge coverage reports
+          command: pnpm run merge-coverage
+      - codecov/upload:
+          file: tests/coverage/summary/monorepo-coverage.json
+          token: CODECOV_TOKEN
+  e2e:
+    docker:
+      - image: cimg/node:lts-browsers
+    steps:
+      - attach_workspace:
+          at: .
+      - run:
+          name: Run e2e suite for Nx-DOS documentation site
+          command: CYPRESS_CACHE_FOLDER=./tmp/Cypress pnpm e2e
+  sync-algolia:
+    docker:
+      - image: cimg/node:lts-browsers
+    steps:
+      - attach_workspace:
+          at: .
+      - run:
+          name: Run e2e suite for Nx-DOS documentation site
+          command: pnpm nx run nxdos-documentation-site:sync-algolia
+  # jobs below runs the same commands only on targets affected by the commits on the feature branch
+  select_affected_targets:
+    description: filter step to target affected targets
+    docker:
+      - image: cimg/node:lts-browsers
+    steps:
+      - run: echo "running CI workflow for ONLY affected targets"
+  lint_affected:
+    description: runs linter checks for affected targets
+    docker:
+      - image: cimg/node:lts-browsers
+    steps:
+      - attach_workspace:
+          at: .
+      - run:
+          name: Run linter
+          command: pnpm run lint:affected
+  test_affected:
+    description: runs unit tests for affected targets
+    docker:
+      - image: cimg/node:lts-browsers
+    steps:
+      - attach_workspace:
+          at: .
+      - run:
+          name: Run jest tests
+          command: pnpm run test:affected
+      - run:
+          name: Merge affected coverage
+          command: pnpm run merge-coverage
+      - codecov/upload:
+          file: tests/coverage/summary/monorepo-coverage.json
+          token: CODECOV_TOKEN
+  e2e_affected:
+    description: runs e2e suite for affected targets
+    docker:
+      - image: cimg/node:lts-browsers
+    steps:
+      - attach_workspace:
+          at: .
+      - run:
+          name: Run e2e tests
+          command: CYPRESS_CACHE_FOLDER=./tmp/Cypress pnpm run e2e:affected

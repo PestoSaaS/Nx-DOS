@@ -1,0 +1,22 @@
+{
+  "name": "nxdos-documentation-site-models-document",
+  "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/nxdos/documentation-site/models/document/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": [
+        "{workspaceRoot}/tests/coverage/libs/nxdos/documentation-site/models/document"
+      ],
+      "options": {
+        "jestConfig": "libs/nxdos/documentation-site/models/document/jest.config.ts"
+      }
+    }
+  },
+  "tags": ["scope:nxdos", "type:util"]
+}
