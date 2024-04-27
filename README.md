@@ -1,13 +1,14 @@
-# Nx-DOS    
-&nbsp;   
-[![PestoSaaS](https://circleci.com/gh/PestoSaaS/Nx-DOS.svg?style=shield)](https://github.com/PestoSaaS/Nx-DOS) 
-[![codecov](https://codecov.io/gh/PestoSaaS/Nx-DOS/graph/badge.svg?token=D1GAJAF0Q9)](https://codecov.io/gh/PestoSaaS/Nx-DOS) 
-[![lighthouse accessibility](.badges/lighthouse_accessibility.svg)](https://github.com/GoogleChrome/lighthouse) 
-[![lighthouse best-practices](.badges/lighthouse_best-practices.svg)](https://github.com/GoogleChrome/lighthouse) 
-[![commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/) 
-[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/PestoSaaS/Nx-DOS/issues) 
-[![license: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)   
-   
+# Nx-DOS
+
+&nbsp;  
+[![PestoSaaS](https://dl.circleci.com/status-badge/img/circleci/EEitR3ZgjiaHKy1jJubVxP/JsxczUrDWCK8A3uAis4W9G/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/circleci/EEitR3ZgjiaHKy1jJubVxP/JsxczUrDWCK8A3uAis4W9G/tree/main)
+[![codecov](https://codecov.io/gh/PestoSaaS/Nx-DOS/graph/badge.svg?token=D1GAJAF0Q9)](https://codecov.io/gh/PestoSaaS/Nx-DOS)
+[![lighthouse accessibility](.badges/lighthouse_accessibility.svg)](https://github.com/GoogleChrome/lighthouse)
+[![lighthouse best-practices](.badges/lighthouse_best-practices.svg)](https://github.com/GoogleChrome/lighthouse)
+[![commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
+[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/PestoSaaS/Nx-DOS/issues)
+[![license: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+
 <hr>
 
 Nx-DOS is a project inspired by the [monorepo management tool Nx](https://nx.dev/getting-started/intro).
@@ -39,46 +40,46 @@ If you use or like Nx-DOS, please consider providing feedback. This is an open-s
 
 Your engagement helps motivate our efforts, validate the time spent on development and guide our trajectory.
 
-✅ *available*, 🚧 *work in progress*, ⏳ *backlogged*
-  
+✅ _available_, 🚧 _work in progress_, ⏳ _backlogged_
+
 **Boilerplate features**  
-  [🚧] Authentication  
-  [⏳] Account management  
-  [⏳] Email & SMS  
-  [⏳] Push notifications  
-  [⏳] Payments  
+ [🚧] Authentication  
+ [⏳] Account management  
+ [⏳] Email & SMS  
+ [⏳] Push notifications  
+ [⏳] Payments
 
 **Universal client management**  
-  [🚧] Web, mobile & desktop clients  
-  [🚧] URL routing & handoffs  
-  [🚧] Mirrored state management  
-  [🚧] Server components & SSR  
-  [⏳] Bundle & SEO optimizations  
+ [🚧] Web, mobile & desktop clients  
+ [🚧] URL routing & handoffs  
+ [🚧] Mirrored state management  
+ [🚧] Server components & SSR  
+ [⏳] Bundle & SEO optimizations
 
 **Improved DX via Nx tooling**  
-  [⏳] Storybook component library  
-  [⏳] State machine visualization  
-  [✅] Dependency graph visualization  
-  [✅] Modular architecture  
-  [✅] Customizable target configurations  
-  [✅] Self-hostable technology stack  
+ [⏳] Storybook component library  
+ [⏳] State machine visualization  
+ [✅] Dependency graph visualization  
+ [✅] Modular architecture  
+ [✅] Customizable target configurations  
+ [✅] Self-hostable technology stack
 
 **Improved accessibility**  
-  [⏳] Internationalization & localization  
-  [✅] Documentation viewer & markdoc support  
-  [✅] Search integrated documentation segments  
-  [✅] Cross browser reader mode improvements  
+ [⏳] Internationalization & localization  
+ [✅] Documentation viewer & markdoc support  
+ [✅] Search integrated documentation segments  
+ [✅] Cross browser reader mode improvements
 
 **Integrated devops & monitoring**  
-  [✅] Product analytics  
-  [✅] Commitizen friendly repo  
-  [✅] Automated changelog generation  
-  [✅] Codecov test coverage monitoring  
-  [✅] Lighthouse audits & budget assertions  
-  [✅] CI backbone & vercel deployment  
-  [✅] Containerization  
-  [⏳] Feature flags  
-  
+ [✅] Product analytics  
+ [✅] Commitizen friendly repo  
+ [✅] Automated changelog generation  
+ [✅] Codecov test coverage monitoring  
+ [✅] Lighthouse audits & budget assertions  
+ [✅] CI backbone & vercel deployment  
+ [✅] Containerization  
+ [⏳] Feature flags
+
 Thank you all for taking the time to use and support Nx-DOS. We're looking forward to your feedback.
 
 Comments from fellow developers, small teams and especially solo-founders are immensely valuable for us. We'll do our best to get back in touch with you the soonest we can, and are genuinely interested to find out more about your specific needs.
