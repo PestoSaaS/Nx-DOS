@@ -1,7 +1,7 @@
 # Nx-DOS
 
 &nbsp;  
-[![PestoSaaS](https://dl.circleci.com/status-badge/img/circleci/EEitR3ZgjiaHKy1jJubVxP/JsxczUrDWCK8A3uAis4W9G/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/circleci/EEitR3ZgjiaHKy1jJubVxP/JsxczUrDWCK8A3uAis4W9G/tree/main)
+[![PestoSaaS](https://dl.circleci.com/status-badge/img/circleci/EEitR3ZgjiaHKy1jJubVxP/JsxczUrDWCK8A3uAis4W9G/tree/main.svg?style=shield)](https://dl.circleci.com/status-badge/redirect/circleci/EEitR3ZgjiaHKy1jJubVxP/JsxczUrDWCK8A3uAis4W9G/tree/main)
 [![codecov](https://codecov.io/gh/PestoSaaS/Nx-DOS/graph/badge.svg?token=D1GAJAF0Q9)](https://codecov.io/gh/PestoSaaS/Nx-DOS)
 [![lighthouse accessibility](.badges/lighthouse_accessibility.svg)](https://github.com/GoogleChrome/lighthouse)
 [![lighthouse best-practices](.badges/lighthouse_best-practices.svg)](https://github.com/GoogleChrome/lighthouse)
