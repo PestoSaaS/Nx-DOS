@@ -1,0 +1,86 @@
+---
+title: 'Documentation setup'
+timestamp:
+  created_at: '2024-02-18T05:35:07.322Z'
+  last_updated_at: '2024-02-18T05:35:07.322Z'
+author:
+  name: PestoSaaS
+---
+
+# Documentation structure
+
+Documentation segments are automatically parsed from the `/docs` directory.
+
+Nx-DOS is dogfooding it's own documentation viewer for this website. In the navigation menu, each file is listed in descending order of recency, and subfolders are in alphabetic order. If you would like to enforce your preferred sequence for navigation, the mapping could be overridden as desired using the `/docs/documents.json` configuration file.
+
+{% embeddedCode
+filePath="../../../docs/documents.json" language="json"
+/%}
+
+You can follow further details on our devlog about [how we've built our documentation site](/devlogs/nextjs-docs-site).
+
+## Markdown elements
+
+Reviewing source files for our documentation will provide better understanding of the file structure and available markdown elements.
+
+In addition to common markdown nodes, our doc-viewer has a few custom tags for embedding source code files and Youtube videos. Usage instructions can be found in our related [devlog "markdoc samples"](/devlogs/markdoc-samples), along with some examples.
+
+# Configuring Algolia search
+
+Our template is pre-configured to work out of the box with Algolia search. All you need to do is [sign up for an account](https://dashboard.algolia.com/users/sign_up), create a project and fill in the necessary environment variables.
+
+- ALGOLIA_PROJECT_APP_ID
+- ALGOLIA_PROJECT_SEARCH_ONLY_API_KEY
+- ALGOLIA_PROJECT_ADMIN_API_KEY
+- ALGOLIA_PROJECT_INDEX_NAME
+
+## Exposing environment variables
+
+Create a `.env` file in the root of our repo for our local [environment variables](https://nx.dev/recipes/environment-variables/define-environment-variables), and add it to our `.gitignore`. We will later use Vercel to deploy, so you can also review their [guide to set environment variables](https://vercel.com/docs/concepts/projects/environment-variables#development-environment-variables?utm_source=next-site&utm_medium=docs&utm_campaign=next-website) for your preview/staging environments.
+
+> Frameworks typically use a prefix in order to expose environment variables. Make sure to prefix your variable with `NEXT_PUBLIC_` as explained in the [guide by Next.js](https://nextjs.org/docs/basic-features/environment-variables#exposing-environment-variables-to-the-browser).
+
+Below is an overview of our example file where we set our environment variables.
+
+{% embeddedCode language="bash"
+filePath="../../../.env.example"
+/%}
+
+## Updating search data
+
+On build time our documentation site analyzes its segments and structures them into searchable bits. to be later sent of Algolia.
+
+It will chunk the provided documentation into bits and upload it to Algolia on build time. You can review the lengthy output of this process;
+
+- (dev build) `dist/dev/apps/nxdos/documentation/documentation-site/algolia/sections.json`
+- (prod build) `dist/apps/nxdos/documentation/documentation-site/algolia/sections.json`
+
+All you need to do is simply run the project target `sync-algolia` whenever you want to update the data on Algolia servers. This will trigger the custom executor of our data access library, `libs/nxdos/documentation-site/data-access/algolia-api`.
+
+You can run this step manually or automate it within your CI pipeline by using the command below.
+
+```bash
+pnpm nx run nxdos-documentation-site:sync-algolia
+```
+
+> This command will run in production mode by default, if you would like to populate your search with sections rendered as in your development environment, you can explicitly append the option to the command.
+
+```bash
+pnpm nx run nxdos-documentation-site:sync-algolia:development
+```
+
+Our executor will automatically run a build on the respective environment prior to updating Algolia data.
+
+Upon a successful build, it will then execute the script below. This is also where we provide the desired search settings for our index;
+
+- `searchableAttributes`: i.e. article title, section title, content.
+- `customRanking`: i.e. ascending on section & subsection orders.
+- `attributeForDistinct`: attribute used to group multiple hits together.
+
+{% embeddedCode
+filePath="../../../tools/workspace-plugin/src/lib/update-algolia-data.ts"
+/%}
+
+That's it, your documentation viewer should be fully functioning along with it's search. If you test your instance with queries relevant to your own data, it ought to be returning some matches.
+
+If not, you should refer to your [Algolia account dashboard](https://dashboard.algolia.com) to verify your project index is indeed setup as intended and populated with the correct data.

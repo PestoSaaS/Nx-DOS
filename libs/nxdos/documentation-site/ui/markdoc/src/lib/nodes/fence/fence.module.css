@@ -1,0 +1,231 @@
+.code-block {
+  background-color: transparent;
+  overflow: hidden;
+  padding: 0;
+  border-radius: var(--content-section-codeblock-border-radius);
+  margin-top: calc(var(--content-section-unit-margin) + 0.375rem);
+  margin-bottom: calc(var(--content-section-unit-margin) + 0.325rem);
+}
+
+.code-block :global(pre),
+.code-block :global(pre) > :global(code) > :global(span) {
+  position: relative;
+  font-size: 0.725rem;
+}
+
+.code-block :global(pre) {
+  border-right: 1px solid var(--theme-sidebar-border-color) !important;
+  border-bottom: 1px solid var(--theme-sidebar-border-color) !important;
+  border-top: 1px solid var(--theme-shadow-color) !important;
+  border-left: 1px solid var(--theme-shadow-color) !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  margin-top: 0;
+  margin-bottom: 0;
+  border-radius: var(--content-section-codeblock-border-radius) !important;
+  scrollbar-color: rgba(var(--theme-sidebar-border-rgb), 1) transparent;
+  scrollbar-width: thin;
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+                                supported by Chrome, Edge, Opera and Firefox */
+}
+
+.code-block :global(pre) code {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  font-size: 0.725rem;
+  width: max-content;
+  min-width: 100%;
+  -webkit-touch-callout: text; /* iOS Safari */
+  -webkit-user-select: text; /* Safari */
+  -khtml-user-select: text; /* Konqueror HTML */
+  -moz-user-select: text; /* Old versions of Firefox */
+  -ms-user-select: text; /* Internet Explorer/Edge */
+  user-select: text; /* Non-prefixed version, currently
+                                supported by Chrome, Edge, Opera and Firefox */
+}
+
+.code-block :global(pre) > code > span {
+  display: block;
+  width: calc(100% - 1px);
+  white-space: pre;
+  /* uncomment below if you want codeblocks to wrap long lines */
+  /* white-space: pre-wrap; */
+  word-break: break-all;
+  padding-left: 2.5ch;
+  padding-right: 2ch;
+  margin-bottom: 0.1px;
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+
+.code-block :global(pre)::-webkit-scrollbar:horizontal {
+  height: 1.25ch;
+}
+
+.code-block :global(pre)::-webkit-scrollbar:vertical {
+  width: 1.25ch;
+}
+
+.code-block :global(pre)::-webkit-scrollbar {
+  background-color: transparent;
+}
+
+.code-block :global(pre)::-webkit-scrollbar-thumb {
+  background: #393812;
+  -webkit-border-radius: 1ch;
+  border: 0.325ch solid var(--theme-bg);
+  background-color: rgba(var(--theme-sidebar-border-rgb), 1);
+}
+
+.code-block--withLineNumbers :global(pre) > code > span {
+  padding-left: 7.5ch;
+  padding-left: 0.9px;
+  margin-left: 0.1px;
+}
+
+.code-block :global([classid='highlightedLine']) {
+  --checkers-pattern-color: rgba(var(--theme-accent-sh1-color-rgb), 0.375);
+  filter: hue-rotate(-3deg);
+  background-position: 0px 0px, 2px 2px;
+  background-size: 4px 4px;
+  background-image: linear-gradient(
+      45deg,
+      var(--checkers-pattern-color) 25%,
+      transparent 25%,
+      transparent 75%,
+      var(--checkers-pattern-color) 75%,
+      var(--checkers-pattern-color) 100%
+    ),
+    linear-gradient(
+      45deg,
+      var(--checkers-pattern-color) 25%,
+      transparent 25%,
+      transparent 75%,
+      var(--checkers-pattern-color) 75%,
+      var(--checkers-pattern-color) 100%
+    );
+}
+
+.code-block :global([classid='highlightedLine']) :global(.linenumber) {
+  color: rgba(var(--theme-prose-text-color-rgb), 0.675) !important;
+}
+
+.code-block :global(pre) > code > span:last-of-type {
+  display: none !important;
+}
+
+.code-block {
+  overflow: hidden;
+  padding: 0;
+  border-radius: var(--content-section-codeblock-border-radius);
+  margin-top: calc(var(--content-section-unit-margin) + 0.775rem);
+  margin-bottom: calc(var(--content-section-unit-margin) + 0.775rem);
+}
+
+.code-block :global(.linenumber) {
+  min-width: 5.5ch !important;
+  left: 0;
+  color: var(--theme-sidebar-border-color) !important;
+  padding-right: 0.25ch !important;
+  margin-right: 1.5ch;
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+                                supported by Chrome, Edge, Opera and Firefox */
+}
+
+.code-block :global(pre) > code > span:hover {
+  --checkers-pattern-color: rgba(var(--theme-accent-sh1-color-rgb), 0.375);
+  background-position: 0px 0px, 2px 2px;
+  background-size: 4px 4px;
+  background-image: linear-gradient(
+      45deg,
+      var(--checkers-pattern-color) 25%,
+      transparent 25%,
+      transparent 75%,
+      var(--checkers-pattern-color) 75%,
+      var(--checkers-pattern-color) 100%
+    ),
+    linear-gradient(
+      45deg,
+      var(--checkers-pattern-color) 25%,
+      transparent 25%,
+      transparent 75%,
+      var(--checkers-pattern-color) 75%,
+      var(--checkers-pattern-color) 100%
+    );
+}
+
+.code-block :global(pre) > code > span:hover :global(.linenumber) {
+  color: var(--theme-prose-text-color) !important;
+}
+
+.code-block :global(.copyIcon) {
+  width: 2ch;
+  height: calc(2ch + 1px);
+  box-sizing: content-box;
+  margin: calc(1ch + 1px);
+  margin-top: calc(1ch);
+  position: absolute;
+  right: -1ch;
+  top: -1ch;
+  background-color: rgba(var(--theme-shadow-color-rgb), 0.875);
+  border: calc(1ch - 1px) solid #ffffff00;
+  border-bottom-left-radius: 1px;
+  border-top-right-radius: var(--content-section-codeblock-border-radius);
+  fill: var(--theme-sidebar-border-color);
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity calc(2 * var(--sidebar-hover-animation-duration))
+      ease-in-out,
+    fill calc(2 * var(--sidebar-hover-animation-duration));
+
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+
+.code-block :global(.copyIcon) > * {
+  pointer-events: none;
+}
+
+.code-block :global(.copyIcon):hover {
+  fill: var(--theme-prose-text-color);
+  transition: fill calc(1 * var(--sidebar-hover-animation-duration));
+}
+
+.code-block :global(.copyIcon--copied) {
+  transition: fill calc(1 * var(--sidebar-hover-animation-duration));
+  opacity: 1;
+}
+
+.code-block:hover :global(.copyIcon) {
+  opacity: 1;
+}
+
+.code-block :global(.copyIcon) :global(.checkMark) {
+  fill: transparent;
+  transition: fill calc(1 * var(--sidebar-hover-animation-duration));
+}
+
+.code-block :global(.copyIcon--copied) :global(.checkMark) {
+  transition: fill calc(2 * var(--sidebar-hover-animation-duration));
+  fill: var(--logo-swatch-yellow);
+}
+
+.code-block + :global(.code-block) {
+  margin-top: 2rem;
+}

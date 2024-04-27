@@ -1,0 +1,22 @@
+{
+  "name": "nxdos-documentation-site-feature-doc-viewer",
+  "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/nxdos/documentation-site/feature/doc-viewer/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": [
+        "{workspaceRoot}/tests/coverage/libs/nxdos/documentation-site/feature/doc-viewer"
+      ],
+      "options": {
+        "jestConfig": "libs/nxdos/documentation-site/feature/doc-viewer/jest.config.ts"
+      }
+    }
+  },
+  "tags": ["scope:nxdos", "type:feature"]
+}

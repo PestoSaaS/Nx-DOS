@@ -1,0 +1,22 @@
+{
+  "name": "nxdos-documentation-site-feature-algolia-search",
+  "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/nxdos/documentation-site/feature/algolia-search/src",
+  "projectType": "library",
+  "tags": ["scope:nxdos", "type:feature"],
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": [
+        "{workspaceRoot}/tests/coverage/libs/nxdos/documentation-site/feature/algolia-search"
+      ],
+      "options": {
+        "jestConfig": "libs/nxdos/documentation-site/feature/algolia-search/jest.config.ts"
+      }
+    }
+  }
+}

@@ -1,0 +1,163 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Nxdos - Documentation Site - UI - Common - components, OverviewPanel template should match snapshot correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="overviewPanelContainer overviewPanelContainer"
+    id="overviewPanelContainer"
+  >
+    <div
+      class="tocWrapper"
+    >
+      <object
+        aria-hidden="true"
+        class="lineBorderFrame lineBorderFrame"
+      >
+        <div
+          class="lineBorder-corner lineBorder-corner--top-left"
+        />
+        <div
+          class="lineBorder-corner lineBorder-corner--top-right"
+        />
+        <div
+          class="lineBorder-corner lineBorder-corner--bottom-left"
+        />
+        <div
+          class="lineBorder-corner lineBorder-corner--bottom-right"
+        />
+        <div
+          class="lineBorder--top lineBorder"
+        >
+          ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+        </div>
+        <div
+          class="lineBorder--bottom lineBorder"
+        >
+          ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+        </div>
+        <object
+          class="lineBorder--left lineBorder w-[1ch] [word-break:break-word] overflow-hidden "
+        >
+          ││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││
+        </object>
+        <object
+          class="lineBorder--right lineBorder w-[1ch] [word-break:break-word] overflow-hidden "
+        >
+          ││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││
+        </object>
+      </object>
+      <div
+        class="opTitleFrame"
+      >
+        <div
+          class="opTitleLabel"
+        >
+          Table of Contents
+        </div>
+      </div>
+      <ul
+        class="tocFrame tocFrame"
+        id="tocFrame"
+      >
+        <li
+          class="tocListItem"
+        >
+          <a
+            data-testid="tocItem-documentation-structure"
+            href="#documentation-structure"
+          >
+            <span
+              class="sectionLabelInset"
+            />
+            <span
+              class="sectionLabel "
+            >
+              <span
+                class="sectionLabel-hoverMarker sectionLabel-hoverMarker-left"
+              >
+                [
+              </span>
+              <span
+                class="sectionTitle "
+              >
+                Documentation structure
+              </span>
+              <span
+                class="sectionLabel-hoverMarker"
+              >
+                ]
+              </span>
+            </span>
+          </a>
+        </li>
+        <li
+          class="tocListItem"
+        >
+          <a
+            data-testid="tocItem-code--docs-documents-json"
+            href="#code--docs-documents-json"
+          >
+            <span
+              class="sectionLabelInset"
+            >
+                
+            </span>
+            <span
+              class="sectionLabel "
+            >
+              <span
+                class="sectionLabel-hoverMarker sectionLabel-hoverMarker-left"
+              >
+                [
+              </span>
+              <span
+                class="sectionTitle sectionType--tag"
+              >
+                documents.json
+              </span>
+              <span
+                class="sectionLabel-hoverMarker"
+              >
+                ]
+              </span>
+            </span>
+          </a>
+        </li>
+        <li
+          class="tocListItem"
+        >
+          <a
+            data-testid="tocItem-markdown-elements"
+            href="#markdown-elements"
+          >
+            <span
+              class="sectionLabelInset"
+            >
+                
+            </span>
+            <span
+              class="sectionLabel "
+            >
+              <span
+                class="sectionLabel-hoverMarker sectionLabel-hoverMarker-left"
+              >
+                [
+              </span>
+              <span
+                class="sectionTitle "
+              >
+                Markdown elements
+              </span>
+              <span
+                class="sectionLabel-hoverMarker"
+              >
+                ]
+              </span>
+            </span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</DocumentFragment>
+`;

@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Nxdos - Documentation Site - UI - Markdoc - nodes, Heading should match snapshot correctly 1`] = `
+<DocumentFragment>
+  <h1
+    aria-hidden="false"
+    class="readerModeWorkaround--headingLabel"
+    role="heading"
+  >
+    T​‌e​‌s​‌t​‌ ​‌h​‌e​‌a​‌d​‌i​‌n​‌g​‌
+  </h1>
+  <h1
+    class="not-prose group headingFrame"
+  >
+    <object
+      aria-hidden="true"
+      class="headingLabelFrame"
+    >
+      <span
+        aria-hidden="true"
+        class="headingLabelHueLayer"
+      >
+        <span
+          aria-hidden="true"
+          class="headingLabel"
+        >
+          <a
+            href="#test-heading"
+          >
+            Test heading
+          </a>
+        </span>
+      </span>
+      <span
+        aria-hidden="true"
+        class="headingLabelClone"
+      >
+        <span
+          class="anchorLinkClipboardIcon"
+          data-testid="copyAnchorlinkButton"
+        >
+          #
+        </span>
+        <span
+          class="anchorLinkClipboardIcon--clone"
+        >
+          #
+        </span>
+        Test heading
+      </span>
+    </object>
+  </h1>
+</DocumentFragment>
+`;

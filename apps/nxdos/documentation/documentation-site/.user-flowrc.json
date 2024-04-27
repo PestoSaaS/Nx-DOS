@@ -1,0 +1,39 @@
+{
+  "assert": {
+    "budgets": [
+      {
+        "path": "/*",
+        "resourceSizes": [
+          {
+            "resourceType": "total",
+            "budget": 10000
+          },
+          {
+            "resourceType": "script",
+            "budget": 5000
+          }
+        ],
+        "resourceCounts": [
+          {
+            "resourceType": "third-party",
+            "budget": 3
+          }
+        ],
+        "timings": [
+          {
+            "metric": "first-contentful-paint",
+            "budget": 2000
+          },
+          {
+            "metric": "first-meaningful-paint",
+            "budget": 15000
+          },
+          {
+            "metric": "cumulative-layout-shift",
+            "budget": 2000
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,97 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Nxdos - Documentation Site - UI - Common - components, SidebarHeader should match snapshot correctly 1`] = `
+<DocumentFragment>
+  <div>
+    <div
+      class="sidebarHeader"
+    >
+      <div
+        class="logo"
+      />
+      <span
+        class="menuLogoButton"
+        data-testid="sidebarHeaderClickHandler--toggle"
+      >
+        <span
+          class="menuLogoCaption"
+        >
+          Nx starter guide
+        </span>
+      </span>
+      <a
+        class="sidebarHeaderButton"
+        href="/"
+      >
+        ╔════════╗
+        <br />
+        ║        ║
+        <br />
+        <span
+          class="versionNumberCaption"
+        >
+          0.0.1
+        </span>
+        ╚════════╝
+        <br />
+      </a>
+      <a
+        class="sidebarHeaderButton"
+        href="https://github.com/PestoSaaS/Nx-DOS"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        ╔═══╗
+        <br />
+        ║ 
+        <div
+          class="sidebarHeaderButtonIconFrame"
+        >
+          <div
+            class="sidebarHeaderButtonIconInnerFrame"
+          >
+            <div
+              class="sidebarHeaderButtonIcon"
+            >
+              <div />
+            </div>
+          </div>
+        </div>
+         ║
+        <br />
+        ╚═══╝
+        <br />
+      </a>
+      <br />
+      <div
+        class="logoLowerSideClickZone"
+        data-testid="sidebarHeaderClickHandler--changeTheme"
+      >
+        <div
+          class="logoLowerSideFrame"
+        >
+          <div
+            class="logo--masked"
+          />
+          <div
+            class="logo--masked logo--masked--hoverLayer"
+          />
+          <div
+            class="logoMaskWrapper"
+          >
+            <div
+              class="logoMaskOverlayPatch"
+            />
+            <div
+              class="logoMaskOverlayPatch--renderGlitchPatch1"
+            />
+            <div
+              class="logoMaskOverlayPatch--renderGlitchPatch2"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

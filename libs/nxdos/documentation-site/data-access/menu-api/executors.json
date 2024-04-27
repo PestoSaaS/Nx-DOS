@@ -1,0 +1,10 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "executors": {
+    "build-documentation-sitemap": {
+      "implementation": "./src/executors/build-documentation-sitemap/executor",
+      "schema": "./src/executors/build-documentation-sitemap/schema.json",
+      "description": "build-documentation-sitemap executor"
+    }
+  }
+}

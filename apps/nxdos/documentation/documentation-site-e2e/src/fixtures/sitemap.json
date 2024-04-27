@@ -1,0 +1,72 @@
+[
+    {
+        "name": "introduction",
+        "path": "nxdos/introduction",
+        "overrideURL": "introduction"
+    },
+    {
+        "name": "getting-started",
+        "path": "nxdos/getting-started",
+        "overrideURL": "getting-started"
+    },
+    {
+        "name": "documentation",
+        "path": "nxdos/configuration/documentation",
+        "overrideURL": "configuration/documentation"
+    },
+    {
+        "name": "usage-metrics",
+        "path": "nxdos/configuration/usage-metrics",
+        "overrideURL": "configuration/usage-metrics"
+    },
+    {
+        "name": "ci/cd-pipeline",
+        "path": "nxdos/configuration/ci-cd-pipeline",
+        "overrideURL": "configuration/ci-cd-pipeline"
+    },
+    {
+        "name": "acknowledgements",
+        "path": "nxdos/acknowledgements",
+        "overrideURL": "acknowledgements"
+    },
+    {
+        "name": "commitizen-setup",
+        "path": "devlogs/commitizen-setup",
+        "created_at": "2024-02-18T04:23:48.895Z"
+    },
+    {
+        "name": "nextjs-docs-site",
+        "path": "devlogs/nextjs-docs-site",
+        "created_at": "2024-02-19T02:35:07.252Z"
+    },
+    {
+        "name": "app-router-model",
+        "path": "devlogs/app-router-model",
+        "created_at": "2024-02-19T03:15:03.131Z"
+    },
+    {
+        "name": "markdoc-samples",
+        "path": "devlogs/markdoc-samples",
+        "created_at": "2024-02-19T04:09:33.057Z"
+    },
+    {
+        "name": "posthog-analytics",
+        "path": "devlogs/posthog-analytics",
+        "created_at": "2024-02-20T10:49:50.530Z"
+    },
+    {
+        "name": "quality-assurance",
+        "path": "devlogs/quality-assurance",
+        "created_at": "2024-02-20T11:23:24.230Z"
+    },
+    {
+        "name": "algolia-search",
+        "path": "devlogs/algolia-search",
+        "created_at": "2024-02-20T11:52:53.804Z"
+    },
+    {
+        "name": "reader-mode-fixes",
+        "path": "devlogs/reader-mode-fixes",
+        "created_at": "2024-02-20T18:02:53.346Z"
+    }
+]

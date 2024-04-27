@@ -1,0 +1,634 @@
+.navMenuItem {
+  position: relative;
+  top: 0;
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+  clear: right;
+  word-wrap: normal;
+  overflow-wrap: normal;
+  white-space: nowrap;
+  vertical-align: top;
+}
+
+.navMenuFolderBullet {
+  color: rgba(var(--theme-prose-text-color-rgb), 0.75);
+  filter: hue-rotate(var(--theme-accent-hue-rotation));
+  text-shadow: 0px 0px 2px #0004;
+  margin-left: 0.1ch;
+  margin-right: 0.1ch;
+  transition: calc(var(--sidebar-hover-animation-duration) / 1) transform,
+    calc(var(--sidebar-hover-animation-duration) / 2) top;
+  display: inline-block;
+  position: relative;
+  left: -0.1ch;
+  transform: rotate(-90deg);
+  top: -0.125ch;
+  vertical-align: top;
+}
+
+.navMenuFolderBullet--open {
+  position: relative;
+  top: 0;
+  left: 0ch;
+  transform: rotate(0deg);
+  transition: calc(var(--sidebar-hover-animation-duration) / 1) transform,
+    calc(var(--sidebar-hover-animation-duration) / 2) top,
+    calc(var(--sidebar-hover-animation-duration) / 1) left;
+}
+
+.navMenuItemBullet {
+  color: rgba(var(--theme-prose-text-color-rgb), 0.375);
+  filter: hue-rotate(var(--theme-accent-hue-rotation));
+  text-shadow: 0px 0px 2px #0004;
+  margin-left: 0.1ch;
+  margin-right: 0.1ch;
+  display: inline-block;
+  height: 1em;
+  vertical-align: top;
+}
+
+.closed {
+  display: none;
+}
+
+.open {
+  display: pre;
+}
+
+.navItemFrame:before {
+  content: '__';
+  color: transparent;
+}
+
+.navItemFrame {
+  width: 100%;
+}
+
+.navMenuItem {
+  width: calc(
+    (1ch * var(--sidebar-width-ch)) -
+      ((var(--menu-item-offset)) * (var(--sidebar-font-size)) - 0.55rem)
+  );
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  hyphens: auto;
+}
+
+.navMenuItem + br + br {
+  display: block !important;
+  margin-top: 0.675rem;
+}
+
+.navMenuItem > a {
+  width: 100%;
+  cursor: default;
+}
+
+.navMenuItem > a:hover {
+  cursor: pointer;
+}
+
+.navItemFrame {
+  position: relative;
+  width: 100%;
+}
+
+.folder {
+  cursor: pointer;
+}
+
+.folderPathIndicator {
+  position: relative;
+  color: var(--theme-gray-sh1);
+  display: inline-block;
+  height: 1em;
+  vertical-align: top;
+}
+
+.folderPathSpacer {
+  position: absolute;
+  left: 0;
+  color: var(--theme-gray-sh1);
+}
+
+.connectorFrame {
+  position: absolute;
+  white-space: normal;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  overflow: hidden;
+  top: 1em;
+  bottom: 0.5em;
+  left: 2ch;
+  width: 1ch;
+  background-color: transparent;
+  pointer-events: none;
+}
+
+.connectorMask {
+  position: absolute;
+  white-space: normal;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  overflow: hidden;
+  top: 1em;
+  bottom: 0em;
+  left: 0ch;
+  width: 1ch;
+  background-color: var(--theme-bg);
+  color: var(--sidebar-filepath-passive-color);
+  display: none;
+  pointer-events: none;
+}
+
+.connectorEndPiece {
+  position: absolute;
+  width: 2ch;
+  top: 0;
+  z-index: 1;
+  background-color: var(--theme-bg);
+  bottom: -1px;
+  padding-bottom: 0.5em;
+  left: 2ch;
+  pointer-events: none;
+}
+
+.connectorEndPieceAlt {
+  position: absolute;
+  width: 2ch;
+  top: 0;
+  z-index: 1;
+  bottom: -1px;
+  height: 1em;
+  padding-bottom: 0.5em;
+  left: 2ch;
+  pointer-events: none;
+}
+
+.navItemFrame:last-child {
+  position: relative;
+}
+
+.navMenuItem:hover .navMenuFolderBullet,
+.navMenuItem:hover .navMenuFolderLabel,
+.navMenuItem:hover .navMenuItemBullet,
+.navMenuItem:hover .navMenuItemLabel {
+  opacity: 0.25;
+}
+
+.navMenuItem:hover > .folder > .navMenuFolderBullet,
+.navMenuItem:hover > .folder > .navMenuFolderLabel,
+.navMenuItem:hover > a > .navMenuItemBullet,
+.navMenuItem:hover > a > .navMenuItemLabel {
+  opacity: 1;
+}
+
+.navMenuItem:hover > .folder > .folderPathIndicator,
+.navMenuItem:hover > a > .folderPathIndicator,
+.navMenuItem:hover > .folder > .navMenuFolderBullet {
+  color: var(--theme-text);
+}
+
+.navMenuItem:hover > .folder > .folderPathIndicator,
+.navMenuItem:hover > a > .folderPathIndicator {
+  color: var(--sidebar-filepath-passive-color);
+}
+
+.navMenuItem:hover
+  > .folder
+  > .folderPathIndicator
+  .folderPathIndicator--secondLetter::before {
+  color: transparent;
+}
+
+.navMenuFolderLabel,
+.navMenuItemLabel {
+  width: calc(
+    (1ch * var(--sidebar-width-ch)) -
+      ((var(--menu-item-offset)) * (1rem) + 0.3rem + 1.5ch)
+  );
+  border-right: 1.5ch solid transparent;
+  text-overflow: ellipsis;
+  border-bottom: 0;
+
+  overflow-x: normal;
+  white-space: normal;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  hyphens: auto;
+
+  padding-left: 0.1ch;
+  line-height: 1.125rem;
+  --sidebar-menu-item-spacing: var(--sidebar-vertical-spacing);
+}
+
+.navMenuFolderLabel {
+  padding-bottom: calc(var(--sidebar-menu-item-spacing) * 1.25);
+}
+
+.navMenuItemLabel {
+  padding-bottom: var(--sidebar-menu-item-spacing) !important;
+}
+
+.navItemFrameAreaExtension {
+  position: absolute;
+  left: -10rem;
+  right: 100%;
+  top: 0;
+  bottom: 0;
+  z-index: 100;
+}
+
+.menuItemLabelText {
+  position: relative;
+  top: -0.0625rem;
+  vertical-align: top;
+}
+
+.leafNodeMenuItem {
+  border-bottom: 0 solid transparent;
+}
+
+.navMenuItem:hover > .folder > .navMenuFolderLabel {
+  color: rgba(var(--theme-content-title-color-rgb), 0.9);
+  opacity: 1;
+}
+
+.navMenuItem:hover > .folder > .folderPathIndicator {
+  opacity: 1;
+}
+
+.navMenuItem:hover > a > .navMenuItemLabel {
+  opacity: 1;
+  color: rgba(var(--theme-content-title-color-rgb), 1);
+}
+
+.navMenuItem:hover > a > .navMenuItemBullet {
+  opacity: 1;
+  color: var(--theme-text);
+}
+
+.navMenuFolder-hoverMarker,
+.navMenuItem-hoverMarker {
+  overflow: clip;
+  opacity: 0;
+  width: 0;
+  position: relative;
+  display: inline-block;
+}
+
+.folder:hover > .navMenuFolderLabel .navMenuFolder-hoverMarker,
+.navMenuItem:hover > a .navMenuItemLabel > .navMenuItem-hoverMarker {
+  opacity: 0;
+  width: 0ch;
+}
+
+.folder:hover > .navMenuFolderLabel,
+.navMenuItem:hover > a .navMenuItemLabel {
+  text-decoration: underline;
+}
+
+.navMenuItem
+  > a
+  > .folderPathIndicator
+  > .folderPathIndicator--secondLetter::before,
+.navMenuItem > a > .folderPathIndicator {
+  color: var(--sidebar-filepath-passive-color);
+}
+
+.folderPathIndicator--hoverLayer {
+  color: transparent;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.navMenuItem:hover > a .folderPathIndicator--hoverLayer {
+  color: var(--sidebar-filepath-active-color);
+}
+
+.navMenuItem:hover > a > .folderPathIndicator {
+  color: var(--sidebar-filepath-active-color);
+  bottom: 0;
+}
+
+.navMenuItem:hover > a > .folderPathSpacer {
+  color: transparent;
+}
+
+.navMenuItem:hover > .connectorFrame {
+  color: var(--sidebar-filepath-active-color);
+  z-index: 0;
+}
+
+.navMenuItem:hover > .open > .navItemFrame:hover > .connectorEndPiece {
+  color: var(--sidebar-filepath-active-color);
+}
+
+.navMenuItem:hover .folderPathSpacer {
+  color: transparent;
+}
+
+.navMenuItem:hover > .folder > .folderPathSpacer {
+  color: transparent;
+}
+
+.navMenuItem:hover > .folder > .folderPathSpacer:after {
+  content: '\2514\2500';
+  position: absolute;
+  inset: 0;
+  color: var(--sidebar-filepath-active-color);
+}
+
+.navMenuItem:hover > a > .folderPathSpacer:before,
+.navMenuItem:hover > .folder > .folderPathSpacer:before {
+  content: '│';
+  position: absolute;
+  top: 0.45em;
+  bottom: 0;
+  white-space: normal;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  overflow: hidden;
+  background-color: var(--theme-bg);
+  color: var(--sidebar-filepath-passive-color);
+  left: 0;
+  width: 0.7ch;
+}
+
+.navItemFrame:hover ~ .navItemFrame .folderPathSpacer {
+  color: var(--sidebar-filepath-passive-color);
+  background-color: var(--theme-bg);
+  width: 0.7ch;
+}
+
+.navItemFrame:hover ~ .navItemFrame .folderPathIndicator {
+  color: var(--sidebar-filepath-passive-color);
+}
+
+.navItemFrame:hover ~ .navItemFrame .connectorEndPiece {
+  color: var(--sidebar-filepath-passive-color);
+}
+
+.navItemFrame:hover > .navItemFrame .connectorMask {
+  display: inline-block;
+}
+
+.navItemFrame:hover ~ .navItemFrame .connectorMask {
+  display: inline-block;
+}
+
+.navMenuItem:hover > .connectorMask {
+  display: inline-block;
+}
+
+.navMenuItem:hover > .open > .navItemFrame > .connectorMask {
+  display: inline-block;
+}
+
+.navMenuFolderLabel:after,
+.navMenuItemLabel:after {
+  content: '';
+  position: absolute;
+  left: -30ch;
+  width: 32ch;
+  height: 1.1em;
+  top: -0.05em;
+  z-index: 3;
+}
+
+.navMenuFolderLabel:before,
+.navMenuItemLabel:before {
+  content: '';
+  position: absolute;
+  left: -30ch;
+  right: 0;
+  bottom: calc(var(--sidebar-menu-item-spacing) * 2 / 3);
+  top: calc(-1 * var(--sidebar-menu-item-spacing) * 2 / 3);
+  z-index: 4;
+  background-color: #ffffff00;
+  pointer-events: none;
+}
+
+.folder:hover > .navMenuFolderLabel:before,
+.navMenuItem:hover > a .navMenuItemLabel:before {
+  opacity: 0.1;
+  --checkers-pattern-color: var(--theme-content-title-color);
+  filter: hue-rotate(0.125turn);
+  background-position: 0px 2px, 2px 0px;
+  background-size: 4px 4px;
+  background-image: linear-gradient(
+      45deg,
+      var(--checkers-pattern-color) 25%,
+      transparent 25%,
+      transparent 75%,
+      var(--checkers-pattern-color) 75%,
+      var(--checkers-pattern-color) 100%
+    ),
+    linear-gradient(
+      45deg,
+      var(--checkers-pattern-color) 25%,
+      transparent 25%,
+      transparent 75%,
+      var(--checkers-pattern-color) 75%,
+      var(--checkers-pattern-color) 100%
+    );
+}
+
+.folder:hover + .connectorFrame {
+  color: var(--sidebar-filepath-passive-color);
+}
+
+.folder:hover ~ * > * .navMenuFolderLabel {
+  color: var(--theme-accent-color);
+  filter: hue-rotate(0.0125turn);
+}
+
+.folder:hover
+  ~ *
+  > *
+  *:not(
+    .navMenuFolder-hoverMarker,
+    .navMenuItem-hoverMarker,
+    .folder--closed + .connectorFrame,
+    .leafNodeMenuItem > .connectorFrame
+  ) {
+  opacity: 1 !important;
+}
+
+.leafNodeMenuItem > .connectorFrame {
+  opacity: 0 !important;
+  color: transparent;
+}
+
+.navMenuFolderLabel {
+  color: var(--theme-gray-sh2);
+  text-shadow: 0px 0px 2px #0007;
+  display: inline-block;
+}
+
+.navMenuItemLabel {
+  color: rgba(var(--theme-prose-text-color-rgb), 0.875);
+  text-shadow: 0px 0px 2px #0007;
+  display: inline-block;
+}
+
+.itemPathIndicator:after {
+  content: '─';
+  right: 1ch;
+  width: 0.35ch;
+  box-sizing: border-box;
+  background-color: var(--theme-bg);
+  position: absolute;
+  text-align: right;
+  overflow: hidden;
+  bottom: 0;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.navMenuItem:hover
+  > .folder:hover
+  + .open
+  > .navItemFrame
+  > .navMenuItem:after {
+  background-color: var(--theme-bg);
+  content: '││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││││';
+  color: var(--theme-gray-sh1);
+  position: absolute;
+  left: 0ch;
+  width: 0.7ch;
+  top: 0;
+  bottom: 0;
+  box-sizing: border-box;
+  white-space: normal;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  overflow: hidden;
+}
+
+.navMenuItem:hover
+  > .open:hover
+  > .navItemFrame:hover
+  a
+  > .folderPathIndicator
+  .folderPathIndicator--secondLetter:before {
+  content: '\251c';
+  color: var(--sidebar-filepath-active-color);
+}
+
+.navMenuItem:hover
+  > .open:hover
+  > .navItemFrame
+  a:hover
+  > .folderPathIndicator
+  .itemPathIndicator:before {
+  color: var(--sidebar-filepath-active-color);
+  content: '\2514';
+  position: absolute;
+  left: -1ch;
+  width: 1ch;
+  height: 1em;
+}
+
+.navMenuItem:hover
+  > .open:hover
+  > .navItemFrame
+  a:hover
+  > .folderPathIndicator
+  .itemPathIndicator:after {
+  color: transparent;
+}
+
+.folderPathIndicatorAlt {
+  position: absolute;
+}
+
+.folderPathIndicator--firstLetter {
+  position: relative;
+  vertical-align: top;
+  display: inline-block;
+  height: 1em;
+}
+
+.folderPathIndicator--secondLetter {
+  position: relative;
+  vertical-align: top;
+  display: inline-block;
+  height: 1em;
+}
+
+.folderPathIndicatorAlt,
+.folderPathIndicatorAlt .folderPathIndicator--secondLetter {
+  left: 0;
+  color: var(--sidebar-filepath-passive-color);
+  display: inline-block;
+  height: 1em;
+}
+
+.folderPathIndicatorAlt .folderPathIndicator--firstLetter {
+  position: relative;
+  color: var(--sidebar-filepath-passive-color);
+  display: inline-block;
+  height: 1em;
+}
+
+.folderPathIndicator .folderPathIndicator--secondLetter::before {
+  position: absolute;
+  left: -1ch;
+  direction: rtl;
+  color: var(--sidebar-filepath-passive-color);
+  right: 1ch;
+  text-align: left;
+  box-sizing: border-box;
+  border-left: 0.75ch solid transparent;
+  content: '\2514';
+  white-space: normal;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  overflow: hidden;
+}
+
+.devlogsMenuItem {
+  background-color: transparent;
+}
+
+.activeLinkMenuItem .menuItemLabelText {
+  color: rgba(var(--theme-content-title-color-rgb), 1);
+  background-color: var(--overview-panel-bg);
+}
+
+.activeLinkMenuItem .navMenuFolder-hoverMarker,
+.activeLinkMenuItem .navMenuItem-hoverMarker {
+  width: 1ch !important;
+  opacity: 1 !important;
+  color: var(--theme-accent-color);
+}
+
+.activeLinkMenuItem:hover .menuItemLabelText {
+  color: rgba(var(--theme-content-title-color-rgb), 1);
+}
+
+.activeLinkMenuItem .navMenuItemBullet {
+  color: var(--theme-text);
+}
+
+.folder--closed + .connectorFrame {
+  opacity: 0 !important;
+}
+
+.folder--open {
+  opacity: 1;
+}
+
+.connectorFrame,
+.connectorMask {
+  pointer-events: none;
+}

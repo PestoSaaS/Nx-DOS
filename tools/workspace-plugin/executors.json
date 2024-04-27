@@ -1,0 +1,19 @@
+{
+  "executors": {
+    "build-documentation": {
+      "implementation": "./src/executors/build-documentation/executor",
+      "schema": "./src/executors/build-documentation/schema.json",
+      "description": "build-documentation executor"
+    },
+    "update-algolia-data": {
+      "implementation": "./src/executors/update-algolia-data/executor",
+      "schema": "./src/executors/update-algolia-data/schema.json",
+      "description": "update-algolia-data executor"
+    },
+    "lighthouse-audit": {
+      "implementation": "./src/executors/lighthouse-audit/executor",
+      "schema": "./src/executors/lighthouse-audit/schema.json",
+      "description": "lighthouse-audit executor"
+    }
+  }
+}

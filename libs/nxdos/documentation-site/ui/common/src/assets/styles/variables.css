@@ -1,0 +1,165 @@
+@import './color-calculations.css';
+
+:root {
+  /* ############################################ */
+  /* #### changing the theme variables below #### */
+  /* #### could have unexpected side effects #### */
+  /* ############################################ */
+
+  /* COLOR SWATCH */
+  --logo-swatch-red: #ff0000;
+  --logo-swatch-pink: #ff40ff;
+  --logo-swatch-blue: #0433ff;
+  --logo-swatch-yellow: #fffb5c;
+  --logo-swatch-light-gray: #cbcdcd;
+  --logo-swatch-dark-gray: #8b8d8d;
+  --logo-swatch-dark-gray-rgb: 139, 143, 143;
+  --logo-swatch-darker-gray: #6b6d6d;
+  --logo-swatch-black: #000000;
+
+  /* THEME VARIABLES */
+  --theme-text: var(--theme-content-title-color);
+  --theme-gray-sh0-rgb: 42, 42, 42;
+  --theme-gray-sh0: var(--theme-shadow-color);
+  --theme-gray-sh1: var(--theme-sidebar-border-color);
+  --theme-gray-sh2: var(--theme-accent-color);
+  --theme-gray-sh3: #4e4f4f;
+  --theme-code-neutral: #a4ffe2;
+  --theme-bg-brightness: 32;
+  --theme-sidebar-border-contrast: 30;
+  --theme-content-section-bg-contrast: 6;
+  --theme-codefence-bg-contrast: -1;
+  --theme-shadow-contrast: -14;
+  --theme-base-text-brightness: 195;
+  --theme-title-text-brightness: 225;
+  --theme-title-text-hue-modifier: -2;
+  --theme-base-hue-multiplier: 5;
+  --theme-alternate-hue-multiplier: 3;
+  --theme-alt-lower-hue-multiplier: 1;
+  --theme-accent-hue-rotation: -2deg;
+  --theme-accent-contrast: 20;
+  --theme-accent-hue-multiplier: 3;
+  --theme-accent-brigtness-ratio: 1.5;
+  --theme-accent-min-brightness: 110;
+  --theme-accent-brighter-contrast-ratio: 1.25;
+  --theme-color-transition-target-duration: 6s;
+  --theme-color-transition-delay: 0s;
+  --theme-color-transition-ease-function: ease-in-out;
+  --theme-color-transition-fuse: 0;
+  --theme-color-transition-switch: 0;
+
+  --theme-color-transition-duration: calc(
+    var(--theme-color-transition-target-duration) *
+      var(--theme-color-transition-switch)
+  );
+  --theme-gradient-bg-color-rgb: var(--theme-accent-color-rgb);
+  --theme-gradient-bg-opacity: 0.675;
+  /* --theme-gradient-bg-opacity: 0.175; */
+
+  /* THEME DEFAULTS - ADVISED NOT TO CHANGE */
+  --layout-unit-margin: 2rem;
+  --theme-shadow-transition-fuse: 0;
+
+  /* HEADER ELEMENTS */
+  --header-height: 2.6rem;
+  --header-breadcrumbs-font-size: 0.875rem;
+  --header-breadcrumbs-opacity: 0.375;
+  --header-breadcrumbs-separator-opacity: 0.325;
+  --header-breadcrumbs-separator-hover-opacity: 0.5;
+  --header-breadcrumbs-color: rgba(
+    var(--theme-prose-text-color-rgb),
+    var(--header-breadcrumbs-opacity)
+  );
+  --header-breadcrumbs-hover-color: rgba(
+    var(--theme-prose-text-color-rgb),
+    0.9
+  );
+
+  /* SIDEBAR ELEMENTS */
+  --sidebar-width-ch: 26.5;
+  --sidebar-width: calc(((var(--sidebar-width-ch) + 0.3) * 1ch));
+  --sidebar-vertical-spacing: 0.3875rem;
+  --sidebar-font-size: 1rem;
+  --sidebar-hover-animation-duration: 0.2s;
+  --sidebar-filepath-passive-color: var(--theme-gray-sh1);
+  --sidebar-filepath-active-color: var(--theme-accent-brighter-color);
+
+  /* LOGO CONFIGURATION */
+  --logo-monochrome-stroke: #000;
+  --logo-monochrome-shade-1: var(--theme-logo-monochrome-color);
+  --logo-monochrome-shade-2: var(--theme-logo-monochrome-alt-color);
+  --logo-overlay-hue-multiplier: 20;
+  --logo-overlay-color: rgba(
+    calc(var(--theme-red-hue) * var(--logo-overlay-hue-multiplier)),
+    calc(var(--theme-green-hue) * var(--logo-overlay-hue-multiplier)),
+    calc(var(--theme-blue-hue) * var(--logo-overlay-hue-multiplier))
+  );
+
+  /* PANEL ELEMENTS */
+  --overview-panel-min-width: 24ch;
+  --overview-panel-bg-base-contrast-ratio: 1.15;
+  --overview-panel-bg-contrast-buffer: 1;
+  --overview-panel-decorative-border-color: rgba(
+    var(--theme-prose-text-color-rgb),
+    0.625
+  );
+  --overview-panel-shadow-thickness: 0.5rem;
+  --overview-panel--nested--display-type: block;
+
+  --decorative-border-bg: var(--logo-swatch-dark-gray);
+  --decorative-border-bg-checkers: var(--theme-gray-sh0);
+  --decorative-border-stroke: #1e1f1f;
+
+  /* CONTENT SECTION ELEMENTS */
+  --content-section-prose-max-width-ch: 94ch;
+  --content-section-unit-margin: 1.05rem;
+  --content-section-line-height: 1.625rem;
+  --content-section-list-bullet-type: '- ';
+  --content-section-padding: calc(var(--content-section-unit-margin) / 1);
+  --content-section-header-bg-brightness: 50;
+  --content-section-header-bg-gradient-delta: 4;
+  --content-section-codeblock-border-radius: 0rem;
+  --content-section-scrollbar-track-color-rgb: 46, 46, 46;
+  --content-section-scrollbar-thumb-color-rgb: 117, 117, 117;
+  --content-section-scrollbar-thumb-hover-color-rgb: 158, 158, 158;
+  --content-section-overlay--force-toggled: 0;
+  --code-block-separator-opacity: 0.625;
+  --max-width-after-bp-large: min(
+    calc(
+      100% - (3.5) * var(--content-section-padding) -
+        var(--overview-panel-min-width)
+    ),
+    calc(var(--content-section-prose-max-width-ch))
+  );
+
+  /* MARKDOC ELEMENTS */
+  --heading-bg-alpha: 1;
+  --heading-bg: var(--content-section-bg);
+  --embedded-code--checkers-pattern-color: rgb(var(--overview-panel-bg-rgb), 1);
+  --embedded-code--header-bg: var(--content-section-nuance-bg);
+  --embedded-code-toc-item-color: rgba(
+    var(--theme-content-title-color-rgb),
+    0.875
+  );
+  --embedded-code-toc-tag-color: rgba(var(--theme-prose-text-color-rgb), 0.75);
+
+  /* MARKDOC + XONOKAI FENCE THEME EDITS */
+  --fence-theme--aqua: #e7dae9ee;
+  --fence-theme--yellow: #fdf0bae0;
+  --fence-theme--pink: #ff40ff;
+  --fence-theme--red: #ee5e7e;
+  --fence-theme--gray: #fff5;
+  --fence-theme--punctuation: var(--theme-accent-brighter-color);
+  --fence-theme--purple: #b098f2ee;
+  --fence-theme--greenishYellow: #a6e22d;
+
+  /* TAILWIND PROSE THEME EDITS*/
+  --tw-prose-body--edited: var(--theme-prose-text-color);
+  --tw-prose-bold--edited: var(--theme-content-title-color);
+  --tw-prose-quotes--edited: #c3b6c5;
+  --tw-prose-quote-borders--edited: #978299;
+  --tw-prose-code--edited: #e6c4e6;
+  --tw-prose-links--edited: #f5f2ff;
+  --tw-prose-links-hover--edited: rgb(238, 254, 00);
+  --tw-prose-bullets--edited: var(--theme-content-title-color);
+}

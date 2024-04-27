@@ -1,0 +1,9 @@
+{
+  "generators": {
+    "create-new-devlog": {
+      "implementation": "./src/generators/create-new-devlog",
+      "schema": "./src/generators/create-new-devlog/schema.json",
+      "description": "Generator create-new-devlog"
+    }
+  }
+}

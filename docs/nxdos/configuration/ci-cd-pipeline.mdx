@@ -1,0 +1,221 @@
+---
+title: 'Continuous integration & deployment'
+timestamp:
+  created_at: '2024-04-11T05:35:07.322Z'
+  last_updated_at: '2024-04-11T05:35:07.322Z'
+author:
+  name: PestoSaaS
+---
+
+# Honorable mentions
+
+Nx-DOS aims to help with the full development life cycle of building multi-platform applications.
+
+As modern devOps practices heavily rely on automation, our repo also features template configuration files to get started with minimal effort.
+
+## Beauty of automation
+
+Perhaps the most immediate benefits of an established CI/CD pipeline are;
+
+- Faster release cycles
+- Early discovery of potential issues
+- Effortless deployments
+
+The references below feature a traditional, lint > test > e2e > build & deploy pipeline, and they could easily be extended to suit specific needs.
+
+This is a rather simplified explanation. In reality these targets do not need to run sequentially.
+
+## Caching & dependency resolution
+
+Thanks to Nx, the task dependencies for each target we run can smartly figure out the ideal path of execution; wait for an input, rebuild a necessary library which received updates, or simply start to execute in parallel.
+
+Nx partly achieves this by caching the output of each target, saving on execution if multiple tasks depend on that output, and recomputing only affected targets in our pipeline.
+
+## Nx Cloud
+
+When collaborating with a team, we might wish our teammates to also have access to the same cached outputs for development targets as in our local environment. That is quite easy to achieve by activating Nx Cloud in our project.
+
+There are multiple ways of connecting to Nx Cloud, simplest by logging into [nx.app](https://nx.app/) and following instructions. We need to generate a read only `nxCloudAccessToken` property inside of `nx.json` and commit that to our repository. Juri recently prepared a video summarizing all of this.
+
+{% youtube
+title="The secret to fast CI!"
+video_id="4VI-q943J3o"
+/%}
+
+If you would like to integrate with your preferred CI provider, take a quick look in the [Nx documentation](https://nx.dev/ci/intro/ci-with-nx). Most likely, one of their existing recipes will address your needs.
+
+Otherwise just run the command below in your Nx workspace, et voilà.
+
+```bash
+pnpm nx connect
+```
+
+Hello distributed remote caching across multiple machines, CI, teammates and wherever we need.
+
+### Distributed task execution
+
+With that configuration in place, now we can command our CI pipeline to distribute the execution of tasks to however many compute resources as we please. Below is a usage example from a sample CI config file.
+
+```yml
+- name: Start CI run
+  run: 'npx nx-cloud start-ci-run --distribute-on="8 linux-medium-js"'
+```
+
+Our CI times will now see bottlenecks around single monolithic tasks with the longest run time. In general, that task used to be end-to-end tests in many repos. Luck for us, not anymore.
+
+The hardworking folk at Nx have figured out a way to atomize e2e tests. By inferring individual spec files as test targets, they were able to distribute their execution in parallel.
+
+{% youtube
+title="10x Faster e2e Tests!"
+video_id="0YxcxIR7QU0"
+/%}
+
+Ingenious. 🤯
+
+> About the only bad thing regarding task distribution is that it's a `premium feature`. So sadly you wouldn't get to try this out on a hobby project. On the other hand, we couldn't reap such benefits in a small scale anyway.
+
+> Unless it's seen as taking away incentive from teams converting to paid customers of Nx Cloud, allowing limited free-tier usage through 2-3 machine clusters could onboard many developers into this habit.
+
+In a crowded monorepo with a convoluted test suite, such task distribution can decrease CI times so significantly that we thought it worthy of bringing to your attention.
+
+# Continuous integration
+
+Our pipeline is configured to use CircleCI with Nx. Although Nx agent distribution is disabled by default, it can easily be enabled by commenting out the few related lines underneath the `checkout` step.
+
+Pending interest from the community, we will also add symmetric instructions for GH actions in the future.
+
+## Circle CI
+
+The rather lengthy `config.yml` below repeats similar jobs after each commit, while using the branch name as a filter to decide whether to run tasks on all targets or affected targets only.
+
+- main, master, develop or release branches select all targets
+- every other commit selects only affected targets
+
+After successfully completing lint, test and e2e runs, it parses the documentation files and uploads them in chunks to algolia servers, keeping our search records in sync with our repository.
+
+{% embeddedCode
+filePath="../../../.circleci/config.yml"
+/%}
+
+### Environment variables
+
+Please note the context `NXDOS_monorepo` present on certain tasks above, like `e2e` or `sync-algolia`. This is CircleCi's way of providing environment variables to the CI runtime as jobs get executed.
+
+The gitignored `.env` file serves the same purpose for our local runtime. With all our private api keys it shouldn't ever be committed to version control. Rather it's mimicked in reference via the `.env.example` file, often embedded in our docs.
+
+You will need to create a `.env` file in your local clone and configure all the variables present in `.env.example`, with those you obtained from the respective vendors.
+
+{% embeddedCode language="bash"
+filePath="../../../.env.example"
+/%}
+
+Then in your CircleCi organization settings, you will need to navigate into `contexts`, create a new one associated with your project and populate it with variables of matching names. Finally, don't forget to replace references to `NXDOS_monorepo` with your own context within the CI config file.
+
+Also under organization settings > security, make sure to allow all members of the organization to use uncertified partner and community orbs.
+
+### Updating Algolia records
+
+For example we use the `CI_EXECUTE_ALGOLIA_UPDATE` env variable to restrict the update of production records on Algolia only to CI pipelines where it's explicitly enabled in configuration. Only for the first run we will need to manually update the Algolia records so our tests and related tasks succeed in the CI pipeline.
+
+The mentioned tests are located at the file `doc-viewer.spec.tsx` under the feature library and use the query token "Algolia" for testing. If you choose to remove the original Nx-DOS documentation rather than extending it, replace the token with a word present in your documents, and ensure it will return at least a handful of hits.
+
+You can use the project executor as shown below after temporarily enabling the `CI_EXECUTE_ALGOLIA_UPDATE` flag. Don't forget to revert it back afterwards, this permission is intended for the CI environment only. In a regular scenario collaborators will not have access to the production api keys in their local environment anyway.
+
+```bash
+pnpm nx run nxdos-documentation-site:sync-algolia
+```
+
+You can validate if you successfully updated your records through your Algolia dashboard, or you can run the package script below for a cache-free qa run of all unit and e2e tests.
+
+```bash
+pnpm nx run qa:skip-cache
+```
+
+If all tests pass, you can safely update your remote repository with your commits and trigger the CI pipeline.
+
+# Deployment
+
+Should your team also have specific needs, the CI configuration above could easily be extended with a custom deployment logic.
+
+Below are references to custom project targets and a sample Dockerfile showcasing a containerized Next.js application deployment.
+
+## Containerization
+
+Our repo features the `build-container` and `run-container` targets for the documentation site.
+
+If you would like to publish your built image, make sure to modify the options within `project.json` with your desired registry and toggle the `push` option to true for the production configuration.
+
+You can read further about configuring your image in the beautiful two part series by Sebastian Duque, [Nx + NextJS + Docker](https://dev.to/sebastiandg7/nx-nextjs-docker-the-nx-way-containerizing-our-application-1mi7).
+
+```json
+{
+  ...
+  "targets": {
+    ...
+    "build-container": {
+      "executor": "@nx-tools/nx-container:build",
+      "dependsOn": [
+        {
+          "target": "build",
+          "params": "forward"
+        },
+        {
+          "target": "build-custom-server",
+          "params": "forward"
+        }
+      ],
+      "defaultConfiguration": "development",
+      "cache": true,
+      "options": {
+        "engine": "docker",
+        "file": "apps/nxdos/documentation/documentation-site/Dockerfile"
+      },
+      "configurations": {
+        "development": {
+          "context": "dist/dev/apps/nxdos/documentation/documentation-site",
+          "push": false,
+          "tags": ["nxdos-documentation-site:latest"]
+        },
+        "production": {
+          "context": "dist/apps/nxdos/documentation/documentation-site",
+          "push": false,
+          "metadata": {
+            "images": ["nxdos-documentation-site"],
+            "load": true,
+            "tags": [
+              "type=schedule",
+              "type=ref,event=branch",
+              "type=ref,event=tag",
+              "type=ref,event=pr",
+              "type=sha,prefix=sha-",
+              "nxdos-documentation-site:latest"
+            ]
+          }
+        }
+      }
+    },
+    "run-container": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "docker run -p 3000:3000 -t docker.io/library/nxdos-documentation-site:latest"
+      }
+    }
+  }
+}
+```
+
+{% embeddedCode language="docker"
+filePath="../../../apps/nxdos/documentation/documentation-site/Dockerfile"
+/%}
+
+This way if you'd ever like to change your server provider for whichever reason, or self host, you won't be locked in by vendors. Cost implications will vary based on the nature of your project.
+
+Running our build in a container also provides us the means to truly test our application in the same configuration as it would live in production.
+
+## Vercel
+
+Still it's needless to mention that Vercel boasts itself as the native Next.js platform, and offers [zero configuration deployments](https://vercel.com/docs/frameworks/nextjs) by integrating with your source code provider or via the Vercel CLI.
+
+Triggered tasks will post their status under your PRs, and you can review everything regarding the status of your deployments by logging into the [Vercel dashboard](https://vercel.com/login).
+
+So seamless, it's also how we prefer to deploy our documentation.

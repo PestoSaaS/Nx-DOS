@@ -1,0 +1,83 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Nxdos - Documentation Site - UI - Common - components, SidebarHeader should match snapshot correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="sidebarHeader noselect"
+  >
+    <div
+      class="logo"
+    />
+    <span
+      class="menuLogoButton"
+    >
+      <span
+        class="menuLogoCaption"
+      >
+        Nx starter guide
+      </span>
+    </span>
+    <a
+      class="menuHeaderButton"
+      href="/"
+    >
+      ╔════════╗
+      <br />
+      ║        ║
+      <br />
+      <span
+        class="versionNumberCaption"
+      >
+        0.0.1
+      </span>
+      ╚════════╝
+      <br />
+    </a>
+    <a
+      class="menuHeaderButton"
+      href="https://github.com/PestoSaaS/Nx-DOS"
+      rel="noopener noreferrer"
+      target="_blank"
+    >
+      ╔═══╗
+      <br />
+      ║ 
+      <div
+        class="menuHeaderButtonIconFrame"
+      >
+        <div
+          class="menuHeaderButtonIconInnerFrame"
+        >
+          <div
+            class="menuHeaderButtonIcon"
+          >
+            <div />
+          </div>
+        </div>
+      </div>
+       ║
+      <br />
+      ╚═══╝
+      <br />
+    </a>
+    <br />
+    <div
+      class="logoLowerSideFrame"
+    >
+      <div
+        class="logoMaskWrapper"
+      >
+        <div
+          class="logoMaskOverlay"
+        />
+        <div
+          class="logoMask"
+        />
+        <div
+          class="logoMaskOverlayPatch"
+        />
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

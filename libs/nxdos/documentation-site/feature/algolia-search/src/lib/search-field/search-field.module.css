@@ -1,0 +1,221 @@
+.searchComponentFrame {
+  --search-component-color: var(--theme-accent-sh1-color);
+
+  position: relative;
+  width: calc(var(--sidebar-width-ch) * 1ch);
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+                                    supported by Chrome, Edge, Opera and Firefox */
+  border-bottom: 1px solid var(--theme-shadow-color);
+  transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0);
+  caret-color: transparent;
+  overflow: hidden;
+  box-shadow: 0px 0px 1px rgba(var(--content-section-bg-rgb), 0.002) inset;
+}
+
+.searchComponentFrameBg {
+  position: absolute;
+  inset: 0;
+  transition: background-color var(--sidebar-hover-animation-duration);
+}
+
+.searchComponentCore {
+  --searchFieldSpacerHeight: 0.975em;
+}
+
+.searchFieldSpacer {
+  display: inline-block;
+  height: var(--searchFieldSpacerHeight);
+  width: calc((var(--sidebar-width-ch) - 4) * 1ch - 0.00375ch);
+  position: relative;
+  vertical-align: bottom;
+  background-color: var(--theme-bg);
+}
+
+.searchFieldFrame {
+  position: absolute;
+  inset: -1em;
+  padding: 0;
+  margin: 0;
+  z-index: 2;
+  filter: hue-rotate(var(--theme-accent-hue-rotation));
+  --clip-margin: 0px;
+  clip-path: polygon(
+    calc(var(--clip-margin)) calc(var(--clip-margin)),
+    calc(100% - var(--clip-margin)) calc(var(--clip-margin)),
+    calc(100% - var(--clip-margin)) calc(100% - var(--clip-margin) - 1px),
+    calc(var(--clip-margin)) calc(100% - var(--clip-margin) - 1px)
+  );
+}
+
+.searchField {
+  /* mobile browsers tend to autozoom if 
+  *  input font size is below 20~16px 
+  *
+  *  below is a workaround to increase 
+  *  logical font size N fold, then scale 
+  *  it back down using a transform. 
+  */
+  --font-size-scale-factor: 3;
+
+  width: calc(100% * var(--font-size-scale-factor));
+  height: calc(3rem * var(--font-size-scale-factor));
+  background-color: transparent;
+  padding: calc(1rem * var(--font-size-scale-factor));
+  padding-left: calc((1rem * var(--font-size-scale-factor)) + 0.1875ch);
+  padding-right: calc((1rem * var(--font-size-scale-factor)) + 3.25ch);
+  color: rgb(var(--theme-content-title-color-rgb), 1);
+  padding-top: calc(1rem * var(--font-size-scale-factor));
+  cursor: pointer;
+  caret-color: transparent;
+  font-size: calc(1rem * var(--font-size-scale-factor));
+  transform: scale(calc(1 / var(--font-size-scale-factor)));
+  transform-origin: left top;
+}
+
+.searchField:focus {
+  caret-color: var(--theme-accent-color);
+}
+
+.searchField::-webkit-search-cancel-button {
+  position: relative;
+  display: none;
+}
+
+.searchField[placeholder] {
+  color: rgb(var(--theme-content-title-color-rgb), 1);
+}
+
+.searchField::-webkit-input-placeholder,
+.searchField::placeholder {
+  color: var(--theme-accent-brighter-color);
+  text-shadow: 0px 0px 2px #0004;
+}
+
+.searchFieldIcon {
+  font-family: sans-serif;
+  font-size: 1rem;
+  fill: var(--theme-accent-brighter-color);
+  text-shadow: 0px 0px 2px #0004;
+  pointer-events: none;
+}
+
+.searchFieldResetButton {
+  position: absolute;
+  right: calc(1em + 0.25ch);
+  background-color: var(--theme-bg);
+  top: 1rem;
+  font-family: sans-serif;
+  bottom: 1rem;
+  font-size: 1rem;
+  color: var(--theme-accent-brighter-color);
+  text-shadow: 0px 0px 2px #0004;
+}
+
+.searchFieldResetButton:hover .searchFieldResetIcon {
+  fill: var(--theme-content-title-color);
+}
+
+.searchFieldResetIcon {
+  font-family: sans-serif;
+  fill: var(--theme-accent-brighter-color);
+  text-shadow: 0px 0px 2px #0004;
+  opacity: 0.75;
+  font-size: 0.5rem;
+  height: 0.75rem;
+  pointer-events: none;
+}
+
+.searchFieldSubmitButton {
+  position: absolute;
+  right: calc(1em + 0.25ch);
+  top: 1rem;
+  font-family: sans-serif;
+  bottom: 1rem;
+  font-size: 1rem;
+  color: var(--theme-accent-brighter-color);
+  text-shadow: 0px 0px 2px #0004;
+}
+
+.searchComponentFrame:hover .searchField {
+  color: rgb(var(--theme-content-title-color-rgb), 1);
+}
+
+.searchFieldFrame:hover .searchField::-webkit-input-placeholder,
+.searchFieldFrame:hover .searchField::placeholder {
+  color: rgba(var(--theme-content-title-color-rgb), 0.875);
+}
+
+.searchFieldFrame:hover .searchFieldIcon {
+  fill: rgba(var(--theme-content-title-color-rgb), 0.875);
+}
+
+.searchFieldFrame:hover .searchField::-webkit-input-placeholder,
+.searchFieldFrame:hover .searchField::placeholder {
+  /* transition: color var(--sidebar-hover-animation-duration); */
+}
+
+.searchComponentFrame:hover {
+  --search-component-color: var(--theme-accent-color) !important;
+  --search-component-color: rgba(
+    var(--theme-accent-color-rgb),
+    0.95
+  ) !important;
+}
+
+.searchComponentFrame:hover .asciiBorder,
+.searchComponentFrame:hover .separator {
+  color: transparent;
+}
+
+.searchComponentFrame:focus-within .searchFieldIcon {
+  fill: rgb(var(--theme-content-title-color-rgb), 1);
+}
+.searchComponentFrame:focus-within .searchComponentFrameBg {
+  background-color: var(--theme-accent-sh2-color);
+}
+
+.searchField:focus {
+  cursor: text;
+  outline-width: 0;
+  outline: none;
+  color: rgb(var(--theme-content-title-color-rgb), 1);
+}
+.searchField:focus::placeholder {
+  color: transparent !important;
+  text-shadow: 0 0 0 transparent;
+}
+
+.asciiBorder,
+.separator {
+  position: relative;
+  color: transparent;
+  background-position: 0px 0px, 2px 2px;
+  background-size: 4px 4px;
+  background-image: linear-gradient(
+      45deg,
+      var(--search-component-color) 25%,
+      transparent 25%,
+      transparent 75%,
+      var(--search-component-color) 75%,
+      var(--search-component-color) 100%
+    ),
+    linear-gradient(
+      45deg,
+      var(--search-component-color) 25%,
+      transparent 25%,
+      transparent 75%,
+      var(--search-component-color) 75%,
+      var(--search-component-color) 100%
+    );
+}
+
+.asciiBorder {
+  display: inline-block;
+  background-position: 0px 0px, 2px 2px;
+}

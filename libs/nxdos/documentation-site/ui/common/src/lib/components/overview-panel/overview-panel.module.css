@@ -1,0 +1,308 @@
+.overviewPanelWrapper {
+  top: calc(var(--header-height) - 0.5px);
+  top: calc(var(--header-height) + 1px);
+  margin-top: var(--header-height);
+  margin-right: calc(
+    var(--layout-unit-margin) + 0.05rem - var(--overview-panel-shadow-thickness)
+  );
+  max-height: calc(100vh - var(--header-height));
+  pointer-events: none;
+}
+
+@media only screen and (max-height: 600px) {
+  .overviewPanelWrapper :global(.tocFrame) {
+    max-height: calc(100svh - 8 * var(--content-section-padding));
+  }
+}
+
+@media only screen and (max-height: 400px) {
+  .overviewPanelWrapper :global(.tocFrame) {
+    max-height: calc(100svh - 13 * var(--content-section-padding));
+  }
+}
+
+.includesOpenPanel :global(.tocFrame) {
+  max-height: calc(
+    max(
+      100svh - var(--header-height) - (4 * var(--content-section-padding)),
+      50svh
+    )
+  );
+}
+
+.slidingOverviewPanelWrapper {
+  position: sticky;
+  top: calc(var(--header-height) + 0.8925px);
+  z-index: 6;
+  z-index: 7;
+  height: 0;
+  width: 100%;
+  pointer-events: none;
+  overflow-x: clip;
+}
+
+.slidingOverviewPanel {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  pointer-events: none;
+  padding-right: var(--content-section-padding);
+  padding-left: var(--content-section-padding);
+  height: calc(100vh - var(--header-height) - 0.75px);
+}
+
+.slidingOverviewPanel :global(.overviewPanelContainer) {
+  width: 100%;
+  opacity: 0;
+  transition: transform 0.5s, opacity 0.5s;
+  transform: translateY(-101vh);
+}
+
+.includesOpenPanel.slidingOverviewPanelWrapper {
+  pointer-events: all;
+}
+
+.includesOpenPanel.slidingOverviewPanelWrapper
+  :global(.overviewPanelContainer) {
+  transition: transform 0.25s, opacity 0.5s;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.progressIndicator {
+  position: absolute;
+  right: calc(-1 * var(--header-height) / 3);
+  top: -2px;
+  padding-right: calc(var(--header-height) / 3);
+  padding-left: calc(var(--header-height) / 3);
+  padding-top: 1.125rem;
+  padding-bottom: 0;
+  font-size: 0.875rem;
+  font-family: 'IBM VGA 8x16';
+  width: 10.75ch;
+  text-align: right;
+  height: calc(var(--header-height) - 2px);
+  align-content: center;
+  box-shadow: 0.5px 0.5px 0 rgba(var(--content-section-bg-rgb), 0.002);
+}
+
+.progressIndicatorAmount {
+  position: relative;
+  top: calc(1.545px - 0.575rem);
+  left: 0.025rem;
+  letter-spacing: 0.025rem;
+}
+
+.progressPercentageSymbol {
+  margin-left: 0.075rem;
+  font-size: 0.8rem;
+}
+
+.overviewPanelToggleButtonWrapper {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.TocIcon {
+  display: inline-block;
+  position: relative;
+  width: 0.52rem;
+  vertical-align: bottom;
+  height: 1rem;
+  margin-left: 1.125ch;
+  top: calc(-0.4425rem);
+}
+
+.overviewPanelToggleButton {
+  color: var(--header-breadcrumbs-color);
+  position: sticky;
+  left: calc(100% - (var(--content-section-padding) + 0.05rem));
+  top: 0.1875rem;
+  width: 0;
+  box-sizing: content-box;
+  font-size: 0.5rem;
+  z-index: 100;
+  opacity: 0;
+  pointer-events: none;
+  margin-top: calc(-1 * var(--header-height));
+  margin-bottom: calc(1 * var(--header-height));
+  transition: opacity 0.25s;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  isolation: isolate;
+}
+
+.overviewPanelToggleButton--clickHandler {
+  position: absolute;
+  inset: 0;
+  isolation: isolate;
+}
+
+.overviewPanelToggleButtonVisible .overviewPanelToggleButton--clickHandler {
+  cursor: pointer;
+}
+
+.overviewPanelToggleButtonVisible {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.overviewPanelToggleButtonVisible .TocIcon {
+  opacity: var(--header-breadcrumbs-separator-hover-opacity);
+}
+
+.overviewPanelToggleButton:hover {
+  color: var(--header-breadcrumbs-hover-color);
+}
+
+.includesOpenPanel :global(.overviewPanelContainer) {
+  transition: transform 0.5s;
+}
+
+.overviewPanelAnchor {
+  position: relative;
+  top: calc(-1 * var(--header-height));
+}
+
+.overviewPanelOverlayBg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: calc(100vh - var(--header-height) - 0.75px);
+  pointer-events: none;
+  z-index: -4;
+  opacity: 0;
+  cursor: pointer;
+  transition: opacity 0.25s;
+  -webkit-mask-image: -webkit-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 1) 87.5%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  mask-image: linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 1) 87.5%,
+    rgba(0, 0, 0, 0) 100%
+  );
+
+  background-color: rgba(var(--theme-accent-sh1-color-rgb), 0.625);
+  --checkers-pattern-color: var(--theme-shadow-color);
+
+  background-position: 0px 2px, 2px 0px;
+  background-size: 4px 4px;
+  background-image: linear-gradient(
+      45deg,
+      var(--checkers-pattern-color) 25%,
+      transparent 25%,
+      transparent 75%,
+      var(--checkers-pattern-color) 75%,
+      var(--checkers-pattern-color) 100%
+    ),
+    linear-gradient(
+      45deg,
+      var(--checkers-pattern-color) 25%,
+      transparent 25%,
+      transparent 75%,
+      var(--checkers-pattern-color) 75%,
+      var(--checkers-pattern-color) 100%
+    );
+
+  -webkit-backdrop-filter: blur(0.5rem) sepia(25%) invert(10%) grayscale(10%)
+    brightness(25%);
+  backdrop-filter: blur(0.5rem) sepia(25%) invert(10%) grayscale(10%)
+    brightness(25%);
+}
+
+.includesOpenPanel .overviewPanelOverlayBg {
+  transition: opacity 0.25s;
+  opacity: 0.95;
+  pointer-events: all;
+  scrollbar-color: rgba(var(--theme-accent-brighter-color-rgb), 0.75)
+    transparent;
+  scrollbar-width: none;
+}
+
+.includesOpenPanel .overviewPanelOverlayBg:hover {
+  pointer-events: all;
+  cursor: pointer;
+  opacity: 0.625;
+}
+
+.overviewPanelContainer {
+  --decorative-border-bg: var(--overview-panel-bg);
+  --decorative-border-stroke: var(--overview-panel-decorative-border-color);
+  --top-border-mask-thickness: 0.25rem;
+  background-color: var(--overview-panel-bg);
+  font-family: 'IBM VGA 8x16', 'Noto Sans Mono', monospace;
+  font-size: var(--sidebar-font-size);
+  pointer-events: all;
+  position: sticky;
+  z-index: 5;
+  color: var(--decorative-border-stroke);
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+
+  display: var(--overview-panel--nested--display-type);
+  box-shadow: var(--overview-panel-shadow-thickness)
+    var(--overview-panel-shadow-thickness)
+    rgba(var(--theme-shadow-color-rgb), 0.625);
+}
+
+.overviewPanelContainer :global(a) {
+  text-decoration: none;
+}
+
+.overviewPanelContainer::before {
+  content: '';
+  -webkit-backdrop-filter: blur(1.5px);
+  backdrop-filter: blur(1.5px);
+  position: absolute;
+  width: 100%;
+  height: 0.8rem;
+  top: -0.75rem;
+  /* background-color: rgba(var(--content-section-bg-rgb), 0.75); */
+  background-image: linear-gradient(
+    180deg,
+    rgba(var(--content-section-bg-rgb), 0) 0%,
+    rgba(var(--content-section-bg-rgb), 0.7) 50%,
+    rgba(var(--content-section-bg-rgb), 0.995) 70%
+  );
+}
+
+.overviewPanelToggleButton :global(.panelCloseIcon) {
+  height: 0.275rem;
+}
+
+.panelCloseIconWrapper {
+  position: absolute;
+  top: 1.125rem;
+  right: 0.5rem;
+  opacity: 0.0001;
+  transition: opacity 0.25s;
+  pointer-events: none;
+}
+
+.panelCloseIconWrapper--visible {
+  opacity: 0.75 !important;
+}
+
+.overviewPanelToggleButton:hover .panelCloseIconWrapper--visible {
+  color: var(--header-breadcrumbs-hover-color) !important;
+}
+
+@media print {
+  .overviewPanelToggleButtonWrapper {
+    display: none !important;
+  }
+}

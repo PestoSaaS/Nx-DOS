@@ -1,0 +1,989 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Nxdos - Documentation Site - Feature - Doc Viewer should match snapshot correctly 1`] = `
+<DocumentFragment>
+  <style>
+    :root {
+ --theme-red-hue--input: 35.14875;
+ --theme-green-hue--input: 43.08;
+ --theme-blue-hue--input: 100.0275;
+  }
+  </style>
+  <div
+    class="flex appWrapper max-sm:![--view-breakpoint-switch-sm:1]"
+  >
+    <div
+      class="sidebarWrapper fixed hidden sm:opacity-[1] w-full sm:w-auto sm:static sidebarWrapper--toggled"
+    >
+      <div
+        class="sidebarFrame  max-sm:opacity-[1] !translate-x-[calc(-1*var(--sidebar-width))] max-sm:!w-[unset] sm:w-0   sm:w-[var(--sidebar-width)] !translate-x-[-0px] "
+      >
+        <nav
+          class="sidebar sticky sm:absolute"
+          data-testid="sidebar"
+        >
+          <div
+            class="sidebarHeader"
+          >
+            <div
+              class="logo"
+            />
+            <span
+              class="menuLogoButton"
+              data-testid="sidebarHeaderClickHandler--toggle"
+            >
+              <span
+                class="menuLogoCaption"
+              >
+                Nx starter guide
+              </span>
+              <div
+                class="sidebar--closeIconClone"
+              >
+                <div
+                  class="sidebar--closeIconClone--arrow sm:hidden"
+                >
+                  ▼
+                </div>
+                <div
+                  class="max-sm:hidden"
+                >
+                  ~
+                </div>
+              </div>
+            </span>
+            <a
+              class="sidebarHeaderButton"
+              href="/"
+            >
+              ╔════════╗
+              <br />
+              ║        ║
+              <br />
+              <span
+                class="versionNumberCaption"
+              >
+                0.0.1
+              </span>
+              ╚════════╝
+              <br />
+            </a>
+            <a
+              class="sidebarHeaderButton"
+              href="https://github.com/PestoSaaS/Nx-DOS"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              ╔═══╗
+              <br />
+              ║ 
+              <div
+                class="sidebarHeaderButtonIconFrame"
+              >
+                <div
+                  class="sidebarHeaderButtonIconInnerFrame"
+                >
+                  <div
+                    class="sidebarHeaderButtonIcon"
+                  >
+                    <div />
+                  </div>
+                </div>
+              </div>
+               ║
+              <br />
+              ╚═══╝
+              <br />
+            </a>
+            <br />
+            <div
+              class="logoLowerSideClickZone"
+              data-testid="sidebarHeaderClickHandler--changeTheme"
+            >
+              <div
+                class="logoLowerSideFrame"
+              >
+                <div
+                  class="logo--masked"
+                />
+                <div
+                  class="logo--masked logo--masked--hoverLayer"
+                />
+                <div
+                  class="logoMaskWrapper"
+                >
+                  <div
+                    class="logoMaskOverlayPatch"
+                  />
+                  <div
+                    class="logoMaskOverlayPatch--renderGlitchPatch1"
+                  />
+                  <div
+                    class="logoMaskOverlayPatch--renderGlitchPatch2"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="searchComponentFrame"
+          >
+            <div
+              class="searchComponentFrameBg"
+            />
+            <div
+              class="separator"
+            >
+              ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
+            </div>
+            <div
+              class="searchComponentCore"
+            >
+              <div
+                class="asciiBorder"
+              >
+                ▒▒
+              </div>
+              <div
+                class="searchFieldSpacer"
+              >
+                <div
+                  class="ais-SearchBox"
+                >
+                  <form
+                    action=""
+                    class="ais-SearchBox-form searchFieldFrame"
+                    novalidate=""
+                    role="search"
+                  >
+                    <input
+                      aria-label="Search"
+                      autocapitalize="off"
+                      autocomplete="off"
+                      autocorrect="off"
+                      class="ais-SearchBox-input searchField searchField"
+                      maxlength="512"
+                      placeholder="search"
+                      spellcheck="false"
+                      type="search"
+                      value=""
+                    />
+                    <button
+                      class="ais-SearchBox-submit searchFieldSubmitButton"
+                      title="Submit the search query"
+                      type="submit"
+                    >
+                      <svg
+                        aria-hidden="true"
+                        class="ais-SearchBox-submitIcon searchFieldIcon"
+                        height="10"
+                        viewBox="0 0 40 40"
+                        width="10"
+                      >
+                        <path
+                          d="M26.804 29.01c-2.832 2.34-6.465 3.746-10.426 3.746C7.333 32.756 0 25.424 0 16.378 0 7.333 7.333 0 16.378 0c9.046 0 16.378 7.333 16.378 16.378 0 3.96-1.406 7.594-3.746 10.426l10.534 10.534c.607.607.61 1.59-.004 2.202-.61.61-1.597.61-2.202.004L26.804 29.01zm-10.426.627c7.323 0 13.26-5.936 13.26-13.26 0-7.32-5.937-13.257-13.26-13.257C9.056 3.12 3.12 9.056 3.12 16.378c0 7.323 5.936 13.26 13.258 13.26z"
+                        />
+                      </svg>
+                    </button>
+                    <button
+                      class="ais-SearchBox-reset searchFieldResetButton"
+                      hidden=""
+                      title="Clear the search query"
+                      type="reset"
+                    >
+                      <svg
+                        aria-hidden="true"
+                        class="ais-SearchBox-resetIcon searchFieldResetIcon"
+                        height="10"
+                        viewBox="0 0 20 20"
+                        width="10"
+                      >
+                        <path
+                          d="M8.114 10L.944 2.83 0 1.885 1.886 0l.943.943L10 8.113l7.17-7.17.944-.943L20 1.886l-.943.943-7.17 7.17 7.17 7.17.943.944L18.114 20l-.943-.943-7.17-7.17-7.17 7.17-.944.943L0 18.114l.943-.943L8.113 10z"
+                        />
+                      </svg>
+                    </button>
+                    <span
+                      class="ais-SearchBox-loadingIndicator"
+                      hidden=""
+                    >
+                      <svg
+                        aria-hidden="true"
+                        aria-label="Results are loading"
+                        class="ais-SearchBox-loadingIcon"
+                        height="16"
+                        stroke="#444"
+                        viewBox="0 0 38 38"
+                        width="16"
+                      >
+                        <g
+                          fill="none"
+                          fill-rule="evenodd"
+                        >
+                          <g
+                            stroke-width="2"
+                            transform="translate(1 1)"
+                          >
+                            <circle
+                              cx="18"
+                              cy="18"
+                              r="18"
+                              stroke-opacity=".5"
+                            />
+                            <path
+                              d="M36 18c0-9.94-8.06-18-18-18"
+                            >
+                              <animatetransform
+                                attributeName="transform"
+                                dur="1s"
+                                from="0 18 18"
+                                repeatCount="indefinite"
+                                to="360 18 18"
+                                type="rotate"
+                              />
+                            </path>
+                          </g>
+                        </g>
+                      </svg>
+                    </span>
+                  </form>
+                </div>
+              </div>
+              <div
+                class="asciiBorder"
+              >
+                ▒▒
+              </div>
+            </div>
+            <div
+              class="separator"
+            >
+              ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
+            </div>
+          </div>
+          <div
+            class="sidebarContent"
+          >
+            <div
+              class="menuItems"
+            >
+              <br />
+              <br />
+            </div>
+          </div>
+        </nav>
+      </div>
+    </div>
+    <div
+      class="flex flex-col grow relative"
+    >
+      <div
+        class="absolute inset-0"
+      >
+        <div
+          class="flex relative h-[100%] max-w-[100%]"
+        >
+          <div
+            class="flex grow flex-col-reverse lg:flex-row relative lg:items-start h-[100%] max-w-[100%]"
+          >
+            <div
+              class="flex grow h-[100%] overflow-y-scroll flex-col scrollFrame"
+              id="scrollFrame"
+            >
+              <div
+                class="headerContainer--blurLayer"
+              >
+                <div
+                  class="headerBg"
+                >
+                  <div
+                    class="headerBg-blurLayer"
+                  >
+                    <div
+                      class="headerBg-blurLayer"
+                    >
+                      <div
+                        class="headerBg-blurLayer"
+                      >
+                        <div
+                          class="headerBg-blurLayer"
+                        >
+                          <div
+                            class="headerBg-blurLayer"
+                          >
+                            <div
+                              class="headerBg-blurLayer"
+                            >
+                              <div
+                                class="headerBg-blurLayer"
+                              >
+                                <div
+                                  class="headerBg-blurLayer"
+                                >
+                                  <div
+                                    class="headerBg-blurLayer"
+                                  >
+                                    <div
+                                      class="headerBg-blurLayer"
+                                    >
+                                      <div
+                                        class="headerBg-blurLayer"
+                                      >
+                                        <div
+                                          class="headerBg-blurLayer"
+                                        >
+                                          <div
+                                            class="headerBg-blurLayer"
+                                          >
+                                            <div
+                                              class="headerBg-blurLayer"
+                                            >
+                                              <div
+                                                class="headerBg-blurLayer"
+                                              />
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="headerContainer max-sm:[pointer-events:none]"
+              >
+                <div
+                  class="headerBg"
+                >
+                  <div
+                    class="headerBg-gradientLayer"
+                  />
+                </div>
+                <div
+                  class="breadcrumbsContainer max-w-[calc(100%-var(--header-breadcrumbs-right-margin))]  lg:max-w-[var(--max-width-after-bp-large)]  max-sm:opacity-[0] max-sm:[pointer-events:none] "
+                  data-testid="headerClickHandler"
+                >
+                  <div
+                    class="breadcrumbsList--overflowSign"
+                  >
+                    &gt; 
+                  </div>
+                  <div
+                    class="breadcrumbsListWrapper"
+                  >
+                    <div
+                      class="breadcrumbsList"
+                    >
+                      <div
+                        class="breadcrumb"
+                      >
+                        <span
+                          class="breadcrumbLabel"
+                        >
+                          introduction
+                        </span>
+                      </div>
+                      <div
+                        class="breadcrumbSeparator"
+                      />
+                      <div
+                        class="breadcrumb breadcrumb--root"
+                      >
+                         
+                        <span
+                          class="breadcrumbLabel"
+                        >
+                          <span
+                            class="breadcrumbLabelTilda"
+                          >
+                            <span
+                              class="breadcrumbLabelMask"
+                            />
+                             ~
+                          </span>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="panelWrapper max-w-[var(--max-width-till-bp-large)] sm:max-w-[100%]  lg:max-w-[var(--max-width-after-bp-large)] sm:!translate-x-[0]  panelWrapperSqueezedBySidebar"
+              >
+                <div
+                  class="panelAnchor sm:!translate-x-[0] sm:!w-[100%] sm:!max-w-[100%] "
+                >
+                  <div
+                    class="searchResultsContainer searchResultsContainer "
+                  >
+                    <div
+                      class="searchResults-hitsContainer--wrapper "
+                      data-testid="searchResults-hitsContainer--wrapper"
+                    >
+                      <div
+                        class="searchResults-hitsContainer--topBorderFrame"
+                      />
+                      <div
+                        class="searchResults-hitsContainer--bottomBorderFrame"
+                      />
+                      <div
+                        class="searchResults-hitsContainer searchResults-hitsContainer"
+                      >
+                        <ul
+                          class="searchResults-hitsContainer--list"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="panelOverlay--header--viewBreakpoint--max-sm [opacity:0] [pointer-events:none]  max-sm:[opacity:1] max-sm:[pointer-events:all] "
+                  >
+                    <span
+                      class="panelOverlay--header--returnIcon"
+                    >
+                      ▼
+                    </span>
+                    close
+                  </div>
+                  <div
+                    class="[opacity:1]"
+                  />
+                </div>
+              </div>
+              <div
+                class="panelOverlayAnchor sm:block  max-sm:[--overlay-pointer-events:all] max-sm:[--content-section-overlay--force-toggled:1] sm:[--content-section-overlay--force-toggled:0] sm:[--overlay-pointer-events:none] "
+              >
+                <div
+                  class="panelOverlayWrapper ![opacity:0] ![cursor:auto]  max-sm:![opacity:1] ![cursor:pointer] "
+                >
+                  <div
+                    class="panelOverlayBg"
+                  />
+                  <div
+                    class="panelOverlayBgTopMask"
+                  />
+                  <div
+                    class="panelOverlayCheckersPattern"
+                  />
+                  <div
+                    class="panelOverlayClickHandler"
+                    data-testid="panelOverlayClickHandler"
+                  />
+                  <div
+                    class="panelOverlayClickHandler sm:[pointer-events:none]"
+                    data-testid="panelOverlayClickHandler_alt"
+                  />
+                </div>
+              </div>
+              <div
+                class="slidingOverviewPanelWrapper  lg:hidden"
+              >
+                <div
+                  class="overviewPanelOverlayBg lg:hidden"
+                  data-testid="overviewPanelOverlayBg"
+                />
+                <div
+                  class="slidingOverviewPanel slidingOverviewPanel"
+                >
+                  <div
+                    class="overviewPanelContainer overviewPanelContainer"
+                    id="overviewPanelContainer"
+                  />
+                </div>
+              </div>
+              <div
+                class="overviewPanelToggleButton   lg:hidden"
+              >
+                <div
+                  class="overviewPanelToggleButtonWrapper"
+                >
+                  <div
+                    class="progressIndicator"
+                  >
+                    <span
+                      class="progressIndicatorAmount"
+                    >
+                      NaN
+                      <span
+                        class="progressPercentageSymbol"
+                      >
+                        %
+                      </span>
+                    </span>
+                    <span
+                      class="TocIcon"
+                    >
+                      <div />
+                    </span>
+                    <div
+                      class="overviewPanelToggleButton--clickHandler [pointer-events:none] "
+                      data-testid="toggleOverviewPanelButton_alternate"
+                    />
+                    <div
+                      class="overviewPanelToggleButton--clickHandler [pointer-events:none]   max-sm:[pointer-events:none] "
+                      data-testid="toggleOverviewPanelButton"
+                    />
+                  </div>
+                  <div
+                    class="panelCloseIconWrapper "
+                  >
+                    <div />
+                  </div>
+                </div>
+              </div>
+              <div
+                class="lg:flex-shrink-[2] relative [--overlay-pointer-events:none]"
+              >
+                <h1
+                  class="article_title readerModeWorkaround--articleTitle"
+                >
+                  Test document
+                </h1>
+                <p
+                  class="readerModeWorkaround--articleDate"
+                >
+                  last updated at 
+                  <time>
+                    February 8, 2023
+                  </time>
+                </p>
+                <article
+                  class="break-words text-white flex-row flex"
+                >
+                  <div
+                    class="prose  min-w-[100%] max-w-[100%] lg:min-w-[var(--max-width-after-bp-large)] lg:max-w-[var(--max-width-after-bp-large)] prose-invert lg:[--overview-panel--nested--display-type:none] articleWrapper articleWrapper"
+                  >
+                    <div
+                      class="articleHeader"
+                    >
+                      <div
+                        class="articleHeaderBg"
+                      />
+                      <div
+                        class="articleTitleFrame"
+                      >
+                        <div
+                          aria-hidden="true"
+                          class="articleTitleLabelFrame"
+                        >
+                          <h1
+                            class="articleTitleLabel articleTitleLabel"
+                          >
+                            Test document
+                          </h1>
+                        </div>
+                      </div>
+                      <div
+                        class="articleMetaInformation"
+                      >
+                        <div
+                          class="articleUpdatedAtFrame"
+                        >
+                          <span
+                            class="dateline "
+                          >
+                            last updated on 
+                            <span
+                              class="articleUpdatedAtLabel"
+                            >
+                              February 8, 2023
+                            </span>
+                          </span>
+                          <span>
+                            , 
+                          </span>
+                        </div>
+                        <div
+                          aria-hidden="true"
+                          class="articleAuthorFrame"
+                        >
+                          <span
+                            class="author byline "
+                          >
+                            <object>
+                              by 
+                            </object>
+                            <object
+                              class="articleAuthorLabel"
+                            >
+                              Test author
+                            </object>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <span
+                      class="overviewPanelAnchor"
+                      id="overviewPanelAnchor"
+                    />
+                    <div
+                      class="overviewPanelContainer overviewPanelContainer"
+                      id="overviewPanelContainer"
+                    />
+                    <h1
+                      aria-hidden="true"
+                      class="readerModeWorkaround--articleTitle"
+                      id="test-document"
+                      role="heading"
+                    >
+                      Test document
+                    </h1>
+                    <div
+                      class="article--glitchMask"
+                    >
+                      <style>
+                        
+      @media print {
+      #contentHeader__readerMode{
+        height: unset !important;
+        width: unset !important;
+        position: relative !important;
+        overflow: unset !important;
+        left: 1ch
+      }
+      #readerMode__navigation_links{
+        display: none !important;
+      }
+    }
+                      </style>
+                      
+     
+                      <span
+                        id="contentHeader__readerMode"
+                        style="
+      height: 0;
+      width: 0;
+      position: absolute;
+      overflow: hidden;
+      outline: none;
+      -webkit-touch-callout: none; /* iOS Safari */
+      -webkit-user-select: none; /* Safari */
+      -khtml-user-select: none; /* Konqueror HTML */
+      -moz-user-select: none; /* Old versions of Firefox */
+      -ms-user-select: none; /* Internet Explorer/Edge */
+      user-select: none;
+      pointer-events: none;
+    "
+                      >
+                        <span>
+                          
+      
+                          <i>
+                            / * *
+                          </i>
+                          
+      
+                          <br />
+                          
+      
+                          <span
+                            classname="copyright"
+                          >
+                            <i>
+                              *
+                            </i>
+                              Nx-DOS, 
+      
+                            <span
+                              classname="copyrightIcon"
+                            >
+                              ©
+                            </span>
+                            <span>
+                              2024
+                            </span>
+                            
+      
+                            <br />
+                            
+      
+                            <span
+                              classname="version"
+                            >
+                              <i>
+                                *
+                              </i>
+                                version 0.0.1
+                            </span>
+                             
+      
+                          </span>
+                          
+      
+                          <br />
+                          
+      
+                          <span
+                            classname="currentPath"
+                          >
+                            <i>
+                              *
+                            </i>
+                              
+                            <a
+                              href="http://localhost/introduction"
+                            >
+                              localhost/introduction
+                            </a>
+                          </span>
+                          
+      
+                          <span
+                            id="readerMode__navigation_links"
+                          >
+                            
+      
+                            <br />
+                            
+      
+                            <i>
+                              *
+                            </i>
+                          </span>
+                          <br />
+                          <i>
+                            * * /
+                          </i>
+                        </span>
+                      </span>
+                      <span
+                        style="
+      height: 0;
+      width: 0;
+      position: absolute;
+      overflow: hidden;
+      outline: none;
+      -webkit-touch-callout: none; /* iOS Safari */
+      -webkit-user-select: none; /* Safari */
+      -khtml-user-select: none; /* Konqueror HTML */
+      -moz-user-select: none; /* Old versions of Firefox */
+      -ms-user-select: none; /* Internet Explorer/Edge */
+      user-select: none;
+      pointer-events: none;
+    "
+                      >
+                        <span>
+                          
+      
+                          <i>
+                            / * *
+                          </i>
+                          
+      
+                          <br />
+                          
+      
+                          <span
+                            classname="copyright"
+                          >
+                            <i>
+                              *
+                            </i>
+                              Nx-DOS, 
+      
+                            <span
+                              classname="copyrightIcon"
+                            >
+                              ©
+                            </span>
+                            <span>
+                              2024
+                            </span>
+                            
+      
+                            <br />
+                            
+      
+                            <span
+                              classname="version"
+                            >
+                              <i>
+                                *
+                              </i>
+                                version 0.0.1
+                            </span>
+                             
+      
+                          </span>
+                          
+      
+                          <br />
+                          
+      
+                          <span
+                            classname="currentPath"
+                          >
+                            <i>
+                              *
+                            </i>
+                              
+                            <a
+                              href="http://localhost/introduction"
+                            >
+                              localhost/introduction
+                            </a>
+                          </span>
+                          
+      
+                          <span
+                            id="readerMode__navigation_links"
+                          >
+                            
+      
+                            <br />
+                            
+      
+                            <i>
+                              *
+                            </i>
+                          </span>
+                          <br />
+                          <i>
+                            * * /
+                          </i>
+                        </span>
+                        <p>
+                          <i>
+                            (END)
+                          </i>
+                           _
+                        </p>
+                        <br />
+                      </span>
+                    </div>
+                    <div
+                      class="contentFooter commentBlock"
+                    >
+                      <div
+                        class="commentLine"
+                      />
+                      <div
+                        class="commentLine"
+                      >
+                        <span
+                          class="copyrightIcon"
+                        >
+                           ©
+                        </span>
+                        2024
+                        <span
+                          class="commentLine--punctuation"
+                        >
+                          , 
+                        </span>
+                        <a
+                          href="/"
+                        >
+                          Nx-DOS
+                        </a>
+                      </div>
+                      <div
+                        class="commentLine"
+                      >
+                        version 0
+                        <span
+                          class="commentLine--punctuation"
+                        >
+                          .
+                        </span>
+                        0
+                        <span
+                          class="commentLine--punctuation"
+                        >
+                          .
+                        </span>
+                        1
+                      </div>
+                      <div
+                        class="commentLine"
+                      />
+                      <div
+                        class="commentLine"
+                      >
+                        You've reached the end of our docs
+                        <span
+                          class="commentLine--separator"
+                        >
+                          .
+                        </span>
+                      </div>
+                      <div
+                        class="commentLine"
+                      >
+                        Please don't forget to 
+                        <a
+                          href="/acknowledgements#contributing"
+                        >
+                          <span
+                            style="text-decoration: underline; text-decoration-style: dotted;"
+                          >
+                            share feedback
+                          </span>
+                        </a>
+                        <span
+                          class="commentLine--separator"
+                        >
+                          ,
+                        </span>
+                      </div>
+                      <div
+                        class="commentLine"
+                      >
+                        and keep an eye out for 
+                        <a
+                          href="/acknowledgements#special-thanks"
+                        >
+                          <span
+                            style="text-decoration: underline; text-decoration-style: dotted;"
+                          >
+                            our heroes
+                          </span>
+                        </a>
+                        <span
+                          class="commentLine--separator"
+                        >
+                          .
+                        </span>
+                      </div>
+                      <div
+                        class="commentLine"
+                      />
+                      <div
+                        class="commentLine"
+                      />
+                      <span
+                        class="endOfDocumentMarker"
+                      >
+                        (Thank you!)
+                      </span>
+                    </div>
+                  </div>
+                  <div
+                    class="overviewPanelWrapper hidden lg:block mx-[5ch] lg:mx-[0ch] max-w-[74.5ch] lg:flex-shrink-[100]  lg:min-w-[var(--overview-panel-min-width)] lg:max-w-[64ch] lg:sticky lg:z-[7]"
+                  >
+                    <div
+                      class="overviewPanelContainer overviewPanelContainer"
+                      id="overviewPanelContainer"
+                    />
+                  </div>
+                </article>
+              </div>
+              <div
+                class="hidden code-block headingFrame embedded-code-directory-wrapper"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

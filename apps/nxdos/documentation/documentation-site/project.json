@@ -1,0 +1,267 @@
+{
+  "name": "nxdos-documentation-site",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/nxdos/documentation/documentation-site",
+  "projectType": "application",
+  "tags": ["scope:nxdos", "type:app"],
+  "implicitDependencies": ["nxdos-workspace-plugin"],
+  "targets": {
+    "build": {
+      "cache": true,
+      "executor": "@nx/next:build",
+      "outputs": ["{options.outputPath}"],
+      "dependsOn": [
+        {
+          "target": "build-documentation",
+          "params": "forward"
+        }
+      ],
+      "defaultConfiguration": "development",
+      "options": {
+        "root": "apps/nxdos/documentation/documentation-site",
+        "outputPath": "dist/apps/nxdos/documentation/documentation-site",
+        "generatePackageJson": true,
+        "generateLockfile": true
+      },
+      "configurations": {
+        "development": {
+          "outputPath": "dist/dev/apps/nxdos/documentation/documentation-site"
+        },
+        "production": {}
+      }
+    },
+    "dev": {
+      "executor": "@nx/next:server",
+      "dependsOn": [
+        {
+          "target": "build-documentation",
+          "params": "forward"
+        }
+      ],
+      "options": {
+        "buildTarget": "nxdos-documentation-site:build",
+        "dev": true
+      }
+    },
+    "serve": {
+      "executor": "@nx/next:server",
+      "dependsOn": [
+        {
+          "target": "build",
+          "params": "forward"
+        }
+      ],
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "nxdos-documentation-site:build",
+        "dev": true
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "nxdos-documentation-site:build:development",
+          "dev": true
+        },
+        "production": {
+          "buildTarget": "nxdos-documentation-site:build:production",
+          "dev": false
+        }
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "dependsOn": [
+        {
+          "target": "build-documentation",
+          "params": "forward"
+        }
+      ],
+      "outputs": [
+        "{workspaceRoot}/tests/coverage/apps/nxdos/documentation/documentation-site"
+      ],
+      "options": {
+        "jestConfig": "apps/nxdos/documentation/documentation-site/jest.config.ts"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
+    },
+    "sync-algolia": {
+      "executor": "@nxdos/workspace-plugin:update-algolia-data",
+      "options": {},
+      "dependsOn": ["build"],
+      "defaultConfiguration": "development",
+      "configurations": {
+        "development": {
+          "buildTarget": "nxdos-documentation-site:build:development",
+          "dev": true
+        },
+        "production": {
+          "buildTarget": "nxdos-documentation-site:build:production",
+          "dev": false
+        }
+      }
+    },
+    "build-documentation": {
+      "executor": "@nxdos/workspace-plugin:build-documentation",
+      "options": {},
+      "defaultConfiguration": "development",
+      "configurations": {
+        "development": {
+          "dev": true
+        },
+        "production": {
+          "dev": false
+        }
+      }
+    },
+    "lighthouse-run-audit": {
+      "executor": "@nxdos/workspace-plugin:lighthouse-audit",
+      "options": {},
+      "defaultConfiguration": "development",
+      "configurations": {
+        "development": {
+          "dev": true
+        },
+        "production": {
+          "dev": false
+        }
+      }
+    },
+    "lighthouse-audit": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "start-server-and-test \"nx run nxdos-documentation-site:dev --port=4203\" http://localhost:4203 \"nx run nxdos-documentation-site:lighthouse-run-audit\""
+      }
+    },
+    "lighthouse-audit:production": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "start-server-and-test \"nx run nxdos-documentation-site:serve:production --port=4203\" http://localhost:4203 \"nx run nxdos-documentation-site:lighthouse-run-audit:production\""
+      }
+    },
+    "user-flow": {
+      "executor": "@push-based/user-flow-nx-plugin:user-flow",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "url": "http://localhost:4200",
+        "rcPath": "apps/nxdos/documentation/documentation-site/.user-flowrc.json",
+        "ufPath": "apps/nxdos/documentation/documentation-site/user-flows",
+        "outputPath": "dist/user-flow/apps/nxdos/documentation/documentation-site",
+        "format": ["md", "html", "json", "stdout"],
+        "serveCommand": "pnpm nx run nxdos-documentation-site:serve",
+        "awaitServeStdout": "Ready in"
+      }
+    },
+    "build-custom-server": {
+      "executor": "@nx/esbuild:esbuild",
+      "defaultConfiguration": "development",
+      "dependsOn": ["^build"],
+      "options": {
+        "outputPath": "dist/apps/nxdos/documentation/documentation-site",
+        "main": "apps/nxdos/documentation/documentation-site/server/main.ts",
+        "tsConfig": "apps/nxdos/documentation/documentation-site/tsconfig.server.json",
+        "clean": false,
+        "assets": [],
+        "platform": "node",
+        "outputFileName": "server/main.js",
+        "format": ["cjs"],
+        "bundle": true,
+        "thirdParty": false,
+        "esbuildOptions": {
+          "sourcemap": true,
+          "outExtension": {
+            ".js": ".js"
+          }
+        }
+      },
+      "configurations": {
+        "development": {
+          "outputPath": "dist/dev/apps/nxdos/documentation/documentation-site",
+          "sourcemap": true,
+          "assets": [
+            {
+              "glob": ".npmrc",
+              "input": "./",
+              "output": "./"
+            }
+          ]
+        },
+        "production": {
+          "outputPath": "dist/apps/nxdos/documentation/documentation-site",
+          "sourcemap": false,
+          "assets": [".npmrc"]
+        }
+      }
+    },
+    "serve-custom-server": {
+      "executor": "@nx/js:node",
+      "dependsOn": [
+        {
+          "target": "build",
+          "params": "forward"
+        }
+      ],
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "nxdos-documentation-site:build-custom-server"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "nxdos-documentation-site:build-custom-server:development"
+        },
+        "production": {
+          "buildTarget": "nxdos-documentation-site:build-custom-server:production"
+        }
+      }
+    },
+    "build-container": {
+      "executor": "@nx-tools/nx-container:build",
+      "dependsOn": [
+        {
+          "target": "build",
+          "params": "forward"
+        },
+        {
+          "target": "build-custom-server",
+          "params": "forward"
+        }
+      ],
+      "defaultConfiguration": "development",
+      "cache": true,
+      "options": {
+        "engine": "docker",
+        "file": "apps/nxdos/documentation/documentation-site/Dockerfile"
+      },
+      "configurations": {
+        "development": {
+          "context": "dist/dev/apps/nxdos/documentation/documentation-site",
+          "push": false,
+          "tags": ["nxdos-documentation-site:latest"]
+        },
+        "production": {
+          "context": "dist/apps/nxdos/documentation/documentation-site",
+          "push": false,
+          "metadata": {
+            "images": ["nxdos-documentation-site"],
+            "load": true,
+            "tags": [
+              "type=schedule",
+              "type=ref,event=branch",
+              "type=ref,event=tag",
+              "type=ref,event=pr",
+              "type=sha,prefix=sha-",
+              "nxdos-documentation-site:latest"
+            ]
+          }
+        }
+      }
+    },
+    "run-container": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "docker run -p 3000:3000 -t docker.io/library/nxdos-documentation-site:latest"
+      }
+    }
+  }
+}
