@@ -92,12 +92,12 @@ jobs:
           name: Install dependencies
           command: CYPRESS_CACHE_FOLDER=./tmp/Cypress pnpm i
       - run:
-          name: Setup develop branch as base for 'affected' command
+          name: Setup main branch as base for 'affected' command
           command: |
             current_branch=$(git symbolic-ref --short -q HEAD)
-            if [[ "$current_branch" != "develop" ]];
+            if [[ "$current_branch" != "main" ]];
             then
-              git fetch origin develop:develop
+              git fetch origin main:main
             fi
       # Uncomment two lines below to enable Nx agent distribution
       # - nx/set-shas
