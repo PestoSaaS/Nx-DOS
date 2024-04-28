@@ -110,6 +110,13 @@
   background-color: rgba(var(--content-section-bg-rgb), 1);
   box-shadow: 0 0 2px rgba(var(--content-section-bg-rgb), 1);
   z-index: 5;
+  --clip-margin: 0px;
+  clip-path: polygon(
+    calc(var(--clip-margin)) calc(var(--clip-margin)),
+    calc(100% - var(--clip-margin) - 1px) calc(var(--clip-margin)),
+    calc(100% - var(--clip-margin) - 1px) calc(100% - var(--clip-margin) - 1px),
+    calc(var(--clip-margin)) calc(100% - var(--clip-margin) - 1px)
+  );
 }
 
 .articleHeader::before {
