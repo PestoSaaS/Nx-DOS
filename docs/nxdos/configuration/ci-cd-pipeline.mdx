@@ -7,13 +7,13 @@ author:
   name: PestoSaaS
 ---
 
-# Honorable mentions
+# Mentions
 
 Nx-DOS aims to help with the full development life cycle of building multi-platform applications.
 
-As modern devOps practices heavily rely on automation, our repo also features template configuration files to get started with minimal effort.
+As modern devOps practices run on automation, our repo also features template configuration files to get started with minimal effort.
 
-## Beauty of automation
+## Perks of automation
 
 Perhaps the most immediate benefits of an established CI/CD pipeline are;
 
@@ -61,7 +61,7 @@ With that configuration in place, now we can command our CI pipeline to distribu
   run: 'npx nx-cloud start-ci-run --distribute-on="8 linux-medium-js"'
 ```
 
-Our CI times will now see bottlenecks around single monolithic tasks with the longest run time. In general, that task used to be end-to-end tests in many repos. Luck for us, not anymore.
+Our CI times will now see bottlenecks around single monolithic tasks with the longest run time. In general, that task used to be end-to-end tests in many repos. Lucky for us, not anymore.
 
 The hardworking folk at Nx have figured out a way to atomize e2e tests. By inferring individual spec files as test targets, they were able to distribute their execution in parallel.
 
@@ -70,7 +70,7 @@ title="10x Faster e2e Tests!"
 video_id="0YxcxIR7QU0"
 /%}
 
-Ingenious. 🤯
+Fantastic. 🤯
 
 > About the only bad thing regarding task distribution is that it's a `premium feature`. So sadly you wouldn't get to try this out on a hobby project. On the other hand, we couldn't reap such benefits in a small scale anyway.
 

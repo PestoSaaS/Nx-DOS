@@ -29,7 +29,11 @@ export function LayoutPanelWrapper(
       <div
         className={
           styles['panelAnchor'] +
-          ' sm:!translate-x-[0] sm:!w-[100%] sm:!max-w-[100%] '
+          ' ' +
+          (props.panelStates.searchPanelState.isOpen
+            ? styles['panelAnchor--active']
+            : '') +
+          ' sm:!translate-x-[0] sm:!w-[100%] sm:!max-w-[100%]  '
         }
       >
         {props.children}
@@ -54,9 +58,9 @@ export function LayoutPanelWrapper(
             styles['panelAnchor--glitchMask'] +
             ' hidden max-sm:[display:unset] ' +
             (props.panelStates.sidebarState.isOpen ||
-              props.panelStates.searchPanelState.isOpen)
+            props.panelStates.searchPanelState.isOpen
               ? '[opacity:1]'
-              : '[opacity:0]'
+              : '[opacity:0]')
           }
         />
       </div>
