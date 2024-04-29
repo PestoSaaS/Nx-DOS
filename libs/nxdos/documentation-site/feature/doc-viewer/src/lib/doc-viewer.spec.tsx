@@ -102,6 +102,9 @@ describe('Nxdos - Documentation Site - Feature - Doc Viewer', () => {
     const query = 'algolia';
     await user.type(searchField, query);
     expect(searchField).toHaveProperty('value', query);
+    await act(async () => {
+      await new Promise((resolve) => setTimeout(resolve, 360));
+    });
     const searchPagination = await screen.findByText(
       'search results',
       {

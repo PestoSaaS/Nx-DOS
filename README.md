@@ -3,10 +3,11 @@
 &nbsp;  
 [![PestoSaaS](https://dl.circleci.com/status-badge/img/circleci/EEitR3ZgjiaHKy1jJubVxP/JsxczUrDWCK8A3uAis4W9G/tree/main.svg?style=shield)](https://dl.circleci.com/status-badge/redirect/circleci/EEitR3ZgjiaHKy1jJubVxP/JsxczUrDWCK8A3uAis4W9G/tree/main)
 [![codecov](https://codecov.io/gh/PestoSaaS/Nx-DOS/graph/badge.svg?token=D1GAJAF0Q9)](https://codecov.io/gh/PestoSaaS/Nx-DOS)
-[![lighthouse accessibility](.badges/lighthouse_accessibility.svg)](https://github.com/GoogleChrome/lighthouse)
-[![lighthouse best-practices](.badges/lighthouse_best-practices.svg)](https://github.com/GoogleChrome/lighthouse)
 [![commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/PestoSaaS/Nx-DOS/issues)
+<br>
+[![lighthouse accessibility](.badges/lighthouse_accessibility.svg)](https://github.com/GoogleChrome/lighthouse)
+[![lighthouse best-practices](.badges/lighthouse_best-practices.svg)](https://github.com/GoogleChrome/lighthouse)
 [![license: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 <hr>
