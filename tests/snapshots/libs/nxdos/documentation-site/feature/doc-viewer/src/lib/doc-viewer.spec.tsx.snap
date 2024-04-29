@@ -419,7 +419,7 @@ exports[`Nxdos - Documentation Site - Feature - Doc Viewer should match snapshot
                 class="panelWrapper max-w-[var(--max-width-till-bp-large)] sm:max-w-[100%]  lg:max-w-[var(--max-width-after-bp-large)] sm:!translate-x-[0]  panelWrapperSqueezedBySidebar"
               >
                 <div
-                  class="panelAnchor sm:!translate-x-[0] sm:!w-[100%] sm:!max-w-[100%] "
+                  class="panelAnchor  sm:!translate-x-[0] sm:!w-[100%] sm:!max-w-[100%]  "
                 >
                   <div
                     class="searchResultsContainer searchResultsContainer "
@@ -454,7 +454,7 @@ exports[`Nxdos - Documentation Site - Feature - Doc Viewer should match snapshot
                     close
                   </div>
                   <div
-                    class="[opacity:1]"
+                    class="panelAnchor--glitchMask hidden max-sm:[display:unset] [opacity:1]"
                   />
                 </div>
               </div>
