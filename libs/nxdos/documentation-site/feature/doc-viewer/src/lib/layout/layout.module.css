@@ -289,7 +289,6 @@
   transform: translate3d(0, 0, 0);
   opacity: 0;
   transition: calc(var(--sidebar-hover-animation-duration) / 0.5) opacity;
-  background-color: red;
   display: none;
 }
 
