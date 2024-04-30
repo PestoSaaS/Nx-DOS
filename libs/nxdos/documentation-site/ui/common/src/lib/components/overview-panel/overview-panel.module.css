@@ -88,7 +88,7 @@
 
 .progressIndicatorAmount {
   position: relative;
-  top: calc(1.545px - 0.575rem);
+  top: calc(1.545px - 0.555rem);
   left: 0.025rem;
   letter-spacing: 0.025rem;
 }
@@ -107,11 +107,11 @@
 .TocIcon {
   display: inline-block;
   position: relative;
-  width: 0.52rem;
+  width: 0.54rem;
   vertical-align: bottom;
   height: 1rem;
   margin-left: 1.125ch;
-  top: calc(-0.4425rem);
+  top: calc(-0.455rem);
 }
 
 .overviewPanelToggleButton {
