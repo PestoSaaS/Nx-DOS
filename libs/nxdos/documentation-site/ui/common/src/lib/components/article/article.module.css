@@ -99,6 +99,14 @@
   border-bottom: 1px solid var(--theme-shadow-color);
   transform: translateY(1px);
   z-index: 1;
+  --clip-margin: 0px;
+  clip-path: polygon(
+    calc(var(--clip-margin)) calc(var(--clip-margin) - 0px),
+    calc(100% - var(--clip-margin) - 0px) calc(var(--clip-margin) - 0px),
+    calc(100% - var(--clip-margin) - 0px)
+      calc(100% - var(--clip-margin) - 0.25px),
+    calc(var(--clip-margin)) calc(100% - var(--clip-margin) - 0.25px)
+  );
 }
 
 .article--glitchMask::before {
@@ -135,6 +143,14 @@
   );
   opacity: 0.25;
   background-size: 400% 400%;
+  --clip-margin: 0px;
+  clip-path: polygon(
+    calc(var(--clip-margin)) calc(var(--clip-margin) - 0.25px),
+    calc(100% - var(--clip-margin) - 0.25px) calc(var(--clip-margin) - 0.25px),
+    calc(100% - var(--clip-margin) - 0.25px)
+      calc(100% - var(--clip-margin) - 0.25px),
+    calc(var(--clip-margin)) calc(100% - var(--clip-margin) - 0.25px)
+  );
 }
 
 .articleHeaderBg {
@@ -159,6 +175,14 @@
       var(--checkers-pattern-color) 75%,
       var(--checkers-pattern-color) 100%
     );
+  --clip-margin: 0px;
+  clip-path: polygon(
+    calc(var(--clip-margin)) calc(var(--clip-margin) - 0.25px),
+    calc(100% - var(--clip-margin) - 0.25px) calc(var(--clip-margin) - 0.25px),
+    calc(100% - var(--clip-margin) - 0.25px)
+      calc(100% - var(--clip-margin) - 0.25px),
+    calc(var(--clip-margin)) calc(100% - var(--clip-margin) - 0.25px)
+  );
 }
 
 .articleTitleFrame {
