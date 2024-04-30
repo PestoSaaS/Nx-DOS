@@ -258,13 +258,13 @@
     var(--overview-panel-shadow-thickness)
     rgba(var(--theme-shadow-color-rgb), 0.625);
 
-  --clip-margin: 0px;
+  /* --clip-margin: 0px;
   clip-path: polygon(
     calc(var(--clip-margin)) calc(var(--clip-margin)),
     calc(100% - var(--clip-margin) - 1px) calc(var(--clip-margin)),
     calc(100% - var(--clip-margin) - 1px) calc(100% - var(--clip-margin) - 1px),
     calc(var(--clip-margin)) calc(100% - var(--clip-margin) - 1px)
-  );
+  ); */
 }
 
 .overviewPanelContainer :global(a) {
