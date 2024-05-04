@@ -1,7 +1,7 @@
 import { nxdosDocumentsApi } from '../lib/api';
 
 //pages/sitemap.xml.js
-const EXTERNAL_DATA_URL = 'https://nxdos.org/';
+const EXTERNAL_DATA_URL = 'https://nxdos.org';
 
 interface ServerSidePropsContext {
   res: {
@@ -14,11 +14,16 @@ interface ServerSidePropsContext {
 function generateSiteMap(listOfUrls) {
   return `<?xml version="1.0" encoding="UTF-8"?>
    <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+       <url>
+           <loc>${`${EXTERNAL_DATA_URL}`}</loc>
+           <lastmod>${new Date()}</lastmod>
+           <changefreq>monthly</changefreq>
+       </url>
      ${listOfUrls
        .map((relativePath) => {
          return `
        <url>
-           <loc>${`${EXTERNAL_DATA_URL}${relativePath}`}</loc>
+           <loc>${`${EXTERNAL_DATA_URL}/${relativePath}`}</loc>
            <lastmod>${new Date()}</lastmod>
            <changefreq>monthly</changefreq>
        </url>
