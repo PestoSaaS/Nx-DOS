@@ -43,6 +43,7 @@ export class DocumentsApi {
     }
   ) {
     this.DOCS_PATH = workspaceRoot + '/' + this.options.publicDocsRootPath;
+
     const mappedDocumentsRawJson = fs.readFileSync(
       this.DOCS_PATH + 'documents.json'
     );

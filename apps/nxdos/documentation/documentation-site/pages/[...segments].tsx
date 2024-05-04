@@ -16,6 +16,7 @@ import {
 
 import { nxdosDocumentsApi, nxdosMenuApi } from '../lib/api';
 import { algoliaSectionsStore } from '../lib/parse-algolia-sections';
+import { generateSitemapXML } from '../lib/generate-sitemap-xml';
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 
@@ -39,9 +40,6 @@ const Segments = ({
     }, 200);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  // console.log(frontMatterData);
-  // console.log(renderedContentHTML);
 
   const pageTitle =
     'Nx\u2011DOS' +
@@ -97,6 +95,12 @@ export const getStaticPaths: GetStaticPaths<SegmentsProps> = async () => {
     console.log(
       '',
       '   \x1b[1m\x1b[32m✓\x1b[0m successfully parsed algolia records',
+      ''
+    );
+    generateSitemapXML(staticPaths);
+    console.log(
+      '',
+      '   \x1b[1m\x1b[32m✓\x1b[0m generated sitemap.xml for crawlers',
       ''
     );
   }
