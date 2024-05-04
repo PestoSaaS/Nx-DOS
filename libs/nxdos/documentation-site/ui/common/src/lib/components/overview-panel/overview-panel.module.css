@@ -139,9 +139,9 @@
   --clip-margin: 0px;
   clip-path: polygon(
     calc(var(--clip-margin) - 11ch) calc(var(--clip-margin)),
-    calc(100% - var(--clip-margin) + var(--content-section-padding) - 3px)
+    calc(100% - var(--clip-margin) + var(--content-section-padding) - 4px)
       calc(var(--clip-margin)),
-    calc(100% - var(--clip-margin) + var(--content-section-padding) - 3px)
+    calc(100% - var(--clip-margin) + var(--content-section-padding) - 4px)
       calc(var(--header-height) - var(--clip-margin) - 5px),
     calc(var(--clip-margin) - 11ch)
       calc(var(--header-height) - var(--clip-margin) - 5px)

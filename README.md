@@ -5,7 +5,7 @@
 [![codecov](https://codecov.io/gh/PestoSaaS/Nx-DOS/graph/badge.svg?token=D1GAJAF0Q9)](https://codecov.io/gh/PestoSaaS/Nx-DOS)
 [![commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/PestoSaaS/Nx-DOS/issues)
-<br>
+<wbr/>
 [![lighthouse accessibility](.badges/lighthouse_accessibility.svg)](https://github.com/GoogleChrome/lighthouse)
 [![lighthouse best-practices](.badges/lighthouse_best-practices.svg)](https://github.com/GoogleChrome/lighthouse)
 [![license: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
@@ -53,8 +53,9 @@ Your engagement helps motivate our efforts, validate the time spent on developme
 **Universal client management**  
  [🚧] Web, mobile & desktop clients  
  [🚧] URL routing & handoffs  
- [🚧] Mirrored state management  
- [🚧] Server components & SSR  
+ [🚧] Mirrored state management
+ [🚧] Error management  
+ [🚧] SSR, server components & actions
  [⏳] Bundle & SEO optimizations
 
 **Improved DX via Nx tooling**  
@@ -66,10 +67,10 @@ Your engagement helps motivate our efforts, validate the time spent on developme
  [✅] Self-hostable technology stack
 
 **Improved accessibility**  
- [⏳] Internationalization & localization  
+ [⏳] Internationalization & localization
+ [✅] Cross browser reader mode improvements  
  [✅] Documentation viewer & markdoc support  
- [✅] Search integrated documentation segments  
- [✅] Cross browser reader mode improvements
+ [✅] Searchable documentation segments
 
 **Integrated devops & monitoring**  
  [✅] Product analytics  
