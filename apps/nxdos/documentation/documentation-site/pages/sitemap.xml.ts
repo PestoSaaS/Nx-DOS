@@ -19,6 +19,8 @@ function generateSiteMap(listOfUrls) {
          return `
        <url>
            <loc>${`${EXTERNAL_DATA_URL}${relativePath}`}</loc>
+           <lastmod>${new Date()}</lastmod>
+           <changefreq>monthly</changefreq>
        </url>
      `;
        })
