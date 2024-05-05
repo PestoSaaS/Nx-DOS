@@ -41,7 +41,7 @@ If you use or like Nx-DOS, please consider providing feedback. This is an open-s
 
 Your engagement helps motivate our efforts, validate the time spent on development and guide our trajectory.
 
-✅ *available*, 🚧 *work in progress*, ⏳ *backlogged*
+✅ *available*, 🚧 *wip*, ⏳ *backlog*
 
 **Boilerplate features**  
  [🚧] Authentication  
