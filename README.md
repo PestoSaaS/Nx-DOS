@@ -49,27 +49,27 @@ Your engagement helps motivate our efforts, validate the time spent on developme
  [⏳] Email & SMS  
  [⏳] Push notifications  
  [⏳] CRUD API templates  
- [⏳] Payments 
+ [⏳] Payments  
 
 **Universal client management**  
  [🚧] Web, mobile & desktop clients  
  [🚧] URL routing & handoffs  
  [🚧] Mirrored state management  
  [🚧] SSR, server components & actions  
- [⏳] Bundle & SEO optimizations
+ [⏳] Bundle & SEO optimizations  
  [⏳] Storybook component library  
 
 **Improved DX via Nx tooling**  
  [✅] Modular architecture  
  [✅] Dependency graph visualization  
  [✅] Customizable target configurations  
- [✅] Self-hostable technology stack
+ [✅] Self-hostable technology stack  
  [✅] Commitizen friendly repo  
  [✅] Automated changelog generation  
 
 **Improved accessibility**  
  [⏳] Internationalization & localization  
- [✅] Lighthouse audits & budget assertions
+ [✅] Lighthouse audits & budget assertions  
  [✅] Cross browser reader mode improvements  
  [✅] Documentation viewer & markdoc support  
  [✅] Embeddable & highlighted source files  
