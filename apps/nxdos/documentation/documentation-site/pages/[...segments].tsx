@@ -70,7 +70,7 @@ export const getStaticPaths: GetStaticPaths<SegmentsProps> = async () => {
     process.env['NX_TASK_TARGET_TARGET'] === 'test'
   ) {
     console.log('');
-    console.log('', '   - build detected: crawling documentation ...', '');
+    console.log('', '   - indexed documentation in fragments ...', '');
     staticPaths.forEach(async (path) => {
       let document: DocumentData | undefined;
       try {

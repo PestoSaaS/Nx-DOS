@@ -19,6 +19,8 @@ import {
 // https://nextjs.org/docs/app/building-your-application/configuring/environment-variables#runtime-environment-variables
 const toggle_posthog =
   typeof window !== 'undefined' &&
+  typeof process.env['NEXT_PUBLIC_POSTHOG_PROJECT_API_KEY'] !== 'undefined' &&
+  typeof process.env['NEXT_PUBLIC_POSTHOG_API_HOST'] !== 'undefined' &&
   process.env['NODE_ENV'] === 'production' &&
   process.env['NEXT_PUBLIC_VALID_PRODUCTION_HOSTS']
     .split(' ')
@@ -26,7 +28,8 @@ const toggle_posthog =
 
 if (toggle_posthog) {
   posthog.init(process.env['NEXT_PUBLIC_POSTHOG_PROJECT_API_KEY'], {
-    api_host: process.env['NEXT_PUBLIC_POSTHOG_API_HOST'],
+    api_host: '/ingest',
+    ui_host: 'https://eu.i.posthog.com',
     loaded: (posthog) => {
       if (!toggle_posthog) posthog.opt_out_capturing();
     },
