@@ -1,7 +1,7 @@
-const { createGlobPatternsForDependencies } = require('@nrwl/next/tailwind');
+const { createGlobPatternsForDependencies } = require('@nx/next/tailwind');
 const { join } = require('path');
 
-const { workspaceRoot } = require('@nrwl/devkit');
+const { workspaceRoot } = require('@nx/devkit');
 
 module.exports = {
   mode: 'jit',
